@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Assignments
 {
+    /// <summary>
+    /// Program is a initialising class with Main function
+    /// </summary>
     internal class Program
     {
         private static void Main(string[] args)
@@ -12,31 +15,28 @@ namespace Assignments
             bool isNeededToReOccur = false;
             while (!isNeededToReOccur)
             {
-                Console.WriteLine("1.[A]dd new Contact\n2.[V]iew Contact\n3.[D]elete new Contact\n4.[E]dit Contact\n5.[S]earch Contact\n6.[X]Exit");
+                Console.WriteLine("1.[A]dd new Contact\n2.[V]iew Contact\n3.[D]elete new Contact\n4.[E]dit Contact\n5.[S]earch Contact\n6.[O]Sort Contacts\n7.[X]Exit");
                 var userChoice = Console.ReadLine();
-                switch (userChoice)
+                switch (userChoice.ToLower())
                 {
-                    case "A":
                     case "a":
                         AddContactNumber(contacts);
                         break;
-                    case "V":
                     case "v":
                         ViewContact(contacts);
                         break;
-                    case "D":
                     case "d":
                         DeleteContact(contacts);
                         break;
-                    case "E":
                     case "e":
                         EditContact(contacts);
                         break;
-                    case "S":
                     case "s":
                         SearchContact(contacts);
                         break;
-                    case "X":
+                    case "o":
+                        contacts = SortContacts(contacts);
+                        break;
                     case "x":
                         isNeededToReOccur = true;
                         break;
@@ -47,29 +47,24 @@ namespace Assignments
             }
         }
 
+        private static List<(string name, string phone, string email, string notes)> SortContacts(List<(string name, string phone, string email, string notes)> contacts)
+        {
+            contacts = contacts.OrderBy(c => c.name, StringComparer.OrdinalIgnoreCase).ToList();
+            Console.WriteLine("Contacts are Sorted\n");
+            return contacts;
+        }
+
         private static void SearchContact(List<(string name, string phone, string email, string notes)> contacts)
         {
-            bool isIndexCorrect = false;
-
-            while (!isIndexCorrect)
+            Console.Write("Enter name to search: ");
+            string searchName = Console.ReadLine();
+            int index = contacts.FindIndex(c => c.name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+            if (index != -1)
             {
-                Console.WriteLine($"Select the index of the contact you want to search:");
-                var userInput = Console.ReadLine();
-
-                if (int.TryParse(userInput, out int index) && index >= 1 && index <= contacts.Count)
-                {
-                    var contact = contacts[index - 1];
-                    Console.WriteLine($" Name : {contact.name}");
-                    Console.WriteLine($" Phone: {contact.phone}");
-                    Console.WriteLine($" Email: {contact.email}");
-                    Console.WriteLine($" Notes: {contact.notes}");
-                    Console.WriteLine();
-                    isIndexCorrect = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid index. Please try again.");
-                }
+                Console.WriteLine($"Name : {contacts[index].name}");
+                Console.WriteLine($"Phone: {contacts[index].phone}");
+                Console.WriteLine($"Email: {contacts[index].email}");
+                Console.WriteLine($"Notes: {contacts[index].notes}");
             }
         }
 
@@ -107,7 +102,7 @@ namespace Assignments
             }
         }
 
-        private static void DeleteContact(List<(string, string, string, string)> contacts)
+        private static void DeleteContact(List<(string name, string phone, string email, string notes)> contacts)
         {
             bool isIndexCorrect = false;
             while (!isIndexCorrect)
@@ -124,7 +119,7 @@ namespace Assignments
             }
         }
 
-        private static void AddContactNumber(List<(string, string, string, string)> contacts)
+        private static void AddContactNumber(List<(string name, string phone, string email, string notes)> contacts)
         {
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine();
@@ -137,15 +132,15 @@ namespace Assignments
             contacts.Add((name, phone, email, notes));
         }
 
-        private static void ViewContact(List<(string, string, string, string)> contacts)
+        private static void ViewContact(List<(string name, string phone, string email, string notes)> contacts)
         {
             for (int i = 0; i < contacts.Count; i++)
             {
-                (string, string, string, string) contact = contacts[i];
-                Console.WriteLine($"[{i + 1}]Name: {contact.Item1}");
-                Console.WriteLine($" Phone: {contact.Item2}");
-                Console.WriteLine($" Email: {contact.Item3}");
-                Console.WriteLine($" Notes: {contact.Item4}");
+                (string name, string phone, string email, string notes) contact = contacts[i];
+                Console.WriteLine($"[{i + 1}]Name: {contact.name}");
+                Console.WriteLine($" Phone: {contact.phone}");
+                Console.WriteLine($" Email: {contact.email}");
+                Console.WriteLine($" Notes: {contact.notes}");
                 Console.WriteLine();
             }
         }
