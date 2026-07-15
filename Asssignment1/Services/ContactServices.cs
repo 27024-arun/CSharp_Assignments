@@ -12,6 +12,7 @@ namespace Assignment1.Services
     public class ContactServices
     {
         private static ContactRepository _repo = new ();
+        private Helper _helper = new ();
 
         /// <summary>Contact Information Class is created</summary>
         /// <param name="name">It is the name of the contact</param>
@@ -20,14 +21,20 @@ namespace Assignment1.Services
         /// <param name="notes">It is the notes of contact</param>
         public void AddContact(string name, string phone, string email, string notes)
         {
+            Guid id = Guid.NewGuid();
             ContactInfo contact = new ContactInfo
             {
+                Id = id,
                 Name = name,
                 Phone = phone,
                 Email = email,
-                Notes = notes
+                Notes = notes,
             };
-            _repo.Add(contact);
+            if (_helper.Validation(name, phone, email))
+            {
+                _repo.Add(contact);
+                _helper.AddedMessage();
+            }
         }
 
         /// <summary>ViewContact() function is used to view all contacts</summary>
@@ -64,10 +71,17 @@ namespace Assignment1.Services
                 Name = name,
                 Phone = phone,
                 Email = email,
-                Notes = notes
+                Notes = notes,
             };
-            return _repo.Update(updated);
+            if (_helper.Validation(name, phone, email))
+            {
+                _repo.Add(updated);
+                return _repo.Update(updated);
+            }
+
+            return false;
         }
+
         /// <summary>
         /// DeleteContact function is used to remove all the data in the repository of a certain contact using Guid
         /// </summary>
@@ -77,6 +91,7 @@ namespace Assignment1.Services
         {
             return _repo.Delete(id);
         }
+
         /// <summary>
         /// SortContactsByName function is used to Sort all the contact by name
         /// </summary>

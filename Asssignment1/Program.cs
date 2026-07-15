@@ -43,7 +43,6 @@ namespace Assignments
                         string notes = Console.ReadLine();
 
                         service.AddContact(name, phone, email, notes);
-                        Console.WriteLine("Contact added successfully.");
                         break;
 
                     case "v":
@@ -61,8 +60,10 @@ namespace Assignments
                                 Console.WriteLine($"Phone: {c.Phone}");
                                 Console.WriteLine($"Email: {c.Email}");
                                 Console.WriteLine($"Notes: {c.Notes}");
+                                Console.WriteLine();
                             }
                         }
+
                         break;
 
                     case "s":
@@ -84,6 +85,7 @@ namespace Assignments
                                 Console.WriteLine($"Notes: {c.Notes}");
                             }
                         }
+
                         break;
 
                     case "e":
@@ -112,6 +114,7 @@ namespace Assignments
                         {
                             Console.WriteLine("Invalid Guid.");
                         }
+
                         break;
 
                     case "d":
@@ -131,6 +134,7 @@ namespace Assignments
                         {
                             Console.WriteLine("Invalid Guid.");
                         }
+
                         break;
 
                     case "o":
@@ -151,6 +155,7 @@ namespace Assignments
                                 Console.WriteLine($"Notes: {c.Notes}");
                             }
                         }
+
                         break;
 
                     case "x":

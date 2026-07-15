@@ -22,6 +22,7 @@ namespace Assignment1.Repository
         {
             _contacts.Add(contact);
         }
+
         /// <summary>
         /// GetAll function is used to retrieve all the contact list in the repository
         /// </summary>
@@ -30,6 +31,7 @@ namespace Assignment1.Repository
         {
             return _contacts;
         }
+
         /// <summary>
         /// GetById function is used to retrieve a contact by Guid
         /// </summary>
@@ -39,6 +41,7 @@ namespace Assignment1.Repository
         {
             return _contacts.FirstOrDefault(c => c.Id == id);
         }
+
         /// <summary>
         /// GetByName function is used to retrieve list of contact with the asked name
         /// </summary>
@@ -48,6 +51,7 @@ namespace Assignment1.Repository
         {
             return _contacts.Where(c => !string.IsNullOrEmpty(c.Name) && c.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
+
         /// <summary>
         /// Update function is used to update a contact in a reposiotry
         /// </summary>
@@ -67,6 +71,7 @@ namespace Assignment1.Repository
             existing.Notes = updatedContact.Notes;
             return true;
         }
+
         /// <summary>
         /// Delete function is used to remove data in the repository
         /// </summary>
@@ -83,6 +88,7 @@ namespace Assignment1.Repository
             _contacts.Remove(contact);
             return true;
         }
+
         /// <summary>
         /// SortByName function is used to sort the contacts based on the name
         /// </summary>
