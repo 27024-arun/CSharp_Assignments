@@ -1,147 +1,165 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Assignment1.Services;
 
 namespace Assignments
 {
     /// <summary>
-    /// Program is a initialising class with Main function
+    /// Program is the initialising Class (It is in View level)
     /// </summary>
     internal class Program
     {
-        private static void Main(string[] args)
+        /// <summary>
+        /// Main is the initialising function
+        /// </summary>
+        public static void Main()
         {
-            Console.WriteLine("Welcome to Contact Manager!");
-            List<(string name, string phone, string email, string notes)> contacts = new List<(string, string, string, string)>();
-            bool isNeededToReOccur = false;
-            while (!isNeededToReOccur)
+            ContactServices service = new ();
+
+            while (true)
             {
-                Console.WriteLine("1.[A]dd new Contact\n2.[V]iew Contact\n3.[D]elete new Contact\n4.[E]dit Contact\n5.[S]earch Contact\n6.[O]Sort Contacts\n7.[X]Exit");
-                var userChoice = Console.ReadLine();
-                switch (userChoice.ToLower())
+                Console.WriteLine("Contact Management");
+                Console.WriteLine("1. [A]dd Contact");
+                Console.WriteLine("2. [V]iew Contacts");
+                Console.WriteLine("3. [S]earch Contact");
+                Console.WriteLine("4. [E]dit Contact");
+                Console.WriteLine("5. [D]elete Contact");
+                Console.WriteLine("6. [O]Sort Contacts");
+                Console.WriteLine("7. [X]Exit");
+                Console.Write("Enter your choice: ");
+
+                var choice = Console.ReadLine()?.ToLower();
+
+                switch (choice)
                 {
                     case "a":
-                        AddContactNumber(contacts);
+                        Console.Write("Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Phone: ");
+                        string phone = Console.ReadLine();
+                        Console.Write("Email: ");
+                        string email = Console.ReadLine();
+                        Console.Write("Notes: ");
+                        string notes = Console.ReadLine();
+
+                        service.AddContact(name, phone, email, notes);
+                        Console.WriteLine("Contact added successfully.");
                         break;
+
                     case "v":
-                        ViewContact(contacts);
+                        var contacts = service.ViewContacts();
+                        if (contacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts found.");
+                        }
+                        else
+                        {
+                            foreach (var c in contacts)
+                            {
+                                Console.WriteLine($"ID: {c.Id}");
+                                Console.WriteLine($"Name: {c.Name}");
+                                Console.WriteLine($"Phone: {c.Phone}");
+                                Console.WriteLine($"Email: {c.Email}");
+                                Console.WriteLine($"Notes: {c.Notes}");
+                            }
+                        }
                         break;
-                    case "d":
-                        DeleteContact(contacts);
-                        break;
-                    case "e":
-                        EditContact(contacts);
-                        break;
+
                     case "s":
-                        SearchContact(contacts);
+                        Console.Write("Enter Name: ");
+                        string searchName = Console.ReadLine();
+                        var foundContacts = service.SearchContact(searchName);
+                        if (foundContacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts found.");
+                        }
+                        else
+                        {
+                            foreach (var c in foundContacts)
+                            {
+                                Console.WriteLine($"ID: {c.Id}");
+                                Console.WriteLine($"Name: {c.Name}");
+                                Console.WriteLine($"Phone: {c.Phone}");
+                                Console.WriteLine($"Email: {c.Email}");
+                                Console.WriteLine($"Notes: {c.Notes}");
+                            }
+                        }
                         break;
+
+                    case "e":
+                        Console.Write("Enter Contact ID to edit: ");
+                        if (Guid.TryParse(Console.ReadLine(), out Guid editId))
+                        {
+                            Console.Write("New Name: ");
+                            string newName = Console.ReadLine();
+                            Console.Write("New Phone: ");
+                            string newPhone = Console.ReadLine();
+                            Console.Write("New Email: ");
+                            string newEmail = Console.ReadLine();
+                            Console.Write("New Notes: ");
+                            string newNotes = Console.ReadLine();
+
+                            if (service.EditContact(editId, newName, newPhone, newEmail, newNotes))
+                            {
+                                Console.WriteLine("Contact updated successfully.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Contact not found.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Guid.");
+                        }
+                        break;
+
+                    case "d":
+                        Console.Write("Enter Contact ID to delete: ");
+                        if (Guid.TryParse(Console.ReadLine(), out Guid deleteId))
+                        {
+                            if (service.DeleteContact(deleteId))
+                            {
+                                Console.WriteLine("Deleted successfully.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Contact not found.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Guid.");
+                        }
+                        break;
+
                     case "o":
-                        contacts = SortContacts(contacts);
+                        var sortedContacts = service.SortContactsByName();
+                        if (sortedContacts.Count == 0)
+                        {
+                            Console.WriteLine("No contacts to sort.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contacts sorted by name:");
+                            foreach (var c in sortedContacts)
+                            {
+                                Console.WriteLine($"ID: {c.Id}");
+                                Console.WriteLine($"Name: {c.Name}");
+                                Console.WriteLine($"Phone: {c.Phone}");
+                                Console.WriteLine($"Email: {c.Email}");
+                                Console.WriteLine($"Notes: {c.Notes}");
+                            }
+                        }
                         break;
+
                     case "x":
-                        isNeededToReOccur = true;
-                        break;
+                        return;
+
                     default:
-                        Console.WriteLine("Enter a Valid Choice\n");
+                        Console.WriteLine("Invalid choice");
                         break;
                 }
-            }
-        }
-
-        private static List<(string name, string phone, string email, string notes)> SortContacts(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            contacts = contacts.OrderBy(c => c.name, StringComparer.OrdinalIgnoreCase).ToList();
-            Console.WriteLine("Contacts are Sorted\n");
-            return contacts;
-        }
-
-        private static void SearchContact(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            Console.Write("Enter name to search: ");
-            string searchName = Console.ReadLine();
-            int index = contacts.FindIndex(c => c.name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
-            if (index != -1)
-            {
-                Console.WriteLine($"Name : {contacts[index].name}");
-                Console.WriteLine($"Phone: {contacts[index].phone}");
-                Console.WriteLine($"Email: {contacts[index].email}");
-                Console.WriteLine($"Notes: {contacts[index].notes}");
-            }
-        }
-
-        private static void EditContact(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            bool isIndexCorrect = false;
-            while (!isIndexCorrect)
-            {
-                Console.WriteLine("Select the index of the Contact you want to edit");
-                ViewContact(contacts);
-                var userInput = Console.ReadLine();
-                if (int.TryParse(userInput, out int index) && index >= 1 && index <= contacts.Count)
-                {
-                    var contact = contacts[index - 1];
-                    Console.Write("Enter new name: ");
-                    string newName = Console.ReadLine();
-                    contact.name = newName;
-
-                    Console.Write("Enter new phone: ");
-                    string newPhone = Console.ReadLine();
-                    contact.phone = newPhone;
-
-                    Console.Write("Enter new email: ");
-                    string newEmail = Console.ReadLine();
-                    contact.email = newEmail;
-
-                    Console.Write("Enter new notes: ");
-                    string newNotes = Console.ReadLine();
-                    contact.notes = newNotes;
-
-                    contacts[index - 1] = contact;
-                    isIndexCorrect = true;
-                    Console.WriteLine("Contact updated successfully\n");
-                }
-            }
-        }
-
-        private static void DeleteContact(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            bool isIndexCorrect = false;
-            while (!isIndexCorrect)
-            {
-                Console.WriteLine("Select the index of the Contact you want to delete");
-                ViewContact(contacts);
-                var userInput = Console.ReadLine();
-                if (int.TryParse(userInput, out int index) && index >= 1 && index <= contacts.Count)
-                {
-                    contacts.RemoveAt(index - 1);
-                    isIndexCorrect = true;
-                    Console.WriteLine("Contact Removed\n");
-                }
-            }
-        }
-
-        private static void AddContactNumber(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            Console.WriteLine("Enter Name:");
-            var name = Console.ReadLine();
-            Console.WriteLine("Enter Phone Number:");
-            string phone = Console.ReadLine();
-            Console.WriteLine("Enter Email:");
-            string email = Console.ReadLine();
-            Console.WriteLine("Enter Some Notes:");
-            string notes = Console.ReadLine();
-            contacts.Add((name, phone, email, notes));
-        }
-
-        private static void ViewContact(List<(string name, string phone, string email, string notes)> contacts)
-        {
-            for (int i = 0; i < contacts.Count; i++)
-            {
-                (string name, string phone, string email, string notes) contact = contacts[i];
-                Console.WriteLine($"[{i + 1}]Name: {contact.name}");
-                Console.WriteLine($" Phone: {contact.phone}");
-                Console.WriteLine($" Email: {contact.email}");
-                Console.WriteLine($" Notes: {contact.notes}");
-                Console.WriteLine();
             }
         }
     }
