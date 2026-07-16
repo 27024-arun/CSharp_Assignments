@@ -21,13 +21,13 @@ namespace Assignment1.Model
         /// Gets or sets name for contact
         /// </summary>
         /// <value>The Guid of the contact</value>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Gets or sets Phone for Contact
         /// </summary>
         /// <value>The Guid of the contact</value>
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// Gets or sets Email for Contact

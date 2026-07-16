@@ -12,7 +12,7 @@ namespace Assignment1.Repository
     /// </summary>
     public class ContactRepository
     {
-        private static List<ContactInfo> _contacts = new();
+        private static List<ContactInfo> _contacts = new ();
 
         /// <summary>
         /// Add function is created for adding contact
@@ -37,7 +37,7 @@ namespace Assignment1.Repository
         /// </summary>
         /// <param name="id">It is the id of the user</param>
         /// <returns>Returns a single contact with matching Guid</returns>
-        public ContactInfo GetById(Guid id)
+        public ContactInfo? GetById(Guid id)
         {
             return _contacts.FirstOrDefault(c => c.Id == id);
         }
@@ -59,7 +59,7 @@ namespace Assignment1.Repository
         /// <returns>Returns whether the data is present previously or not</returns>
         public bool Update(ContactInfo updatedContact)
         {
-            var existing = GetById(updatedContact.Id);
+            var existing = this.GetById(updatedContact.Id);
             if (existing == null)
             {
                 return false;
@@ -79,7 +79,7 @@ namespace Assignment1.Repository
         /// <returns>Returns whether the data is removed or not</returns>
         public bool Delete(Guid id)
         {
-            var contact = GetById(id);
+            var contact = this.GetById(id);
             if (contact == null)
             {
                 return false;

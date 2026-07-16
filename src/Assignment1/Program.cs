@@ -34,15 +34,18 @@ namespace Assignments
                 {
                     case "a":
                         Console.Write("Name: ");
-                        string name = Console.ReadLine();
+                        string? name = Console.ReadLine();
                         Console.Write("Phone: ");
-                        string phone = Console.ReadLine();
+                        string? phone = Console.ReadLine();
                         Console.Write("Email: ");
-                        string email = Console.ReadLine();
+                        string? email = Console.ReadLine();
                         Console.Write("Notes: ");
-                        string notes = Console.ReadLine();
+                        string? notes = Console.ReadLine();
+                        if (name != null && phone != null && email != null && notes != null)
+                        {
+                            service.AddContact(name, phone, email, notes);
+                        }
 
-                        service.AddContact(name, phone, email, notes);
                         break;
 
                     case "v":
@@ -68,21 +71,28 @@ namespace Assignments
 
                     case "s":
                         Console.Write("Enter Name: ");
-                        string searchName = Console.ReadLine();
-                        var foundContacts = service.SearchContact(searchName);
-                        if (foundContacts.Count == 0)
+                        string? searchName = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(searchName))
                         {
-                            Console.WriteLine("No contacts found.");
+                            Console.WriteLine("The Name is not valid");
                         }
                         else
                         {
-                            foreach (var c in foundContacts)
+                            var foundContacts = service.SearchContact(searchName);
+                            if (foundContacts.Count == 0)
                             {
-                                Console.WriteLine($"ID: {c.Id}");
-                                Console.WriteLine($"Name: {c.Name}");
-                                Console.WriteLine($"Phone: {c.Phone}");
-                                Console.WriteLine($"Email: {c.Email}");
-                                Console.WriteLine($"Notes: {c.Notes}");
+                                Console.WriteLine("No contacts found.");
+                            }
+                            else
+                            {
+                                foreach (var c in foundContacts)
+                                {
+                                    Console.WriteLine($"ID: {c.Id}");
+                                    Console.WriteLine($"Name: {c.Name}");
+                                    Console.WriteLine($"Phone: {c.Phone}");
+                                    Console.WriteLine($"Email: {c.Email}");
+                                    Console.WriteLine($"Notes: {c.Notes}");
+                                }
                             }
                         }
 
@@ -93,15 +103,15 @@ namespace Assignments
                         if (Guid.TryParse(Console.ReadLine(), out Guid editId))
                         {
                             Console.Write("New Name: ");
-                            string newName = Console.ReadLine();
+                            string? newName = Console.ReadLine();
                             Console.Write("New Phone: ");
-                            string newPhone = Console.ReadLine();
+                            string? newPhone = Console.ReadLine();
                             Console.Write("New Email: ");
-                            string newEmail = Console.ReadLine();
+                            string? newEmail = Console.ReadLine();
                             Console.Write("New Notes: ");
-                            string newNotes = Console.ReadLine();
+                            string? newNotes = Console.ReadLine();
 
-                            if (service.EditContact(editId, newName, newPhone, newEmail, newNotes))
+                            if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newPhone) && !string.IsNullOrWhiteSpace(newEmail) && !string.IsNullOrWhiteSpace(newNotes) && service.EditContact(editId, newName, newPhone, newEmail, newNotes))
                             {
                                 Console.WriteLine("Contact updated successfully.");
                             }

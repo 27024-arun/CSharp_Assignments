@@ -30,10 +30,10 @@ namespace Assignment1.Services
                 Email = email,
                 Notes = notes,
             };
-            if (_helper.Validation(name, phone, email))
+            if (this._helper.Validation(name, phone, email))
             {
                 _repo.Add(contact);
-                _helper.AddedMessage();
+                this._helper.AddedMessage();
             }
         }
 
@@ -53,6 +53,7 @@ namespace Assignment1.Services
             {
                 return new List<ContactInfo>();
             }
+
             return _repo.GetByName(name) ?? new List<ContactInfo>();
         }
 
@@ -73,7 +74,7 @@ namespace Assignment1.Services
                 Email = email,
                 Notes = notes,
             };
-            if (_helper.Validation(name, phone, email))
+            if (this._helper.Validation(name, phone, email))
             {
                 _repo.Add(updated);
                 return _repo.Update(updated);
