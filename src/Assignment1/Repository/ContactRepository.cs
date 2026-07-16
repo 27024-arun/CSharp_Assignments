@@ -87,10 +87,9 @@ namespace Assignment1.Repository
         /// <summary>
         /// SortByName function is used to sort the contacts based on the name
         /// </summary>
-        /// <returns>Returns the sorted list of contacts</returns>
-        public List<ContactInfo> SortByName()
+        public void SortByName()
         {
-            return _contacts.OrderBy(c => c.Name).ToList();
+            _contacts.Sort((c1, c2) => string.Compare(c1?.Name, c2?.Name, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

@@ -71,7 +71,6 @@ namespace Assignment1.Services
             };
             if (this._helper.Validation(name, phone, email))
             {
-                _repo.Add(updated);
                 return _repo.Update(updated);
             }
 
@@ -91,10 +90,9 @@ namespace Assignment1.Services
         /// <summary>
         /// SortContactsByName function is used to Sort all the contact by name
         /// </summary>
-        /// <returns>Returns the list of sorted contact</returns>
-        public List<ContactInfo> SortContactsByName()
+        public void SortContactsByName()
         {
-            return _repo.SortByName();
+            _repo.SortByName();
         }
     }
 }

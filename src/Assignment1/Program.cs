@@ -54,13 +54,13 @@ namespace Assignments
                         }
                         else
                         {
+                            int i = 0;
                             foreach (var c in contacts)
                             {
-                                Console.WriteLine($"ID: {c.Id}");
-                                Console.WriteLine($"Name: {c.Name}");
-                                Console.WriteLine($"Phone: {c.Phone}");
-                                Console.WriteLine($"Email: {c.Email}");
-                                Console.WriteLine($"Notes: {c.Notes}");
+                                Console.Write($"{++i}. Name: {c.Name} ");
+                                Console.Write($"Phone: {c.Phone} ");
+                                Console.Write($"Email: {c.Email} ");
+                                Console.Write($"Notes: {c.Notes} ");
                                 Console.WriteLine();
                             }
                         }
@@ -85,7 +85,6 @@ namespace Assignments
                             {
                                 foreach (var c in foundContacts)
                                 {
-                                    Console.WriteLine($"ID: {c.Id}");
                                     Console.WriteLine($"Name: {c.Name}");
                                     Console.WriteLine($"Phone: {c.Phone}");
                                     Console.WriteLine($"Email: {c.Email}");
@@ -97,9 +96,11 @@ namespace Assignments
                         break;
 
                     case "e":
-                        Console.Write("Enter Contact ID to edit: ");
-                        if (Guid.TryParse(Console.ReadLine(), out Guid editId))
+                        Console.Write("Enter Sno of the contact to edit : ");
+                        var contactlist = service.ViewContacts();
+                        if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= contactlist.Count())
                         {
+                            index = index - 1;
                             Console.Write("New Name: ");
                             string? newName = Console.ReadLine();
                             Console.Write("New Phone: ");
@@ -109,7 +110,7 @@ namespace Assignments
                             Console.Write("New Notes: ");
                             string? newNotes = Console.ReadLine();
 
-                            if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newPhone) && !string.IsNullOrWhiteSpace(newEmail) && !string.IsNullOrWhiteSpace(newNotes) && service.EditContact(editId, newName, newPhone, newEmail, newNotes))
+                            if (!string.IsNullOrWhiteSpace(newName) && !string.IsNullOrWhiteSpace(newPhone) && !string.IsNullOrWhiteSpace(newEmail) && !string.IsNullOrWhiteSpace(newNotes) && service.EditContact(contactlist[index].Id, newName, newPhone, newEmail, newNotes))
                             {
                                 Console.WriteLine("Contact updated successfully.");
                             }
@@ -126,10 +127,12 @@ namespace Assignments
                         break;
 
                     case "d":
-                        Console.Write("Enter Contact ID to delete: ");
-                        if (Guid.TryParse(Console.ReadLine(), out Guid deleteId))
+                        Console.Write("Enter Contact Sno of the contact to delete: ");
+                        var contactlists = service.ViewContacts();
+                        if (int.TryParse(Console.ReadLine(), out int indexValue) && indexValue > 0 && indexValue <= contactlists.Count())
                         {
-                            if (service.DeleteContact(deleteId))
+                            indexValue -= 1;
+                            if (service.DeleteContact(contactlists[indexValue].Id))
                             {
                                 Console.WriteLine("Deleted successfully.");
                             }
@@ -146,21 +149,22 @@ namespace Assignments
                         break;
 
                     case "o":
-                        var sortedContacts = service.SortContactsByName();
-                        if (sortedContacts.Count == 0)
+                        service.SortContactsByName();
+                        var contact = service.ViewContacts();
+                        if (contact.Count == 0)
                         {
-                            Console.WriteLine("No contacts to sort.");
+                            Console.WriteLine("No contacts found.");
                         }
                         else
                         {
-                            Console.WriteLine("Contacts sorted by name:");
-                            foreach (var c in sortedContacts)
+                            int i = 0;
+                            foreach (var c in contact)
                             {
-                                Console.WriteLine($"ID: {c.Id}");
-                                Console.WriteLine($"Name: {c.Name}");
-                                Console.WriteLine($"Phone: {c.Phone}");
-                                Console.WriteLine($"Email: {c.Email}");
-                                Console.WriteLine($"Notes: {c.Notes}");
+                                Console.Write($"{++i}. Name: {c.Name} ");
+                                Console.Write($"Phone: {c.Phone} ");
+                                Console.Write($"Email: {c.Email} ");
+                                Console.Write($"Notes: {c.Notes} ");
+                                Console.WriteLine();
                             }
                         }
 
