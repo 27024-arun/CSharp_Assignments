@@ -5,7 +5,7 @@ namespace Assignment1.Services
     /// <summary>
     /// Helper class is used to perform service level help functions
     /// </summary>
-    internal class Helper
+    public class Helper
     {
         /// <summary>
         /// AddedMessage indicates whether the message is added or not
@@ -27,17 +27,17 @@ namespace Assignment1.Services
             string emailpattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (string.IsNullOrWhiteSpace(name) || name.Length < 2)
             {
-                Console.WriteLine("Enter Valid Name");
+                Console.WriteLine("Enter Valid Name (i.e: Peter)");
                 return false;
             }
             else if (string.IsNullOrWhiteSpace(phone) || phone.Length != 10)
             {
-                Console.WriteLine("Enter Valid Phone Number");
+                Console.WriteLine("Enter Valid Phone Number (i.e: 9876543210)");
                 return false;
             }
             else if (email == string.Empty || !Regex.IsMatch(email, emailpattern))
             {
-                Console.WriteLine("Enter Valid Email");
+                Console.WriteLine("Enter Valid Email (i.e: example@gmail.com)");
                 return false;
             }
 

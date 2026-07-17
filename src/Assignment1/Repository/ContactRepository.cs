@@ -10,7 +10,7 @@ namespace Assignment1.Repository
         private static List<ContactInfo> _contacts = new ();
 
         /// <summary>
-        /// Add function is created for adding contact
+        /// Add function is created for adding contact in the repository
         /// </summary>
         /// <param name="contact">Contact of the users</param>
         public void Add(ContactInfo contact)
@@ -30,7 +30,7 @@ namespace Assignment1.Repository
         /// <summary>
         /// GetById function is used to retrieve a contact by Guid
         /// </summary>
-        /// <param name="id">It is the id of the user</param>
+        /// <param name="id">id is the unique identification of the user</param>
         /// <returns>Returns a single contact with matching Guid</returns>
         public ContactInfo? GetById(Guid id)
         {
@@ -40,7 +40,7 @@ namespace Assignment1.Repository
         /// <summary>
         /// GetByName function is used to retrieve list of contact with the asked name
         /// </summary>
-        /// <param name="name">It is the name of the contact</param>
+        /// <param name="name">Name of the user</param>
         /// <returns>Return the list of contacts with the matched name</returns>
         public List<ContactInfo> GetByName(string name)
         {
@@ -50,7 +50,7 @@ namespace Assignment1.Repository
         /// <summary>
         /// Update function is used to update a contact in a reposiotry
         /// </summary>
-        /// <param name="updatedContact">It is the new contact data for the existing contact</param>
+        /// <param name="updatedContact">updatedContact is the new contact data for the existing contact</param>
         /// <returns>Returns whether the data is present previously or not</returns>
         public bool Update(ContactInfo updatedContact)
         {
@@ -70,7 +70,7 @@ namespace Assignment1.Repository
         /// <summary>
         /// Delete function is used to remove data in the repository
         /// </summary>
-        /// <param name="id">It is id of the contact</param>
+        /// <param name="id">id is the unique identification of the user</param>
         /// <returns>Returns whether the data is removed or not</returns>
         public bool Delete(Guid id)
         {

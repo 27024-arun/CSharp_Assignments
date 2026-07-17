@@ -9,23 +9,15 @@ namespace Assignment1.Services
         private static ContactRepository _repo = new ();
         private Helper _helper = new ();
 
-        /// <summary>Contact Information Class is created</summary>
-        /// <param name="name">It is the name of the contact</param>
-        /// <param name="phone">It is the phone no of the contact</param>
-        /// <param name="email">It is the email of the contact</param>
-        /// <param name="notes">It is the notes of contact</param>
-        public void AddContact(string name, string phone, string email, string notes)
+        /// <summary>
+        /// AddContact Method is used to perform function call for validation and add the datas to repository
+        /// </summary>
+        /// <param name="contact">contact is the contact details of the user</param>
+        public void AddContact(ContactInfo contact)
         {
             Guid id = Guid.NewGuid();
-            ContactInfo contact = new ContactInfo
-            {
-                Id = id,
-                Name = name,
-                Phone = phone,
-                Email = email,
-                Notes = notes,
-            };
-            if (this._helper.Validation(name, phone, email))
+            contact.Id = id;
+            if (this._helper.Validation(contact.Name!, contact.Phone!, contact.Email!))
             {
                 _repo.Add(contact);
                 this._helper.AddedMessage();
@@ -52,26 +44,21 @@ namespace Assignment1.Services
             return _repo.GetByName(name) ?? new List<ContactInfo>();
         }
 
-        /// <summary>EditContact function is used to edit the existing data in the repository</summary>
-        /// <param name="id">It is the Guid of the contact</param>
-        /// <param name="name">It is the name of the contact</param>
-        /// <param name="phone">It is the phone no of the contact</param>
-        /// <param name="email">It is the email of the contact</param>
-        /// <param name="notes">It is the notes of contact</param>
-        /// <returns>Return whether the repository is edited or not</returns>
-        public bool EditContact(Guid id, string name, string phone, string email, string notes)
+        /// <summary>
+        /// EditContact function is used to edit the existing data in the repository
+        /// </summary>
+        /// <param name="id">id is parameter used for unique identification of the user</param>
+        /// <param name="updated">updated</param>
+        /// <returns>Returns whether the contact is updated or not</returns>
+        public bool EditContact(Guid id, ContactInfo updated)
         {
-            ContactInfo updated = new ContactInfo
+            updated.Id = id;
+            if (updated.Name != null && updated.Phone != null && updated.Email != null)
             {
-                Id = id,
-                Name = name,
-                Phone = phone,
-                Email = email,
-                Notes = notes,
-            };
-            if (this._helper.Validation(name, phone, email))
-            {
-                return _repo.Update(updated);
+                if (this._helper.Validation(updated.Name, updated.Phone, updated.Email))
+                {
+                    return _repo.Update(updated);
+                }
             }
 
             return false;
@@ -80,7 +67,7 @@ namespace Assignment1.Services
         /// <summary>
         /// DeleteContact function is used to remove all the data in the repository of a certain contact using Guid
         /// </summary>
-        /// <param name="id">It is the Guid of the contact</param>
+        /// <param name="id">id is the Guid of the contact</param>
         /// <returns>Returns whether the certain contact is deleted or not</returns>
         public bool DeleteContact(Guid id)
         {
