@@ -13,8 +13,8 @@
         /// <param name="radius">Radius is the radius of the cirlce</param>
         public Circle(string color, double radius)
         {
-            Color = color;
-            Radius = radius;
+            this.Color = color;
+            this.Radius = radius;
         }
 
         /// <summary>
@@ -29,6 +29,6 @@
         /// CalculateArea method is the function that defines the area calculation of the circle
         /// </summary>
         /// <returns>Returns the area of the cirlce</returns>
-        public override double CalculateArea() => Math.PI * Radius * Radius;
+        public override double CalculateArea() => Math.PI * this.Radius * this.Radius;
     }
 }
