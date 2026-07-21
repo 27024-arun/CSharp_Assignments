@@ -1,10 +1,23 @@
-﻿namespace Assignments
+﻿using EmployeeHierarchy.View;
+
+namespace Assignments
 {
+    /// <summary>
+    /// Program is the entry level function
+    /// </summary>
     internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Main is the entry function of the program
+        /// </summary>
+        public static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            bool exit = true;
+            while (exit)
+            {
+                EmployeeView view = new ();
+                exit = view.ViewRun();
+            }
         }
     }
 }
