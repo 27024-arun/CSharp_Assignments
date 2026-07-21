@@ -32,24 +32,33 @@ namespace ShapeHierarchy.View
 
                 Console.WriteLine("Enter color:");
                 string? color = Console.ReadLine();
+                if (color == null)
+                {
+                    Console.WriteLine("Color should not be empty");
+                    return;
+                }
+
                 ShapeModel shape;
 
                 if (shapeType == "r")
                 {
                     Console.WriteLine("Enter width:");
-                    double width = double.Parse(Console.ReadLine());
+                    string? widthInput = Console.ReadLine();
+                    double.TryParse(widthInput, out double width);
 
                     Console.WriteLine("Enter height:");
-                    double height = double.Parse(Console.ReadLine());
+                    string? heightInput = Console.ReadLine();
+                    double.TryParse(heightInput, out double height);
                     shapeType = "rectangle";
-                    shape = _service.CreateShape(shapeType, color, width, height);
+                    shape = this._service.CreateShape(shapeType, color, width, height);
                 }
                 else if (shapeType == "c")
                 {
                     Console.WriteLine("Enter radius:");
-                    double radius = double.Parse(Console.ReadLine());
+                    string? radiusInput = Console.ReadLine();
+                    double.TryParse(radiusInput, out double radius);
                     shapeType = "circle";
-                    shape = _service.CreateShape(shapeType, color, radius);
+                    shape = this._service.CreateShape(shapeType, color, radius);
                 }
                 else
                 {
@@ -57,7 +66,7 @@ namespace ShapeHierarchy.View
                     return;
                 }
 
-                string? details = _service.GetShapeDetails(shape);
+                string? details = this._service.GetShapeDetails(shape);
                 Console.WriteLine(details);
             }
             catch (FormatException)

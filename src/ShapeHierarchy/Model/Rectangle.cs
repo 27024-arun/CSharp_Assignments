@@ -14,9 +14,9 @@
         /// <param name="height">Height is the height of the rectangle</param>
         public Rectangle(string color, double width, double height)
         {
-            Color = color;
-            Width = width;
-            Height = height;
+            this.Color = color;
+            this.Width = width;
+            this.Height = height;
         }
 
         /// <summary>
@@ -39,6 +39,6 @@
         /// CalculateArea functions is used to calculate the area of the rectangle
         /// </summary>
         /// <returns>Returns the area of the rectangle</returns>
-        public override double CalculateArea() => Width * Height;
+        public override double CalculateArea() => this.Width * this.Height;
     }
 }
