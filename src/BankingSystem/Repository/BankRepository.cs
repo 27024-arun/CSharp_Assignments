@@ -5,14 +5,14 @@ using BankingSystem.Model;
 namespace BankingSystem.Repository
 {
     /// <summary>
-    /// BankRepository is the repository for the banking system
+    /// BankRepository is the repository for the banking system.
     /// </summary>
     internal class BankRepository
     {
         private readonly List<BankModel> _accounts = new List<BankModel>();
 
         /// <summary>
-        /// AddAccount method is used to create account in banking system
+        /// AddAccount method is used to create account in banking system.
         /// </summary>
         /// <param name="account">Account is the account details</param>
         public void AddAccount(BankModel account)
@@ -21,7 +21,7 @@ namespace BankingSystem.Repository
         }
 
         /// <summary>
-        /// GetAccount method is used to return the account of the user
+        /// GetAccount method is used to return the account of the user.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique account number of the user</param>
         /// <returns>Returns the account of the user</returns>
@@ -31,7 +31,7 @@ namespace BankingSystem.Repository
         }
 
         /// <summary>
-        /// AccountExists method tells whether the user whether the account is already in the repository or not
+        /// AccountExists method tells whether the user whether the account is already in the repository or not.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique account number of the user</param>
         /// <returns>Returns whether account already exists or not</returns>

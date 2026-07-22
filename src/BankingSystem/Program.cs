@@ -5,12 +5,12 @@ using BankingSystem.Services;
 namespace BankingSystem
 {
     /// <summary>
-    /// Program is the entry level class of the program
+    /// Program is the entry level class of the program (It is the view level).
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main function is the entry level function of the program
+        /// Main function is the entry level function of the program.
         /// </summary>
         public static void Main()
         {
@@ -18,7 +18,7 @@ namespace BankingSystem
 
             while (true)
             {
-                string verbatimString = $@"
+                string verbatimString = @"
 Banking System
 1. Create Account
 2. Deposit
@@ -123,12 +123,12 @@ Enter your choice: ";
 
         private static void CreateAccount(BankServices service)
         {
-            Console.Write("Enter Account Number: ");
-            string? accountNumber = Console.ReadLine();
-            if (accountNumber == null)
-            {
-                return;
-            }
+            Random random = new Random();
+            long min = 1000000000L;
+            long max = 9999999999L;
+            long random10Digit = min + (long)(random.NextDouble() * (max - min + 1));
+            string? accountNumber = random10Digit.ToString();
+            Console.WriteLine("Your account number is:" + accountNumber);
 
             Console.Write("Enter Initial Balance: ");
             if (!double.TryParse(Console.ReadLine(), out double initialBalance) || initialBalance < 0)

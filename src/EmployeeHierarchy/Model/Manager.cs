@@ -1,7 +1,7 @@
 ﻿namespace EmployeeHierarchy.Model
 {
     /// <summary>
-    /// Manager is the class that has the properties of the manager and inherits the class Employee
+    /// Manager is the class that has the properties of the manager and inherits the class Employee.
     /// </summary>
     internal class Manager : Employee
     {
@@ -18,7 +18,7 @@
         }
 
         /// <summary>
-        /// CalculateBonus method calculates the bonus of the Manager
+        /// CalculateBonus method calculates the bonus of the Manager.
         /// </summary>
         /// <returns>Returns the bonus of the manager</returns>
         public override double CalculateBonus()

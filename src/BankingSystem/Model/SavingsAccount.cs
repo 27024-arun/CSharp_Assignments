@@ -1,7 +1,7 @@
 ﻿namespace BankingSystem.Model
 {
     /// <summary>
-    /// SavingsAccount class is the class used by the user for saving amount
+    /// SavingsAccount class is the class used by the user for saving amount.
     /// </summary>
     internal class SavingsAccount : BankModel
     {
@@ -21,7 +21,7 @@
         }
 
         /// <summary>
-        /// Withdraw method is used to withdraw amount from the banking system
+        /// Withdraw method is used to withdraw amount from the banking system.
         /// </summary>
         /// <param name="amount">Amount is the amount needed to be withdrawn</param>
         /// <returns>Returns whether the amount is withdrawn or not</returns>
