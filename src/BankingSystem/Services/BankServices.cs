@@ -4,7 +4,7 @@ using BankingSystem.Repository;
 namespace BankingSystem.Services
 {
     /// <summary>
-    /// BankServices is the service level for the Banking System
+    /// BankServices is the service level for the Banking System.
     /// </summary>
     internal class BankServices
     {
@@ -12,7 +12,7 @@ namespace BankingSystem.Services
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankServices"/> class.
-        /// BankServices method is the constructor of BankServices class
+        /// BankServices method is the constructor of BankServices class.
         /// </summary>
         /// <param name="repository">Repository is the repository of the banking system</param>
         public BankServices(BankRepository repository)
@@ -21,7 +21,7 @@ namespace BankingSystem.Services
         }
 
         /// <summary>
-        /// CreateAccount method is used to create account in the banking system
+        /// CreateAccount method is used to create account in the banking system.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique number for the user</param>
         /// <param name="initialBalance">InitialBalance is the initial amount deposited in the account</param>
@@ -54,7 +54,7 @@ namespace BankingSystem.Services
         }
 
         /// <summary>
-        /// Deposit method is used to deposit the amount
+        /// Deposit method is used to deposit the amount.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique number for the user</param>
         /// <param name="amount">Amount is the amount needed to be deposited in the banking system</param>
@@ -71,7 +71,7 @@ namespace BankingSystem.Services
         }
 
         /// <summary>
-        /// Withdraw method is used to withdraw amount from the banking system
+        /// Withdraw method is used to withdraw amount from the banking system.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique number for the user</param>
         /// <param name="amount">Amount is the amount needed to be withdrawn from the banking system</param>
@@ -88,7 +88,7 @@ namespace BankingSystem.Services
         }
 
         /// <summary>
-        /// GetAccountDetails method is used to view the account details
+        /// GetAccountDetails method is used to view the account details.
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique number for the user</param>
         /// <returns>Returns the bank account details</returns>

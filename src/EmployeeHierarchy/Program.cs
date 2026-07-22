@@ -3,12 +3,12 @@
 namespace Assignments
 {
     /// <summary>
-    /// Program is the entry level function
+    /// Program is the entry level function.
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main is the entry function of the program
+        /// Main is the entry function of the program.
         /// </summary>
         public static void Main()
         {

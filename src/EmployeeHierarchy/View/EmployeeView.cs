@@ -4,7 +4,7 @@ using EmployeeHierarchy.Services;
 namespace EmployeeHierarchy.View
 {
     /// <summary>
-    /// EmployeeView class is the view level of the EmployeeHierarchy
+    /// EmployeeView class is the view level of the EmployeeHierarchy.
     /// </summary>
     internal class EmployeeView
     {
@@ -20,7 +20,7 @@ namespace EmployeeHierarchy.View
         }
 
         /// <summary>
-        /// ViewRun method is the view level of the program
+        /// ViewRun method is the view level of the program.
         /// </summary>
         /// <returns>Returns whether the user wants to exit or not</returns>
         public bool ViewRun()

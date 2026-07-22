@@ -1,7 +1,7 @@
 ﻿namespace BankingSystem.Model
 {
     /// <summary>
-    /// CheckingAccount is the class where the data checking is made easier
+    /// CheckingAccount is the class where the data checking is made easier.
     /// </summary>
     internal class CheckingAccount : BankModel
     {
@@ -17,7 +17,7 @@
         }
 
         /// <summary>
-        /// Withdraw method is used to withdraw amount from the banking system
+        /// Withdraw method is used to withdraw amount from the banking system.
         /// </summary>
         /// <param name="amount">Amount is the amount needed to be withdrawn</param>
         /// <returns>Returns whether the amount is withdrawn or not</returns>

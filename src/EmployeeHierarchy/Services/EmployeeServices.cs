@@ -3,12 +3,12 @@
 namespace EmployeeHierarchy.Services
 {
     /// <summary>
-    /// EmployeeServices class is the service level of the EmployeeHierarchy
+    /// EmployeeServices class is the service level of the EmployeeHierarchy.
     /// </summary>
     internal class EmployeeServices
     {
         /// <summary>
-        /// CreateEmployee class is used to create employe
+        /// CreateEmployee class is used to create employee.
         /// </summary>
         /// <param name="employeeType">EmployeeType refers to Manager or Developer</param>
         /// <param name="name">Name is the name of the employee</param>
@@ -25,7 +25,7 @@ namespace EmployeeHierarchy.Services
         }
 
         /// <summary>
-        /// GetEmployeeDetails returns the details of employee
+        /// GetEmployeeDetails returns the details of employee.
         /// </summary>
         /// <param name="employee">Employee is the employee property</param>
         /// <returns>Returns the format of details to be displayed</returns>

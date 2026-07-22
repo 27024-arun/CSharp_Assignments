@@ -1,15 +1,14 @@
-﻿using System;
-using ShapeHierarchy.Model;
+﻿using ShapeHierarchy.Model;
 
 namespace ShapeHierarchy.Services
 {
     /// <summary>
-    /// ShapeServices class is used to calculate area and print details
+    /// ShapeServices class is used to calculate area and print details.
     /// </summary>
     internal class ShapeServices
     {
         /// <summary>
-        /// CreateShape function is used create a shape given by the user
+        /// CreateShape function is used create a shape given by the user.
         /// </summary>
         /// <param name="shapeType">shapeType defines what is the shape</param>
         /// <param name="color">Color is the color of the shape</param>
@@ -29,7 +28,7 @@ namespace ShapeHierarchy.Services
         }
 
         /// <summary>
-        /// GetShapeDetails method is used to get the details of the shape
+        /// GetShapeDetails method is used to get the details of the shape.
         /// </summary>
         /// <param name="shape">shape defines what is the shape</param>
         /// <returns>Returns all the details of the shape</returns>

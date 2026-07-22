@@ -1,7 +1,7 @@
 ﻿namespace ShapeHierarchy.Model
 {
     /// <summary>
-    /// Rectangle is the class that has the properties of rectangle shape and inherits ShapeModel class
+    /// Rectangle is the class that has the properties of rectangle shape and inherits ShapeModel class.
     /// </summary>
     internal class Rectangle : ShapeModel
     {
@@ -20,7 +20,7 @@
         }
 
         /// <summary>
-        /// Gets or Sets the width of the shape
+        /// Gets or Sets the width of the shape.
         /// </summary>
         /// <value>
         /// Width of the shape
@@ -28,7 +28,7 @@
         public double Width { get; set; }
 
         /// <summary>
-        /// Gets or Sets the height of the shape
+        /// Gets or Sets the height of the shape.
         /// </summary>
         /// <value>
         /// Height of the shape
@@ -36,7 +36,7 @@
         public double Height { get; set; }
 
         /// <summary>
-        /// CalculateArea functions is used to calculate the area of the rectangle
+        /// CalculateArea functions is used to calculate the area of the rectangle.
         /// </summary>
         /// <returns>Returns the area of the rectangle</returns>
         public override double CalculateArea() => this.Width * this.Height;
