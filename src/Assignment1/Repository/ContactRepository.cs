@@ -3,14 +3,14 @@
 namespace Assignment1.Repository
 {
     /// <summary>
-    /// Contact Repository is created for storage and retrieving data
+    /// Contact Repository is created for storage and retrieving data.
     /// </summary>
     public class ContactRepository
     {
         private static List<ContactInfo> _contacts = new ();
 
         /// <summary>
-        /// Add function is created for adding contact in the repository
+        /// Add function is created for adding contact in the repository.
         /// </summary>
         /// <param name="contact">Contact of the users</param>
         public void Add(ContactInfo contact)
@@ -19,7 +19,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// GetAll function is used to retrieve all the contact list in the repository
+        /// GetAll function is used to retrieve all the contact list in the repository.
         /// </summary>
         /// <returns>Returns all the list of contacts</returns>
         public List<ContactInfo> GetAll()
@@ -28,7 +28,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// GetById function is used to retrieve a contact by Guid
+        /// GetById function is used to retrieve a contact by Guid.
         /// </summary>
         /// <param name="id">id is the unique identification of the user</param>
         /// <returns>Returns a single contact with matching Guid</returns>
@@ -38,7 +38,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// GetByName function is used to retrieve list of contact with the asked name
+        /// GetByName function is used to retrieve list of contact with the asked name.
         /// </summary>
         /// <param name="name">Name of the user</param>
         /// <returns>Return the list of contacts with the matched name</returns>
@@ -48,7 +48,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// Update function is used to update a contact in a reposiotry
+        /// Update function is used to update a contact in a reposiotry.
         /// </summary>
         /// <param name="updatedContact">updatedContact is the new contact data for the existing contact</param>
         /// <returns>Returns whether the data is present previously or not</returns>
@@ -68,7 +68,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// Delete function is used to remove data in the repository
+        /// Delete function is used to remove data in the repository.
         /// </summary>
         /// <param name="id">id is the unique identification of the user</param>
         /// <returns>Returns whether the data is removed or not</returns>
@@ -85,7 +85,7 @@ namespace Assignment1.Repository
         }
 
         /// <summary>
-        /// SortByName function is used to sort the contacts based on the name
+        /// SortByName function is used to sort the contacts based on the name.
         /// </summary>
         public void SortByName()
         {

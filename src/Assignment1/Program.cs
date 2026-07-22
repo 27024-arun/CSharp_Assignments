@@ -6,14 +6,14 @@ using Assignment1.Services;
 namespace Assignments
 {
     /// <summary>
-    /// Program is the initialising Class (It is in View level)
+    /// Program is the initialising Class (It is in View level).
     /// </summary>
     internal class Program
     {
         private static ContactServices _service = new ();
 
         /// <summary>
-        /// Main is the initialising function
+        /// Main is the initialising function.
         /// </summary>
         public static void Main()
         {
@@ -70,7 +70,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// SearchContact method is used for getting details in view layer and passing it to service layer for searching it in repository
+        /// SearchContact method is used for getting details in view layer and passing it to service layer for searching it in repository.
         /// </summary>
         private static void SearchContact()
         {
@@ -78,14 +78,14 @@ Enter your choice: ";
             string? searchName = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(searchName))
             {
-                Console.WriteLine("The Name is not valid");
+                Console.WriteLine("The Name is not valid.");
             }
             else
             {
                 var foundContacts = _service.SearchContact(searchName);
                 if (foundContacts.Count == 0)
                 {
-                    Console.WriteLine("No contacts found");
+                    Console.WriteLine("No contacts found.");
                 }
                 else
                 {
@@ -98,7 +98,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// AddContact method is view level method which would trigger service layer methods for adding data
+        /// AddContact method is view level method which would trigger service layer methods for adding data.
         /// </summary>
         private static void AddContact()
         {
@@ -124,7 +124,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// RemoveContact method is view level method for accessing service layer Remove
+        /// RemoveContact method is view level method for accessing service layer Remove.
         /// </summary>
         private static void RemoveContact()
         {
@@ -149,7 +149,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// UpdateContact method is used to access service layer update contact methods
+        /// UpdateContact method is used to access service layer update contact methods.
         /// </summary>
         private static void UpdateContact()
         {
@@ -189,7 +189,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// ViewContact method is used to display the contacts to the user
+        /// ViewContact method is used to display the contacts to the user.
         /// </summary>
         private static void ViewContact()
         {
@@ -210,7 +210,7 @@ Enter your choice: ";
         }
 
         /// <summary>
-        /// SortContact method is used to sort the contacts based on the name
+        /// SortContact method is used to sort the contacts based on the name.
         /// </summary>
         private static void SortContact()
         {

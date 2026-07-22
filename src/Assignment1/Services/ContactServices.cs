@@ -10,14 +10,14 @@ namespace Assignment1.Services
         private Helper _helper = new ();
 
         /// <summary>
-        /// AddContact Method is used to perform function call for validation and add the datas to repository
+        /// AddContact Method is used to perform function call for validation and add the datas to repository.
         /// </summary>
         /// <param name="contact">contact is the contact details of the user</param>
         public void AddContact(ContactInfo contact)
         {
             Guid id = Guid.NewGuid();
             contact.Id = id;
-            if (this._helper.Validation(contact.Name!, contact.Phone!, contact.Email!))
+            if (this._helper.NameValidation(contact.Name!) && this._helper.PhoneValidation(contact.Phone!) && this._helper.EmailValidation(contact.Email!))
             {
                 _repo.Add(contact);
                 this._helper.AddedMessage();
@@ -45,7 +45,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// EditContact function is used to edit the existing data in the repository
+        /// EditContact function is used to edit the existing data in the repository.
         /// </summary>
         /// <param name="id">id is parameter used for unique identification of the user</param>
         /// <param name="updated">updated</param>
@@ -55,7 +55,7 @@ namespace Assignment1.Services
             updated.Id = id;
             if (updated.Name != null && updated.Phone != null && updated.Email != null)
             {
-                if (this._helper.Validation(updated.Name, updated.Phone, updated.Email))
+                if (this._helper.NameValidation(updated.Name) && this._helper.PhoneValidation(updated.Phone) && this._helper.EmailValidation(updated.Email))
                 {
                     return _repo.Update(updated);
                 }
@@ -65,7 +65,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// DeleteContact function is used to remove all the data in the repository of a certain contact using Guid
+        /// DeleteContact function is used to remove all the data in the repository of a certain contact using Guid.
         /// </summary>
         /// <param name="id">id is the Guid of the contact</param>
         /// <returns>Returns whether the certain contact is deleted or not</returns>
@@ -75,7 +75,7 @@ namespace Assignment1.Services
         }
 
         /// <summary>
-        /// SortContactsByName function is used to Sort all the contact by name
+        /// SortContactsByName function is used to Sort all the contact by name.
         /// </summary>
         public void SortContactsByName()
         {
