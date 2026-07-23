@@ -1,6 +1,8 @@
 ﻿using System;
+using BankingSystem.Model;
 using BankingSystem.Repository;
 using BankingSystem.Services;
+using Microsoft.VisualBasic;
 
 namespace BankingSystem
 {
@@ -73,9 +75,7 @@ Enter your choice: ";
             }
             else
             {
-              Console.WriteLine($"\nAccount Details");
-              Console.WriteLine($"Account Number: {account.AccountNumber}");
-              Console.WriteLine($"Balance: {account.Balance}");
+              Console.WriteLine($"\nAccount Details\nAccount Number: {account.AccountNumber}\nBalance: {account.Balance}\nAccount Type: {account.GetType().Name}");
             }
         }
 
@@ -123,13 +123,11 @@ Enter your choice: ";
 
         private static void CreateAccount(BankServices service)
         {
-            Random random = new Random();
-            long min = 1000000000L;
-            long max = 9999999999L;
-            long random10Digit = min + (long)(random.NextDouble() * (max - min + 1));
-            string? accountNumber = random10Digit.ToString();
-            Console.WriteLine("Your account number is:" + accountNumber);
+            Console.WriteLine("Enter the type of account you want to create: \n(Minimum Balance for Savings Account is 1000, Checking Account does not need minimum balance)\nSaving Account -> S, CheckingAccount - > C :");
+            string? accountType = Console.ReadLine();
 
+            string accountNumber = BankServices.GenerateAccountNumber();
+            Console.WriteLine("Your account number is: " + accountNumber);
             Console.Write("Enter Initial Balance: ");
             if (!double.TryParse(Console.ReadLine(), out double initialBalance) || initialBalance < 0)
             {
@@ -137,7 +135,7 @@ Enter your choice: ";
                 return;
             }
 
-            bool created = service.CreateAccount(accountNumber, initialBalance);
+            bool created = service.CreateAccount(accountNumber, initialBalance, accountType!.ToLower());
             Console.WriteLine(created ? "Account created successfully." : "Failed to create account (duplicate or invalid data).");
         }
     }

@@ -25,22 +25,24 @@ namespace BankingSystem.Services
         /// </summary>
         /// <param name="accountNumber">AccountNumber is the unique number for the user</param>
         /// <param name="initialBalance">InitialBalance is the initial amount deposited in the account</param>
+        /// <param name="accountType">AccountType checks whether it is savings or checking account</param>
         /// <returns>Returns whether the account is created or not</returns>
-        public bool CreateAccount(string accountNumber, double initialBalance)
+        public bool CreateAccount(string accountNumber, double initialBalance, string accountType)
         {
-            if (string.IsNullOrWhiteSpace(accountNumber) || initialBalance < 0)
+            if (this._repository.AccountExists(accountNumber) || initialBalance < 0)
             {
                 return false;
             }
 
-            if (this._repository.AccountExists(accountNumber))
+            if (accountType == "s" && initialBalance < 1000)
             {
+                Console.WriteLine("Savings account initial balance should be above 1000");
                 return false;
             }
 
             BankModel account;
 
-            if (initialBalance >= 5000)
+            if (accountType == "s")
             {
                 account = new SavingsAccount(accountNumber, initialBalance, 1000);
             }
@@ -95,6 +97,20 @@ namespace BankingSystem.Services
         public BankModel? GetAccountDetails(string accountNumber)
         {
             return this._repository.GetAccount(accountNumber);
+        }
+
+        /// <summary>
+        /// GenerateAccountNumber generates a random number for 10 digits
+        /// </summary>
+        /// <returns>Returns the account number for the user</returns>
+        internal static string GenerateAccountNumber()
+        {
+            Random random = new Random();
+            long min = 1000000000L;
+            long max = 9999999999L;
+            long random10Digit = min + (long)(random.NextDouble() * (max - min + 1));
+            string accountNumber = random10Digit.ToString();
+            return accountNumber;
         }
     }
 }
