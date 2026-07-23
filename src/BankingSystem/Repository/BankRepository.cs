@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BankingSystem.Model;
+﻿using BankingSystem.Model;
 
 namespace BankingSystem.Repository
 {
