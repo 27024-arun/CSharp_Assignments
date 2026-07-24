@@ -112,5 +112,20 @@ namespace BankingSystem.Services
             string accountNumber = random10Digit.ToString();
             return accountNumber;
         }
+
+        /// <summary>
+        /// AccountValidation method is used to validate whether the entered accountType is correct or not
+        /// </summary>
+        /// <param name="accountType">AccountType refers whether the account is savings account or checking account.</param>
+        /// <returns>Return whether the account type is valid or not</returns>
+        internal static bool AccountValidation(string accountType)
+        {
+            if (accountType == "s" || accountType == "c")
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
