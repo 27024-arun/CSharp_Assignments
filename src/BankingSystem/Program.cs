@@ -126,7 +126,7 @@ Enter your choice: ";
             bool isAccountValidated = BankServices.AccountValidation(accountType!);
             if (!isAccountValidated)
             {
-                Console.WriteLine("Enter a Valid account type (S for Savings Account, C for Checking Account):");
+                Console.WriteLine("Enter a Valid account type (S for Savings Account, C for Checking Account)");
                 return;
             }
 
