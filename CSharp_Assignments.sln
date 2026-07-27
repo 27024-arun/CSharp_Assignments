@@ -17,6 +17,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeHierarchy", "src\EmployeeHierarchy\EmployeeHierarchy.csproj", "{D88554AE-8E64-40CD-94B9-027017737C52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem", "src\BankingSystem\BankingSystem.csproj", "{E1EAB050-B984-4817-9275-65E916040E10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory Management", "src\Inventory Management\Inventory Management.csproj", "{73033445-21FD-4049-85EC-8E1CEC44E591}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +41,10 @@ Global
 		{E1EAB050-B984-4817-9275-65E916040E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1EAB050-B984-4817-9275-65E916040E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1EAB050-B984-4817-9275-65E916040E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73033445-21FD-4049-85EC-8E1CEC44E591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73033445-21FD-4049-85EC-8E1CEC44E591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73033445-21FD-4049-85EC-8E1CEC44E591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73033445-21FD-4049-85EC-8E1CEC44E591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +56,7 @@ Global
 		{BD794B51-F79A-4A0A-8E82-BD0A3B218690} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{D88554AE-8E64-40CD-94B9-027017737C52} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{E1EAB050-B984-4817-9275-65E916040E10} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{73033445-21FD-4049-85EC-8E1CEC44E591} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
