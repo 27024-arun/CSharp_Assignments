@@ -18,12 +18,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the account number of the user.
+        /// Gets the account number of the user.
         /// </summary>
         /// <value>
         /// AccountNumber of the user
         /// </value>
-        public string AccountNumber { get; set; }
+        public string AccountNumber { get; }
 
         /// <summary>
         /// Gets or sets balance of the user in their account.
@@ -40,11 +40,6 @@
         /// <returns>Returns whether the amount is deposited or not</returns>
         public virtual bool Deposit(double amount)
         {
-            if (amount <= 0)
-            {
-                return false;
-            }
-
             this.Balance += amount;
             return true;
         }
