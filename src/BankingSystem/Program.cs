@@ -83,7 +83,7 @@ Enter your choice: ";
         {
             Console.Write("Enter Account Number: ");
             string? withdrawAccount = Console.ReadLine();
-            if (withdrawAccount == null)
+            if (string.IsNullOrEmpty(withdrawAccount))
             {
                 return;
             }
@@ -104,7 +104,7 @@ Enter your choice: ";
         {
             Console.Write("Enter Account Number: ");
             string? depositAccount = Console.ReadLine();
-            if (depositAccount == null)
+            if (string.IsNullOrEmpty(depositAccount))
             {
                 return;
             }
@@ -126,14 +126,14 @@ Enter your choice: ";
             Console.WriteLine("Enter the type of account you want to create: \n(Minimum Balance for Savings Account is 1000, Checking Account does not need minimum balance)\nSaving Account -> S, CheckingAccount - > C :");
             string? accountType = Console.ReadLine();
 
-            bool isAccountValidated = BankServices.AccountValidation(accountType!.ToLower());
+            bool isAccountValidated = service.AccountValidation(accountType!.ToLower());
             if (!isAccountValidated)
             {
                 Console.WriteLine("Enter a Valid account type (S for Savings Account, C for Checking Account)");
                 return;
             }
 
-            string accountNumber = BankServices.GenerateAccountNumber();
+            string accountNumber = service.GenerateAccountNumber();
 
             Console.WriteLine("Your account number is: " + accountNumber);
             Console.Write("Enter Initial Balance: ");

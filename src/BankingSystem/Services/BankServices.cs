@@ -1,4 +1,5 @@
-﻿using BankingSystem.Model;
+﻿using System.Runtime.CompilerServices;
+using BankingSystem.Model;
 using BankingSystem.Repository;
 
 namespace BankingSystem.Services
@@ -100,25 +101,30 @@ namespace BankingSystem.Services
         }
 
         /// <summary>
-        /// GenerateAccountNumber generates a random number for 10 digits
+        /// GenerateAccountNumber generates a random number for 10 digits and checks for duplication.
         /// </summary>
         /// <returns>Returns the account number for the user</returns>
-        internal static string GenerateAccountNumber()
+        internal string GenerateAccountNumber()
         {
             Random random = new Random();
             long min = 1000000000L;
             long max = 9999999999L;
             long random10Digit = min + (long)(random.NextDouble() * (max - min + 1));
             string accountNumber = random10Digit.ToString();
+            if (this._repository.AccountExists(accountNumber))
+            {
+                return this.GenerateAccountNumber();
+            }
+
             return accountNumber;
         }
 
         /// <summary>
-        /// AccountValidation method is used to validate whether the entered accountType is correct or not
+        /// AccountValidation method is used to validate whether the entered accountType is correct or not.
         /// </summary>
         /// <param name="accountType">AccountType refers whether the account is savings account or checking account.</param>
         /// <returns>Return whether the account type is valid or not</returns>
-        internal static bool AccountValidation(string accountType)
+        internal bool AccountValidation(string accountType)
         {
             if (accountType == "s" || accountType == "c")
             {
