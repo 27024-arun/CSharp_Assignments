@@ -17,7 +17,7 @@ namespace BankingSystem
 
             while (true)
             {
-                string verbatimString = @"
+                string bankingMenu = @"
 Banking System
 1. Create Account
 2. Deposit
@@ -25,7 +25,7 @@ Banking System
 4. View Account
 5. Exit
 Enter your choice: ";
-                Console.WriteLine(verbatimString);
+                Console.WriteLine(bankingMenu);
                 string? choice = Console.ReadLine();
 
                 switch (choice)
@@ -47,6 +47,8 @@ Enter your choice: ";
                         break;
 
                     case "5":
+                        Console.WriteLine("Exiting...");
+                        Thread.Sleep(1000);
                         return;
 
                     default:
@@ -60,8 +62,9 @@ Enter your choice: ";
         {
             Console.Write("Enter Account Number: ");
             string? viewAccount = Console.ReadLine();
-            if (viewAccount == null)
+            if (string.IsNullOrWhiteSpace(viewAccount))
             {
+                Console.WriteLine("Account number is not valid.");
                 return;
             }
 
@@ -123,7 +126,7 @@ Enter your choice: ";
             Console.WriteLine("Enter the type of account you want to create: \n(Minimum Balance for Savings Account is 1000, Checking Account does not need minimum balance)\nSaving Account -> S, CheckingAccount - > C :");
             string? accountType = Console.ReadLine();
 
-            bool isAccountValidated = BankServices.AccountValidation(accountType!);
+            bool isAccountValidated = BankServices.AccountValidation(accountType!.ToLower());
             if (!isAccountValidated)
             {
                 Console.WriteLine("Enter a Valid account type (S for Savings Account, C for Checking Account)");

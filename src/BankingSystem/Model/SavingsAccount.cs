@@ -27,11 +27,6 @@
         /// <returns>Returns whether the amount is withdrawn or not</returns>
         public override bool Withdraw(double amount)
         {
-            if (amount <= 0)
-            {
-                return false;
-            }
-
             if (this.Balance - amount < this._minimumBalance)
             {
                 return false;
