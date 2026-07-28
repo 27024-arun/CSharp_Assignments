@@ -77,7 +77,7 @@ namespace Inventory_Management.Services
         /// <returns>Returns the product details with matching id.</returns>
         internal InventoryModel SearchById(int id)
         {
-            return this._repository.GetProductById(id);
+            return this._repository.GetProductById(id) !;
         }
 
         /// <summary>
@@ -88,6 +88,15 @@ namespace Inventory_Management.Services
         internal List<InventoryModel> SearchByName(string name)
         {
             return this._repository.SearchByName(name);
+        }
+
+        /// <summary>
+        /// InventoryIsEmpty method returns whether the inventory is empty or not.
+        /// </summary>
+        /// <returns>Returns whether the Inventory is empty or not.</returns>
+        internal bool InventoryIsEmpty()
+        {
+            return this._repository.IsEmpty();
         }
     }
 }

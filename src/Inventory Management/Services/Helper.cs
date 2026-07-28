@@ -1,4 +1,8 @@
-﻿namespace Inventory_Management.Services
+﻿using System.Text;
+using Inventory_Management.Model;
+using Spectre.Console;
+
+namespace Inventory_Management.Services
 {
     /// <summary>
     /// Helper class is used to perform additional operations in the project.
@@ -15,6 +19,45 @@
             Console.ForegroundColor = color;
             Console.WriteLine(message);
             Console.ResetColor();
+        }
+
+        /// <summary>
+        /// ValidateData method is used to validate the user input given by the user.
+        /// </summary>
+        /// <param name="product">Product is the details of the product.</param>
+        /// <returns>Returns whether the data given by user is valid or not.</returns>
+        public static bool ValidateData(InventoryModel product)
+        {
+            if (string.IsNullOrWhiteSpace(product.ProductName))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// PrintingTable method is used to print the data in tabular format.
+        /// </summary>
+        /// <param name="products">Products are the products in the inventory.</param>
+        public static void PrintingTable(List<InventoryModel> products)
+        {
+            var table = new Table()
+                .Border(TableBorder.Rounded)
+                .BorderColor(Color.White)
+                .Title("[white]Inventory Products[/]\n");
+
+            table.AddColumn(new TableColumn("[white]Product ID[/]").Centered());
+            table.AddColumn(new TableColumn("[white]Product Name[/]"));
+            table.AddColumn(new TableColumn("[white]Price[/]").RightAligned());
+            table.AddColumn("[white]Quantity[/]");
+
+            foreach (InventoryModel product in products)
+            {
+                table.AddRow($"{product.ProductID}", $"{product.ProductName}", $"{product.Price}", $"{product.Quantity}");
+            }
+
+            AnsiConsole.Write(table);
         }
     }
 }
