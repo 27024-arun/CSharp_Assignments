@@ -48,8 +48,8 @@ namespace Inventory_Management.Services
                 .Title("[white]Inventory Products[/]\n");
 
             table.AddColumn(new TableColumn("[white]Product ID[/]").Centered());
-            table.AddColumn(new TableColumn("[white]Product Name[/]"));
-            table.AddColumn(new TableColumn("[white]Price[/]").RightAligned());
+            table.AddColumn(new TableColumn("[white]Product Name[/]").Centered());
+            table.AddColumn(new TableColumn("[white]Price[/]").Centered());
             table.AddColumn("[white]Quantity[/]");
 
             foreach (InventoryModel product in products)
