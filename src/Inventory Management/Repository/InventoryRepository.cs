@@ -80,5 +80,14 @@ namespace Inventory_Management.Repository
                 existing.Quantity = product.Quantity;
             }
         }
+
+        /// <summary>
+        /// IsEmpty method is used to return whether the inventory is empty or not.
+        /// </summary>
+        /// <returns>Returns whether the inventory is empty or not.</returns>
+        internal bool IsEmpty()
+        {
+            return this._products.Count == 0;
+        }
     }
 }
