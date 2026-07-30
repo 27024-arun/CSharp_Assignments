@@ -1,7 +1,7 @@
 ﻿using Inventory_Management.Model;
 using Inventory_Management.Services;
 
-namespace Assignments
+namespace Inventory_View
 {
     /// <summary>
     /// Program Class is the entry point of the program (It is the view level of the program)
@@ -76,6 +76,7 @@ Enter Choice:";
 
         private static void DeleteProduct()
         {
+            int tries = 3;
             if (_service.InventoryIsEmpty())
             {
                 Helper.WriteColored("Inventory is empty.", ConsoleColor.Red);
@@ -213,7 +214,7 @@ Enter Choice:";
             Console.Write("Quantity: ");
             product.Quantity = Convert.ToInt32(Console.ReadLine());
 
-            if (!Helper.ValidateData(product))
+            if (Helper.ValidateData(product))
             {
                 Helper.WriteColored("The data entered is not valid.", ConsoleColor.Red);
                 return;

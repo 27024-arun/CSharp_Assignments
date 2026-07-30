@@ -28,12 +28,19 @@ namespace Inventory_Management.Services
         /// <returns>Returns whether the data given by user is valid or not.</returns>
         public static bool ValidateData(InventoryModel product)
         {
-            if (string.IsNullOrWhiteSpace(product.ProductName))
+            string trimmedName = product.ProductName.Trim();
+            if (!trimmedName.All(c => char.IsLetter(c)))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            if ((product.ProductID <= 0) || (product.Price <= 0) || (product.Quantity < 0) 
+                || (string.IsNullOrWhiteSpace(product.ProductName)))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
