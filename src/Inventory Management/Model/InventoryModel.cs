@@ -1,7 +1,7 @@
 ﻿namespace Inventory_Management.Model
 {
     /// <summary>
-    /// InventoryModel is the Model layer of the Inventory
+    /// InventoryModel is the Model layer of the Inventory.
     /// </summary>
     public class InventoryModel
     {

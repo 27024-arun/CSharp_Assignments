@@ -4,7 +4,7 @@ using Inventory_Management.Services;
 namespace Inventory_View
 {
     /// <summary>
-    /// Program Class is the entry point of the program (It is the view level of the program)
+    /// Program Class is the entry point of the program (It is the view level of the program).
     /// </summary>
     internal class Program
     {
@@ -76,7 +76,6 @@ Enter Choice:";
 
         private static void DeleteProduct()
         {
-            int tries = 3;
             if (_service.InventoryIsEmpty())
             {
                 Helper.WriteColored("Inventory is empty.", ConsoleColor.Red);
