@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Inventory_Management.Model;
+﻿using Inventory_Management.Model;
 using Spectre.Console;
 
 namespace Inventory_Management.Services
@@ -22,25 +21,24 @@ namespace Inventory_Management.Services
         }
 
         /// <summary>
-        /// ValidateData method is used to validate the user input given by the user.
+        /// StringDataValidation method is used to validate the string input given by the user.
         /// </summary>
-        /// <param name="product">Product is the details of the product.</param>
+        /// <param name="data">Data is the string data given by the user.</param>
         /// <returns>Returns whether the data given by user is valid or not.</returns>
-        public static bool ValidateData(InventoryModel product)
+        public static bool StringDataValidation(string data)
         {
-            string trimmedName = product.ProductName.Trim();
-            if (!trimmedName.All(c => char.IsLetter(c)))
+            if (string.IsNullOrEmpty(data) || string.IsNullOrWhiteSpace(data))
             {
-                return true;
+                return false;
             }
 
-            if ((product.ProductID <= 0) || (product.Price <= 0) || (product.Quantity < 0) 
-                || (string.IsNullOrWhiteSpace(product.ProductName)))
+            string trimmedName = data.Trim();
+            if (!trimmedName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -65,6 +63,84 @@ namespace Inventory_Management.Services
             }
 
             AnsiConsole.Write(table);
+        }
+
+        /// <summary>
+        /// GetIntData method is used to get integer input data from the user.
+        /// </summary>
+        /// <param name="variableName">It is the variable name for which the user input is assigned.</param>
+        /// <returns>Returns the integer data got from the user.</returns>
+        public static int GetIntData(string variableName)
+        {
+            int tries = 3;
+            int data;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"{variableName}: ");
+                data = Convert.ToInt32(Console.ReadLine());
+                if (data > 0)
+                {
+                    return data;
+                }
+                else
+                {
+                    WriteColored($"Data entered is invalid\n{3 - i} Tries left", ConsoleColor.Red);
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// GetStringData method is used to get string input data from the user.
+        /// </summary>
+        /// <param name="variableName">It is the variable name for which the user input is assigned.</param>
+        /// <returns>Returns the string data got from the user.</returns>
+        public static string GetStringData(string variableName)
+        {
+            int tries = 3;
+            string data;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"{variableName}: ");
+                data = Console.ReadLine() !;
+                if (StringDataValidation(data))
+                {
+                    return data;
+                }
+                else
+                {
+                    WriteColored($"Data entered is invalid\n{3 - i} Tries left", ConsoleColor.Red);
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// GetDecimalData method is used to get decimal input data from the user.
+        /// </summary>
+        /// <param name="v"> is the variable name for which the user input is assigned.</param>
+        /// <returns>Returns the decimal data got from the user.</returns>
+        public static decimal GetDecimalData(string v)
+        {
+            int tries = 3;
+            decimal data;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"{v}: ");
+                data = Convert.ToDecimal(Console.ReadLine());
+                if (data > 0)
+                {
+                    return data;
+                }
+                else
+                {
+                    WriteColored($"Data entered is invalid\n{3 - i} Tries left", ConsoleColor.Red);
+                }
+            }
+
+            return 0;
         }
     }
 }

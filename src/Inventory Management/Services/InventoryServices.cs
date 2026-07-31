@@ -1,4 +1,5 @@
-﻿using Inventory_Management.Model;
+﻿using System.Runtime.CompilerServices;
+using Inventory_Management.Model;
 using Inventory_Management.Repository;
 
 namespace Inventory_Management.Services
@@ -97,6 +98,16 @@ namespace Inventory_Management.Services
         internal bool InventoryIsEmpty()
         {
             return this._repository.IsEmpty();
+        }
+
+        /// <summary>
+        /// IsProductAvailable method checks whether the product is present in the inventory or not.
+        /// </summary>
+        /// <param name="productID">ProductId is the unique identifier of the product.</param>
+        /// <returns>Returns whether the product is already exists or not.</returns>
+        internal bool IsProductAvailable(int productID)
+        {
+            return this._repository.IsProductAvail(productID);
         }
     }
 }

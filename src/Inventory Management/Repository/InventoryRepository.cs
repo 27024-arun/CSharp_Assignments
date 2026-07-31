@@ -89,5 +89,15 @@ namespace Inventory_Management.Repository
         {
             return this._products.Count == 0;
         }
+
+        /// <summary>
+        /// IsProductAvail method is used to check whether a product with same id exists.
+        /// </summary>
+        /// <param name="id">Id is the unique identifier of the product.</param>
+        /// <returns>Returns whether the product already present or not.</returns>
+        internal bool IsProductAvail(int id)
+        {
+            return this._products.Any(p => p.ProductID == id);
+        }
     }
 }

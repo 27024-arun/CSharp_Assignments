@@ -25,8 +25,8 @@ Inventory Manager
 4. Update Product
 5. Delete Product
 6. Exit
-Enter Choice:";
-                Console.WriteLine(inventoryMenu);
+Enter Choice: ";
+                Console.Write(inventoryMenu);
                 try
                 {
                     int choice = Convert.ToInt32(Console.ReadLine());
@@ -105,17 +105,33 @@ Enter Choice:";
 
             InventoryModel update = new InventoryModel();
 
-            Console.Write("Enter Product ID : ");
-            update.ProductID = Convert.ToInt32(Console.ReadLine());
+            update.ProductID = Helper.GetIntData("Product ID");
+            if (update.ProductID == 0 || !_service.IsProductAvailable(update.ProductID))
+            {
+                Helper.WriteColored("Id is Invalid\nReturning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
 
-            Console.Write("New Name: ");
-            update.ProductName = Console.ReadLine();
+            update.ProductName = Helper.GetStringData("New Product Name");
+            if (update.ProductName == string.Empty)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
 
-            Console.Write("New Price: ");
-            update.Price = Convert.ToDecimal(Console.ReadLine());
+            update.Price = Helper.GetDecimalData("New Price");
+            if (update.Price == 0)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
 
-            Console.Write("New Quantity: ");
-            update.Quantity = Convert.ToInt32(Console.ReadLine());
+            update.Quantity = Helper.GetIntData("New Quantity");
+            if (update.Quantity == 0)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
 
             if (_service.UpdateProduct(update))
             {
@@ -201,21 +217,32 @@ Enter Choice:";
         {
             InventoryModel product = new InventoryModel();
 
-            Console.Write("Product ID: ");
-            product.ProductID = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Product Name: ");
-            product.ProductName = Console.ReadLine();
-
-            Console.Write("Price: ");
-            product.Price = Convert.ToDecimal(Console.ReadLine());
-
-            Console.Write("Quantity: ");
-            product.Quantity = Convert.ToInt32(Console.ReadLine());
-
-            if (Helper.ValidateData(product))
+            product.ProductID = Helper.GetIntData("Product ID");
+            if (product.ProductID == 0)
             {
-                Helper.WriteColored("The data entered is not valid.", ConsoleColor.Red);
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
+
+            string productName = Helper.GetStringData("Product Name");
+            product.ProductName = productName.Trim();
+            if (product.ProductName == string.Empty)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
+
+            product.Price = Helper.GetDecimalData("Price");
+            if (product.Price == 0)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
+                return;
+            }
+
+            product.Quantity = Helper.GetIntData("Quantity");
+            if (product.Quantity == 0)
+            {
+                Helper.WriteColored("Returning to main menu...", ConsoleColor.Yellow);
                 return;
             }
 
