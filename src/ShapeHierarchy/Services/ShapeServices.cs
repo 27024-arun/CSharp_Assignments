@@ -15,15 +15,19 @@ namespace ShapeHierarchy.Services
         /// <param name="dimension1">dimension1 is the width of the rectangle, dimension1 is radius if circle</param>
         /// <param name="dimension2">dimension2 is the height of the retancle</param>
         /// <returns>Returns the ShapeModel</returns>
-        public ShapeModel CreateShape(string shapeType, string color, double dimension1, double dimension2 = 0)
+        public Shape CreateShape(string shapeType, string color, double dimension1, double dimension2 = 0)
         {
             if (shapeType == "rectangle")
             {
                 return new Rectangle(color, dimension1, dimension2);
             }
-            else
+            else if (shapeType == "circle")
             {
                 return new Circle(color, dimension1);
+            }
+            else
+            {
+                throw new Exception($"Unknown shape type: {shapeType}");
             }
         }
 
@@ -32,7 +36,7 @@ namespace ShapeHierarchy.Services
         /// </summary>
         /// <param name="shape">shape defines what is the shape</param>
         /// <returns>Returns all the details of the shape</returns>
-        public string GetShapeDetails(ShapeModel shape)
+        public string GetShapeDetails(Shape shape)
         {
             return $"Shape: {shape.GetType().Name}\nColor: {shape.Color}\nArea: {shape.CalculateArea():F2}";
         }

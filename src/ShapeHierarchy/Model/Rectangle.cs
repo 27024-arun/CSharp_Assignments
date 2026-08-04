@@ -3,7 +3,7 @@
     /// <summary>
     /// Rectangle is the class that has the properties of rectangle shape and inherits ShapeModel class.
     /// </summary>
-    internal class Rectangle : ShapeModel
+    internal class Rectangle : Shape
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Rectangle"/> class.

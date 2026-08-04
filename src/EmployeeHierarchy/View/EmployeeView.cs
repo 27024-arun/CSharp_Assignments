@@ -38,7 +38,7 @@ namespace EmployeeHierarchy.View
 
                 Console.Write("Enter Name: ");
                 string? name = Console.ReadLine();
-                if (name == null)
+                if (string.IsNullOrWhiteSpace(name))
                 {
                     Console.WriteLine("Name cannot be null");
                     return true;

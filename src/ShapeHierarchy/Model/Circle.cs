@@ -3,7 +3,7 @@
     /// <summary>
     /// Circle class defines the shape circle and inherits ShapeModel class.
     /// </summary>
-    internal class Circle : ShapeModel
+    internal class Circle : Shape
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Circle"/> class.
