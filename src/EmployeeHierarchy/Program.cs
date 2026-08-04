@@ -12,11 +12,18 @@ namespace Assignments
         /// </summary>
         public static void Main()
         {
-            bool exit = true;
-            while (exit)
+            try
             {
-                EmployeeView view = new ();
-                exit = view.ViewRun();
+                bool exit = true;
+                while (exit)
+                {
+                    EmployeeView view = new ();
+                    exit = view.ViewRun();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

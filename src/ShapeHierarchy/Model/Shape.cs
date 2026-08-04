@@ -3,7 +3,7 @@
     /// <summary>
     /// ShapeModel is a abstract class with the definition of property.
     /// </summary>
-    internal abstract class ShapeModel
+    internal abstract class Shape
     {
         /// <summary>
         /// Gets or sets color is a property defining the color of the shape.
