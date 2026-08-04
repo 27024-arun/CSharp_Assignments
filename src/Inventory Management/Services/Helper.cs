@@ -120,7 +120,7 @@ namespace Inventory_Management.Services
         /// <summary>
         /// GetDecimalData method is used to get decimal input data from the user.
         /// </summary>
-        /// <param name="v"> is the variable name for which the user input is assigned.</param>
+        /// <param name="variableName"> is the variable name for which the user input is assigned.</param>
         /// <returns>Returns the decimal data got from the user.</returns>
         public static decimal GetDecimalData(string variableName)
         {
