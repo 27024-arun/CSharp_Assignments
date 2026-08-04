@@ -122,13 +122,13 @@ namespace Inventory_Management.Services
         /// </summary>
         /// <param name="v"> is the variable name for which the user input is assigned.</param>
         /// <returns>Returns the decimal data got from the user.</returns>
-        public static decimal GetDecimalData(string v)
+        public static decimal GetDecimalData(string variableName)
         {
             int tries = 3;
             decimal data;
             for (int i = 1; i <= tries; i++)
             {
-                Console.Write($"{v}: ");
+                Console.Write($"{variableName}: ");
                 data = Convert.ToDecimal(Console.ReadLine());
                 if (data > 0)
                 {
