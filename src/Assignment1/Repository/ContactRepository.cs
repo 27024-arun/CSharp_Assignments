@@ -5,7 +5,7 @@ namespace Assignment1.Repository
     /// <summary>
     /// Contact Repository is created for storage and retrieving data.
     /// </summary>
-    public class ContactRepository
+    public class ContactRepository : IRepository
     {
         private static List<ContactInfo> _contacts = new ();
 

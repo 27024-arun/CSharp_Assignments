@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-using System.Xml.Linq;
-using Assignment1.Model;
+﻿using Assignment1.Model;
 using Assignment1.Services;
 
 namespace Assignments

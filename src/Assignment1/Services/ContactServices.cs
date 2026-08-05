@@ -6,7 +6,7 @@ namespace Assignment1.Services
     /// <summary>Service layer for contact operations</summary>
     public class ContactServices
     {
-        private static ContactRepository _repo = new ();
+        private static CSVContactRepository _repo = new ("Contacts.csv");
         private Helper _helper = new ();
 
         /// <summary>
