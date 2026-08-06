@@ -3,6 +3,7 @@
 namespace Expense_Tracker.Interfaces
 {
     internal interface IExpenseRepository
+
     {
         public void AddExpense(Expense expense);
 

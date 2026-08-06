@@ -2,15 +2,15 @@
 {
     internal enum MenuOptions
     {
-        Exit,
-        AddIncome,
-        AddExpense,
+        AddIncome = 1,
         ViewIncome,
-        ViewExpense,
         EditIncome,
-        EditExpense,
         DeleteIncome,
+        AddExpense,
+        ViewExpense,
+        EditExpense,
         DeleteExpense,
         ShowSummary,
+        Exit,
     }
 }
