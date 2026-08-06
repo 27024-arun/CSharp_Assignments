@@ -1,40 +1,21 @@
-﻿using System.Text;
-using Assignment1.Model;
+﻿using Assignment1.Model;
 
 namespace Assignment1.Repository
 {
     /// <summary>
-    /// CSVContactRepository class is used to store data in CSV format.
+    /// Contact Repository is created for storage and retrieving data.
     /// </summary>
     public class CSVContactRepository : IRepository
     {
-        private readonly string _filePath;
+        private readonly string _filePath = "Contacts.csv";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CSVContactRepository"/> class.
+        /// Add function is created for adding contact in the repository.
         /// </summary>
-        /// <param name="filePath">filePath is the name of the CSV file.</param>
-        public CSVContactRepository(string filePath)
-        {
-            this._filePath = filePath;
-            this.EnsureFileExists();
-        }
-
-        /// <summary>
-        /// Add method is used to add data in the repository.
-        /// </summary>
-        /// <param name="contact">Contact is the contact details of the user.</param>
-        /// <exception cref="InvalidOperationException">Throws exception if the ID already exists.</exception>
+        /// <param name="contact">Contact of the users</param>
         public void Add(ContactInfo contact)
         {
-            var contacts = this.ReadAllContacts();
-            if (contacts.Any(c => c.Id == contact.Id))
-            {
-                throw new InvalidOperationException("Contact with this ID already exists.");
-            }
-
-            contacts.Add(contact);
-            this.WriteAllContacts(contacts);
+            File.AppendAllText(this._filePath, $"{contact.Id},{contact.Name},{contact.Phone},{contact.Email},{contact.Notes}\n");
         }
 
         /// <summary>
@@ -43,7 +24,23 @@ namespace Assignment1.Repository
         /// <returns>Returns all the list of contacts</returns>
         public List<ContactInfo> GetAll()
         {
-            return this.ReadAllContacts();
+            string[] fileData = File.ReadAllLines(this._filePath);
+            List<ContactInfo> contacts = new List<ContactInfo>();
+            foreach (string line in fileData)
+            {
+                string[] value = line.Split(",");
+                ContactInfo contact = new ContactInfo()
+                {
+                    Id = Guid.Parse(value[0]),
+                    Name = value[1],
+                    Phone = value[2],
+                    Email = value[3],
+                    Notes = value[4],
+                };
+                contacts.Add(contact);
+            }
+
+            return contacts;
         }
 
         /// <summary>
@@ -53,7 +50,8 @@ namespace Assignment1.Repository
         /// <returns>Returns a single contact with matching Guid</returns>
         public ContactInfo? GetById(Guid id)
         {
-            return this.ReadAllContacts().FirstOrDefault(c => c.Id == id);
+            List<ContactInfo> contacts = this.GetAll();
+            return contacts.FirstOrDefault(c => c.Id == id);
         }
 
         /// <summary>
@@ -63,10 +61,8 @@ namespace Assignment1.Repository
         /// <returns>Return the list of contacts with the matched name</returns>
         public List<ContactInfo> GetByName(string name)
         {
-            return this.ReadAllContacts()
-                   .Where(c => !string.IsNullOrEmpty(c.Name) &&
-                               c.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                   .ToList();
+            List<ContactInfo> contacts = this.GetAll();
+            return contacts.Where(c => !string.IsNullOrEmpty(c.Name) && c.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         /// <summary>
@@ -76,16 +72,36 @@ namespace Assignment1.Repository
         /// <returns>Returns whether the data is present previously or not</returns>
         public bool Update(ContactInfo updatedContact)
         {
-            var contacts = this.ReadAllContacts();
-            var index = contacts.FindIndex(c => c.Id == updatedContact.Id);
-            if (index == -1)
+            List<ContactInfo> contacts = this.GetAll();
+
+            foreach (var contact in contacts)
             {
-                return false;
+                if (contact.Id == updatedContact.Id)
+                {
+                    contact.Name = updatedContact.Name;
+                    contact.Phone = updatedContact.Phone;
+                    contact.Email = updatedContact.Email;
+                    contact.Notes = updatedContact.Notes;
+                }
             }
 
-            contacts[index] = updatedContact;
-            this.WriteAllContacts(contacts);
+            this.WriteAll(contacts);
             return true;
+        }
+
+        /// <summary>
+        /// WriteAll method is used to write all lines of data in CSV file.
+        /// </summary>
+        /// <param name="contacts">Contacts is the contact details of the user.</param>
+        public void WriteAll(List<ContactInfo> contacts)
+        {
+            List<string> res = new List<string>();
+            foreach (var contact in contacts)
+            {
+                res.Add($"{contact.Id},{contact.Name},{contact.Phone},{contact.Email},{contact.Notes}");
+            }
+
+            File.WriteAllLines(this._filePath, res);
         }
 
         /// <summary>
@@ -95,15 +111,16 @@ namespace Assignment1.Repository
         /// <returns>Returns whether the data is removed or not</returns>
         public bool Delete(Guid id)
         {
-            var contacts = this.ReadAllContacts();
-            int removed = contacts.RemoveAll(c => c.Id == id);
-            if (removed > 0)
+            List<ContactInfo> contacts = this.GetAll();
+            int index = contacts.FindIndex(x => x.Id == id);
+            if (index == -1)
             {
-                this.WriteAllContacts(contacts);
-                return true;
+                return false;
             }
 
-            return false;
+            contacts.RemoveAt(index);
+            this.WriteAll(contacts);
+            return true;
         }
 
         /// <summary>
@@ -111,86 +128,9 @@ namespace Assignment1.Repository
         /// </summary>
         public void SortByName()
         {
-            var contacts = this.ReadAllContacts().OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase).ToList();
-            this.WriteAllContacts(contacts);
-        }
-
-        private void EnsureFileExists()
-        {
-            if (!File.Exists(this._filePath))
-            {
-                File.WriteAllText(this._filePath, "Id,Name,Phone,Email,Notes\n", Encoding.UTF8);
-            }
-        }
-
-        private string EscapeCsv(string field)
-        {
-            if (field.Contains(',') || field.Contains('"') || field.Contains('\n'))
-            {
-                field = field.Replace("\"", "\"\"");
-                return $"\"{field}\"";
-            }
-
-            return field;
-        }
-
-        private List<ContactInfo> ReadAllContacts()
-        {
-            return File.ReadAllLines(this._filePath)
-                       .Skip(1)
-                       .Where(line => !string.IsNullOrWhiteSpace(line))
-                       .Select(line =>
-                       {
-                           var parts = this.ParseCsvLine(line);
-                           return new ContactInfo
-                           {
-                               Id = Guid.Parse(parts[0]),
-                               Name = parts[1],
-                               Phone = parts[2],
-                               Email = parts[3],
-                               Notes = parts[4],
-                           };
-                       })
-                       .ToList();
-        }
-
-        private void WriteAllContacts(List<ContactInfo> contacts)
-        {
-            var lines = new List<string> { "Id,Name,Phone,Email,Notes" };
-            lines.AddRange(contacts.Select(c =>
-                $"{c.Id},{this.EscapeCsv(c.Name ?? string.Empty)},{this.EscapeCsv(c.Phone ?? string.Empty)},{this.EscapeCsv(c.Email ?? string.Empty)},{this.EscapeCsv(c.Notes ?? string.Empty)}"));
-            File.WriteAllLines(this._filePath, lines, Encoding.UTF8);
-        }
-
-        private string[] ParseCsvLine(string line)
-        {
-            var fields = new List<string>();
-            bool inQuotes = false;
-            StringBuilder field = new StringBuilder();
-
-            foreach (char c in line)
-            {
-                if (c == '"' && !inQuotes)
-                {
-                    inQuotes = true;
-                }
-                else if (c == '"' && inQuotes)
-                {
-                    inQuotes = false;
-                }
-                else if (c == ',' && !inQuotes)
-                {
-                    fields.Add(field.ToString());
-                    field.Clear();
-                }
-                else
-                {
-                    field.Append(c);
-                }
-            }
-
-            fields.Add(field.ToString());
-            return fields.ToArray();
+            List<ContactInfo> contact = this.GetAll();
+            contact.Sort((c1, c2) => string.Compare(c1?.Name, c2?.Name, StringComparison.OrdinalIgnoreCase));
+            this.WriteAll(contact);
         }
     }
 }
