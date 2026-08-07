@@ -10,7 +10,7 @@ namespace Expense_Tracker.Services
 
         private readonly FinanceRepository _repository = new ();
 
-        internal void AddIncome(decimal amount, DateTime date, IncomeCategory category)
+        internal void AddIncome(decimal amount, DateOnly date, IncomeCategory category)
         {
             Income income = new ()
             {
@@ -23,7 +23,7 @@ namespace Expense_Tracker.Services
             this._repository.AddIncome(income);
         }
 
-        internal void AddExpense(decimal amount, DateTime date, ExpenseCategory category)
+        internal void AddExpense(decimal amount, DateOnly date, ExpenseCategory category)
         {
             Expense expense = new ()
             {
@@ -46,7 +46,7 @@ namespace Expense_Tracker.Services
             return this._repository.GetAllExpense();
         }
 
-        internal bool EditIncome(string id, decimal amount, DateTime date, IncomeCategory category)
+        internal bool EditIncome(string id, decimal amount, DateOnly date, IncomeCategory category)
         {
             List<Income> incomes = this.ViewIncome();
             if (incomes.Count == 0)
@@ -66,7 +66,7 @@ namespace Expense_Tracker.Services
             return true;
         }
 
-        internal bool EditExpense(string id, decimal amount, DateTime date, ExpenseCategory category)
+        internal bool EditExpense(string id, decimal amount, DateOnly date, ExpenseCategory category)
         {
             List<Expense> expenses = this.ViewExpense();
             if (expenses.Count == 0)
@@ -119,6 +119,16 @@ namespace Expense_Tracker.Services
         internal decimal GetBalance()
         {
             return this.GetTotalIncome() - this.GetTotalExpense();
+        }
+
+        internal bool IsExpenseIdValid(string id)
+        {
+            return this._repository.IsExpenseExists(id);
+        }
+
+        internal bool IsIncomeIdValid(string id)
+        {
+            return this._repository.IsIncomeExists(id);
         }
     }
 }

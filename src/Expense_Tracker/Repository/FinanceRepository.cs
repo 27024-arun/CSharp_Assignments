@@ -115,5 +115,25 @@ namespace Expense_Tracker.Repository
         {
             return this._expenses.Sum(e => e.Amount);
         }
+
+        internal bool IsIncomeExists(string id)
+        {
+            if (this._expenses.Any(e => e.Id == id))
+            {
+                return true;
+            }
+
+            return this._expenses.Any(e => e.Id == id);
+        }
+
+        internal bool IsExpenseExists(string id)
+        {
+            if (this._expenses.Any(e => e.Id == id))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
