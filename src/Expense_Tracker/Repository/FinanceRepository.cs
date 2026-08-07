@@ -5,22 +5,87 @@ namespace Expense_Tracker.Repository
 {
     internal class FinanceRepository : IIncomeRepository, IExpenseRepository
     {
-        private readonly List<Income> _incomes = new List<Income> { };
-        private readonly List<Expense> _expenses = new List<Expense> { };
-
-        public void AddExpense(Expense expense)
-        {
-            this._expenses.Add(expense);
-        }
+        private readonly List<Income> _incomes = new ();
+        private readonly List<Expense> _expenses = new ();
 
         public void AddIncome(Income income)
         {
             this._incomes.Add(income);
         }
 
+        public void AddExpense(Expense expense)
+        {
+            this._expenses.Add(expense);
+        }
+
+        public List<Income> GetAllIncome()
+        {
+            return this._incomes;
+        }
+
+        public List<Expense> GetAllExpense()
+        {
+            return this._expenses;
+        }
+
+        public Income? GetIncomeById(string id)
+        {
+            return this._incomes.FirstOrDefault(i => i.Id == id);
+        }
+
+        public Expense? GetExpenseById(string id)
+        {
+            return this._expenses.FirstOrDefault(e => e.Id == id);
+        }
+
+        public bool UpdateIncome(Income income)
+        {
+            Income? existing = this.GetIncomeById(income.Id);
+
+            if (existing == null)
+            {
+                return false;
+            }
+
+            existing.Amount = income.Amount;
+            existing.Date = income.Date;
+            existing.Category = income.Category;
+
+            return true;
+        }
+
+        public bool UpdateExpense(Expense expense)
+        {
+            Expense? existing = this.GetExpenseById(expense.Id);
+
+            if (existing == null)
+            {
+                return false;
+            }
+
+            existing.Amount = expense.Amount;
+            existing.Date = expense.Date;
+            existing.Category = expense.Category;
+
+            return true;
+        }
+
+        public bool DeleteIncome(string id)
+        {
+            Income? income = this.GetIncomeById(id);
+
+            if (income == null)
+            {
+                return false;
+            }
+
+            this._incomes.Remove(income);
+            return true;
+        }
+
         public bool DeleteExpense(string id)
         {
-            var expense = this.GetExpenseById(id);
+            Expense? expense = this.GetExpenseById(id);
 
             if (expense == null)
             {
@@ -31,66 +96,24 @@ namespace Expense_Tracker.Repository
             return true;
         }
 
-        public bool DeleteIncome(string id)
+        internal bool IsIncomeEmpty()
         {
-            var income = this.GetIncomeByID(id);
-            if (income == null)
-            {
-                return false;
-            }
-
-            this._incomes.Remove(income);
-            return true;
+            return this._incomes.Count == 0;
         }
 
-        public List<Expense> GetAllExpense()
+        internal bool IsExpenseEmpty()
         {
-            return this._expenses;
+            return this._expenses.Count == 0;
         }
 
-        public List<Income> GetAllIncome()
+        internal decimal GetTotalIncome()
         {
-            return this._incomes;
+            return this._incomes.Sum(i => i.Amount);
         }
 
-        public bool UpdateExpense(Expense expense)
+        internal decimal GetTotalExpense()
         {
-            var existing = this.GetExpenseById(expense.Id);
-
-            if (existing != null)
-            {
-                existing.Amount = expense.Amount;
-                existing.Date = expense.Date;
-                existing.Category = expense.Category;
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool UpdateIncome(Income income)
-        {
-            var existing = this.GetIncomeByID(income.Id);
-
-            if (existing != null)
-            {
-                existing.Amount = income.Amount;
-                existing.Date = income.Date;
-                existing.Category = income.Category;
-                return true;
-            }
-
-            return false;
-        }
-
-        public Income? GetIncomeByID(string id)
-        {
-            return this._incomes.FirstOrDefault(income => income.Id == id);
-        }
-
-        public Expense? GetExpenseById(string id)
-        {
-            return this._expenses.FirstOrDefault(expense => expense.Id == id);
+            return this._expenses.Sum(e => e.Amount);
         }
     }
 }

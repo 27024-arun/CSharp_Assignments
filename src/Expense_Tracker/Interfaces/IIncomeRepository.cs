@@ -8,6 +8,8 @@ namespace Expense_Tracker.Interfaces
 
         public List<Income> GetAllIncome();
 
+        Income? GetIncomeById(string id);
+
         public bool UpdateIncome(Income income);
 
         public bool DeleteIncome(string id);
