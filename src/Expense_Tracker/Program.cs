@@ -8,69 +8,49 @@ namespace Assignments
         public static void Main(string[] args)
         {
             FinanceView view = new FinanceView();
-            try
+
+            while (true)
             {
-                while (true)
-                {
-                    string inventoryMenu = $@"
+                string mainInventoryMenu = $@"
 Expense Tracker
-1. Add Income
-2. View Income
-3. Edit Income
-4. Delete Income
-5. Add Expense
-6. View Expenses
-7. Edit Expenses
-8. Delete Expenses
-9. Show Summary
-10. Exit
+
+1. Income Options
+2. Expense Options
+3. Show Summary
+4. Exit
 Enter Choice: ";
-                    Console.WriteLine(inventoryMenu);
+                Console.WriteLine(mainInventoryMenu);
+                try
+                {
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
-                        case (int)MenuOptions.AddIncome:
-                            view.AddIncome();
+                        case (int)MainMenuOptions.IncomeOptions:
+                            ViewHelper.IncomeOptions();
                             break;
-                        case (int)MenuOptions.ViewIncome:
-                            view.ViewIncome();
+                        case (int)MainMenuOptions.ExpenseOptions:
+                            ViewHelper.ExpenseOptions();
                             break;
-                        case (int)MenuOptions.EditIncome:
-                            view.EditIncome();
-                            break;
-                        case (int)MenuOptions.DeleteIncome:
-                            view.DeleteIncome();
-                            break;
-                        case (int)MenuOptions.AddExpense:
-                            view.AddExpense();
-                            break;
-                        case (int)MenuOptions.ViewExpense:
-                            view.ViewExpense();
-                            break;
-                        case (int)MenuOptions.EditExpense:
-                            view.EditExpense();
-                            break;
-                        case (int)MenuOptions.DeleteExpense:
-                            view.DeleteExpense();
-                            break;
-                        case (int)MenuOptions.ShowSummary:
+                        case (int)MainMenuOptions.ShowSummary:
                             view.ShowSummary();
                             break;
-                        case (int)MenuOptions.Exit:
+                        case (int)MainMenuOptions.Exit:
+                            ViewHelper.WriteColored("Exiting...", ConsoleColor.Cyan);
+                            Thread.Sleep(1000);
                             return;
                         default:
                             ViewHelper.WriteColored("Invalid Choice", ConsoleColor.Red);
                             break;
                     }
                 }
-            }
-            catch (FormatException)
-            {
-                ViewHelper.WriteColored("Enter a numeric value in the menu", ConsoleColor.Red);
-            }
-            catch (Exception ex)
-            {
-                ViewHelper.WriteColored(ex.Message, ConsoleColor.Red);
+                catch (FormatException)
+                {
+                    ViewHelper.WriteColored("Enter a numeric value in the menu\nReturning to Main Menu", ConsoleColor.Red);
+                }
+                catch (Exception ex)
+                {
+                    ViewHelper.WriteColored(ex.Message, ConsoleColor.Red);
+                }
             }
         }
     }

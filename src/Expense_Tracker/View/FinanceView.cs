@@ -1,6 +1,5 @@
 ﻿using Expense_Tracker.Models;
 using Expense_Tracker.Services;
-using Expense_Tracker.View;
 
 namespace Expense_Tracker.View
 {
@@ -10,34 +9,48 @@ namespace Expense_Tracker.View
 
         internal void AddExpense()
         {
-            Console.WriteLine("Enter the expense amount:");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Enter the category of expense: ");
+            decimal amount = ViewHelper.GetDecimalData("Amount");
+
+            if (amount <= 0)
+            {
+                return;
+            }
+
+            Console.WriteLine("\nCategories of Expense: ");
             foreach (var i in Enum.GetValues(typeof(ExpenseCategory)))
             {
                 Console.WriteLine($"{(int)i}. {i}");
             }
 
-            Console.WriteLine("Enter the type of Expense [1-7]:");
-            ExpenseCategory category = (ExpenseCategory)Convert.ToInt32(Console.ReadLine());
-            DateTime date = DateTime.Today;
+            int categoryData = ViewHelper.GetIntData("Enter the type of Expense [1-7]: ");
+            ExpenseCategory category = (ExpenseCategory)categoryData;
+
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             this._services.AddExpense(amount, date, category);
+            ViewHelper.WriteColored("Expense Added Successfully.", ConsoleColor.Green);
         }
 
         internal void AddIncome()
         {
-            Console.WriteLine("Enter the income amount:");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Enter the category of income: ");
+            decimal amount = ViewHelper.GetDecimalData("Amount");
+
+            if (amount <= 0)
+            {
+                return;
+            }
+
+            Console.WriteLine("\nCategories of Income: ");
             foreach (var i in Enum.GetValues(typeof(IncomeCategory)))
             {
                 Console.WriteLine($"{(int)i}. {i}");
             }
 
-            Console.WriteLine("Enter the type of Income [1-6]:");
-            IncomeCategory category = (IncomeCategory)Convert.ToInt32(Console.ReadLine());
-            DateTime date = DateTime.Today;
+            int categoryData = ViewHelper.GetIntData("Enter the type of Income [1-7]: ");
+            IncomeCategory category = (IncomeCategory)categoryData;
+
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             this._services.AddIncome(amount, date, category);
+            ViewHelper.WriteColored("Income Added Successfully.", ConsoleColor.Green);
         }
 
         internal void DeleteExpense()
@@ -48,8 +61,7 @@ namespace Expense_Tracker.View
                 return;
             }
 
-            Console.Write("Enter Expense ID: ");
-            string id = Console.ReadLine() !;
+            string id = ViewHelper.GetStringData("Enter Expense Id: ");
 
             if (this._services.DeleteExpense(id))
             {
@@ -69,8 +81,7 @@ namespace Expense_Tracker.View
                 return;
             }
 
-            Console.Write("Enter Income ID: ");
-            string id = Console.ReadLine() !;
+            string id = ViewHelper.GetStringData("Enter Income Id: ");
 
             if (this._services.DeleteIncome(id))
             {
@@ -90,19 +101,24 @@ namespace Expense_Tracker.View
                 return;
             }
 
-            Console.WriteLine("Enter the Id of the Expense you want to edit:");
-            string? id = Console.ReadLine();
-            Console.WriteLine("Enter the expense amount:");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Enter the category of expense: ");
+            string? id = ViewHelper.GetStringData("Id:");
+            if (string.IsNullOrEmpty(id) || this._services.IsExpenseIdValid(id))
+            {
+                return;
+            }
+
+            decimal amount = ViewHelper.GetDecimalData("Amount");
+
+            Console.WriteLine("\nCategories of Expense: ");
             foreach (var i in Enum.GetValues(typeof(ExpenseCategory)))
             {
                 Console.WriteLine($"{(int)i}. {i}");
             }
 
-            Console.WriteLine("Enter the type of expense [1-7]:");
-            ExpenseCategory category = (ExpenseCategory)Convert.ToInt32(Console.ReadLine());
-            DateTime date = DateTime.Today;
+            int categoryData = ViewHelper.GetIntData("Enter the type of expense [1-7]:");
+            ExpenseCategory category = (ExpenseCategory)categoryData;
+
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             this._services.EditExpense(id, amount, date, category);
         }
 
@@ -114,19 +130,19 @@ namespace Expense_Tracker.View
                 return;
             }
 
-            Console.WriteLine("Enter the Id of the Income you want to edit: ");
-            string? id = Console.ReadLine();
-            Console.WriteLine("Enter the income amount:");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Enter the category of income: ");
+            string? id = ViewHelper.GetStringData("Id");
+
+            decimal amount = ViewHelper.GetDecimalData("Income");
+
+            Console.WriteLine("\nCategories of Income: ");
             foreach (var i in Enum.GetValues(typeof(IncomeCategory)))
             {
                 Console.WriteLine($"{(int)i}. {i}");
             }
 
-            Console.WriteLine("Enter the type of Income [1-6]:");
-            IncomeCategory category = (IncomeCategory)Convert.ToInt32(Console.ReadLine());
-            DateTime date = DateTime.Today;
+            int categoryData = ViewHelper.GetIntData("Enter the type of Income[1 - 7]:");
+            IncomeCategory category = (IncomeCategory)categoryData;
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now);
             this._services.EditIncome(id, amount, date, category);
         }
 
@@ -145,20 +161,26 @@ namespace Expense_Tracker.View
 
         internal void ViewExpense()
         {
-            List<Expense> expense = this._services.ViewExpense();
-            foreach (Expense value in expense)
+            if (this._services.ExpenseIsEmpty())
             {
-                Console.WriteLine($"Id : {value.Id}  Amount : {value.Amount}\tDate : {value.Date}\tCategory : {value.Category}");
+                ViewHelper.WriteColored("No Expense Records.", ConsoleColor.Red);
+                return;
             }
+
+            List<Expense> expense = this._services.ViewExpense();
+            ViewHelper.PrintExpenseTabledFormat(expense);
         }
 
         internal void ViewIncome()
         {
-            List<Income> income = this._services.ViewIncome();
-            foreach (Income value in income)
+            if (this._services.IncomeIsEmpty())
             {
-                Console.WriteLine($"Id : {value.Id}  Amount : {value.Amount}\tDate : {value.Date}\tCategory : {value.Category}");
+                ViewHelper.WriteColored("No Income Records.", ConsoleColor.Red);
+                return;
             }
+
+            List<Income> income = this._services.ViewIncome();
+            ViewHelper.PrintIncomeTabledFormat(income);
         }
     }
 }
