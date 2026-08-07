@@ -2,12 +2,12 @@
 {
     internal enum ExpenseCategory
     {
-        Food,
-        Transport,
-        Shopping,
-        Bills,
-        Entertainment,
-        Healthcare,
-        Others,
+        Food = 1,
+        Transport = 2,
+        Shopping = 3,
+        Bills = 4,
+        Entertainment = 5,
+        Healthcare = 6,
+        Others = 7,
     }
 }
