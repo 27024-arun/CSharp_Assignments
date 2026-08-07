@@ -3,11 +3,12 @@
 namespace Expense_Tracker.Interfaces
 {
     internal interface IExpenseRepository
-
     {
         public void AddExpense(Expense expense);
 
         public List<Expense> GetAllExpense();
+
+        Expense? GetExpenseById(string id);
 
         public bool UpdateExpense(Expense expense);
 

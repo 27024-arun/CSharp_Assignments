@@ -2,11 +2,11 @@
 {
     internal enum IncomeCategory
     {
-        Salary,
-        Freelancing,
-        Bonus,
-        Interest,
-        Rental,
-        Others,
+        Salary = 1,
+        Freelancing = 2,
+        Bonus = 3,
+        Interest = 4,
+        Rental = 5,
+        Others = 6,
     }
 }
