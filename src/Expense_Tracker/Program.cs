@@ -1,11 +1,17 @@
 ﻿using Expense_Tracker.Models;
 using Expense_Tracker.View;
 
-namespace Assignments
+namespace ExpenseTracker
 {
+    /// <summary>
+    /// Program is the entry class of the program (View level).
+    /// </summary>
     internal class Program
     {
-        public static void Main(string[] args)
+        /// <summary>
+        /// Main method is the entry point of the program.
+        /// </summary>
+        public static void Main()
         {
             FinanceView view = new FinanceView();
 
@@ -26,10 +32,10 @@ Enter Choice: ";
                     switch (choice)
                     {
                         case (int)MainMenuOptions.IncomeOptions:
-                            ViewHelper.IncomeOptions();
+                            ViewHelper.IncomeOptions(view);
                             break;
                         case (int)MainMenuOptions.ExpenseOptions:
-                            ViewHelper.ExpenseOptions();
+                            ViewHelper.ExpenseOptions(view);
                             break;
                         case (int)MainMenuOptions.ShowSummary:
                             view.ShowSummary();
@@ -42,10 +48,6 @@ Enter Choice: ";
                             ViewHelper.WriteColored("Invalid Choice", ConsoleColor.Red);
                             break;
                     }
-                }
-                catch (FormatException)
-                {
-                    ViewHelper.WriteColored("Enter a numeric value in the menu\nReturning to Main Menu", ConsoleColor.Red);
                 }
                 catch (Exception ex)
                 {

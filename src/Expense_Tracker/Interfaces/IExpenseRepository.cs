@@ -22,12 +22,22 @@ namespace Expense_Tracker.Interfaces
         /// <summary>
         /// GetExpenseById method is the blueprint for returning a particular expense by using their id.
         /// </summary>
-        /// <param name="id">Id of the Expense.</param>
-        /// <returns>Returns a particular</returns>
+        /// <param name="id">Id is the unique identifier of the Expense.</param>
+        /// <returns>Returns a particular Expense.</returns>
         Expense? GetExpenseById(string id);
 
+        /// <summary>
+        /// UpdateExpense method is the blueprint for updating expense of the user.
+        /// </summary>
+        /// <param name="expense">Expense details of the user.</param>
+        /// <returns>Returns whether the data is updated or not.</returns>
         public bool UpdateExpense(Expense expense);
 
+        /// <summary>
+        /// DeleteExpense method is the blueprint for deleting expense of the user.
+        /// </summary>
+        /// <param name="id">Id the unique identifier of the expense.</param>
+        /// <returns>Returns whether the expense is deleted or not.</returns>
         public bool DeleteExpense(string id);
     }
 }
