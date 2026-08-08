@@ -1,12 +1,19 @@
 ﻿using ConsoleTables;
 using Expense_Tracker.Models;
+using Expense_Tracker.Services;
 
 namespace Expense_Tracker.View
 {
-    internal class ViewHelper
+    /// <summary>
+    /// ViewHelper class is the class where view level helper methods are declared.
+    /// </summary>
+    public class ViewHelper
     {
-        private static readonly FinanceView View = new ();
-
+        /// <summary>
+        /// WriteColored method is used to display message in colored format.
+        /// </summary>
+        /// <param name="message">Message is the data which should need to be displayed.</param>
+        /// <param name="color">Colors is the particular color in which the message needs to be displayed.</param>
         public static void WriteColored(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
@@ -14,7 +21,11 @@ namespace Expense_Tracker.View
             Console.ResetColor();
         }
 
-        internal static void ExpenseOptions()
+        /// <summary>
+        /// ExpenseOptions method is used to display the expense menu options to user.
+        /// </summary>
+        /// <param name="view">View is the FinanceView class instance.</param>
+        public static void ExpenseOptions(FinanceView view)
         {
             Console.Clear();
             while (true)
@@ -33,16 +44,16 @@ Enter Choice: ";
                 switch (choice)
                 {
                     case (int)ExpenseMenu.AddExpense:
-                        View.AddExpense();
+                        view.AddExpense();
                         break;
                     case (int)ExpenseMenu.ViewExpense:
-                        View.ViewExpense();
+                        view.ViewExpense();
                         break;
                     case (int)ExpenseMenu.EditExpense:
-                        View.EditExpense();
+                        view.EditExpense();
                         break;
                     case (int)ExpenseMenu.DeleteExpense:
-                        View.DeleteExpense();
+                        view.DeleteExpense();
                         break;
                     case (int)ExpenseMenu.ReturnToMainMenu:
                         Console.Clear();
@@ -54,13 +65,17 @@ Enter Choice: ";
             }
         }
 
-        internal static void IncomeOptions()
+        /// <summary>
+        /// IncomeOptions method is used to display the income menu options to the user.
+        /// </summary>
+        /// <param name="view">View is the FinanceView class instance.</param>
+        internal static void IncomeOptions(FinanceView view)
         {
             Console.Clear();
             while (true)
             {
                 string incomeMenu = $@"
-Expense Options
+Income Options
 
 1. Add Income
 2. View Income
@@ -73,16 +88,16 @@ Enter Choice: ";
                 switch (choice)
                 {
                     case (int)IncomeMenu.AddIncome:
-                        View.AddIncome();
+                        view.AddIncome();
                         break;
                     case (int)IncomeMenu.ViewIncome:
-                        View.ViewIncome();
+                        view.ViewIncome();
                         break;
                     case (int)IncomeMenu.EditIncome:
-                        View.EditIncome();
+                        view.EditIncome();
                         break;
                     case (int)IncomeMenu.DeleteIncome:
-                        View.DeleteIncome();
+                        view.DeleteIncome();
                         break;
                     case (int)IncomeMenu.ReturnToMainMenu:
                         Console.Clear();
@@ -94,9 +109,13 @@ Enter Choice: ";
             }
         }
 
+        /// <summary>
+        /// ParintExpenseTabledFormat method is used to display list of expenses in tabled format.
+        /// </summary>
+        /// <param name="expenses">Expenses of the user.</param>
         internal static void PrintExpenseTabledFormat(List<Expense> expenses)
         {
-            var table = new ConsoleTable("Id", "Income Amount", "Date", "Category");
+            var table = new ConsoleTable("Id", "Expense Amount", "Date", "Category");
             foreach (Expense expense in expenses)
             {
                 table.AddRow(expense.Id, expense.Amount, expense.Date, expense.Category);
@@ -105,6 +124,10 @@ Enter Choice: ";
             table.Write(Format.Alternative);
         }
 
+        /// <summary>
+        /// PrtintIncomeTabledFormat method is used to display list of incomes in tabled format.
+        /// </summary>
+        /// <param name="incomes">Incomes of the user.</param>
         internal static void PrintIncomeTabledFormat(List<Income> incomes)
         {
             var table = new ConsoleTable("Id", "Income Amount", "Date", "Category");
@@ -116,15 +139,19 @@ Enter Choice: ";
             table.Write(Format.Alternative);
         }
 
-        public static decimal GetDecimalData(string variableName)
+        /// <summary>
+        /// GetAmount method is use to get amount data from the user.
+        /// </summary>
+        /// <returns>Returns the amount data.</returns>
+        internal static decimal GetAmount()
         {
             int tries = 3;
-            decimal data;
+            string? input;
             for (int i = 1; i <= tries; i++)
             {
-                Console.Write($"{variableName}: ");
-                data = Convert.ToDecimal(Console.ReadLine());
-                if (data > 0)
+                Console.Write($"Amount: ");
+                input = Console.ReadLine();
+                if (decimal.TryParse(input, out decimal data) && data > 0)
                 {
                     return data;
                 }
@@ -134,18 +161,24 @@ Enter Choice: ";
                 }
             }
 
+            WriteColored("Returning to main menu", ConsoleColor.Yellow);
             return 0;
         }
 
-        public static int GetIntData(string messageName)
+        /// <summary>
+        /// GetCategoy method is used to get the category of transaction from the user.
+        /// </summary>
+        /// <param name="message">Message is the message displayed to the user.</param>
+        /// <returns>Returns the category of transaction.</returns>
+        internal static int GetCategory(string message)
         {
             int tries = 3;
-            int data;
+            string? input;
             for (int i = 1; i <= tries; i++)
             {
-                Console.Write($"{messageName}");
-                data = Convert.ToInt32(Console.ReadLine());
-                if (data >= 1 && data <= 7)
+                Console.Write($"{message}");
+                input = Console.ReadLine();
+                if (int.TryParse(input, out int data) && data >= 1 && data <= 7)
                 {
                     return data;
                 }
@@ -155,10 +188,17 @@ Enter Choice: ";
                 }
             }
 
+            WriteColored("Returning to main menu", ConsoleColor.Yellow);
             return 0;
         }
 
-        public static string GetStringData(string variableName)
+        /// <summary>
+        /// GetExpenseID method is used to get the Expense Id from the user.
+        /// </summary>
+        /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
+        /// <param name="services">Services is the FinanceServices instance.</param>
+        /// <returns>Returns the expense id.</returns>
+        internal static string GetExpenseID(string variableName, FinanceServices services)
         {
             int tries = 3;
             string? data;
@@ -166,7 +206,7 @@ Enter Choice: ";
             {
                 Console.Write($"{variableName}: ");
                 data = Console.ReadLine();
-                if (!string.IsNullOrEmpty(data))
+                if (!string.IsNullOrEmpty(data) && services.IsExpenseIdValid(data))
                 {
                     return data;
                 }
@@ -176,7 +216,62 @@ Enter Choice: ";
                 }
             }
 
+            WriteColored("Returning to main menu", ConsoleColor.Yellow);
             return string.Empty;
+        }
+
+        /// <summary>
+        /// GetIncomeId method is used to get the Income Id from the user.
+        /// </summary>
+        /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
+        /// <param name="services">Services is the FinanceServices instance.</param>
+        /// <returns>Returns the income id.</returns>
+        internal static string GetIncomeID(string variableName, FinanceServices services)
+        {
+            int tries = 3;
+            string? data;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"{variableName}: ");
+                data = Console.ReadLine();
+                if (!string.IsNullOrEmpty(data) && services.IsIncomeIdValid(data))
+                {
+                    return data;
+                }
+                else
+                {
+                    WriteColored($"Data entered is invalid\n{3 - i} Tries left", ConsoleColor.Red);
+                }
+            }
+
+            WriteColored("Returning to main menu", ConsoleColor.Yellow);
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// GetDate method is used to get the date from the user.
+        /// </summary>
+        /// <returns>Returns the date.</returns>
+        internal static DateOnly GetDate()
+        {
+            int tries = 3;
+            string? input;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"\nDate (DD/MM/YYYY): ");
+                input = Console.ReadLine();
+                if (DateOnly.TryParse(input, out DateOnly date) && date <= DateOnly.FromDateTime(DateTime.Now))
+                {
+                    return date;
+                }
+                else
+                {
+                    WriteColored($"Data entered is invalid\n{3 - i} Tries left", ConsoleColor.Red);
+                }
+            }
+
+            WriteColored("Entered date is not valid, today's date is set as default", ConsoleColor.Yellow);
+            return DateOnly.FromDateTime(DateTime.Now);
         }
     }
 }
