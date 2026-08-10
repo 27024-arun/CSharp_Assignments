@@ -47,17 +47,12 @@ Enter Choice: ";
                             break;
 
                         case (int)MainMenuOptions.Exit:
-                            ViewHelper.WriteColored(
-                                "Exiting...",
-                                ConsoleColor.Cyan);
-
+                            ViewHelper.WriteColored("Exiting...", ConsoleColor.Cyan);
                             Thread.Sleep(1000);
                             return;
 
                         default:
-                            ViewHelper.WriteColored(
-                                "Invalid Choice.",
-                                ConsoleColor.Red);
+                            ViewHelper.WriteColored("Invalid Choice.", ConsoleColor.Red);
                             break;
                     }
                 }
