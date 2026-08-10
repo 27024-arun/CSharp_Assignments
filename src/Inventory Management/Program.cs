@@ -1,8 +1,7 @@
 ﻿using Inventory_Management.Model;
 using Inventory_Management.Services;
-using Inventory_Management.View;
 
-namespace Inventory_View
+namespace Inventory_Management.View
 {
     /// <summary>
     /// Program Class is the entry point of the program.
