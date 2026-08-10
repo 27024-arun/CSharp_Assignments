@@ -33,7 +33,7 @@ namespace Inventory_Management.Services
             }
 
             string trimmedName = data.Trim();
-            if (!trimmedName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            if (!trimmedName.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '-' || c == '\'' || c == '.'))
             {
                 return false;
             }
