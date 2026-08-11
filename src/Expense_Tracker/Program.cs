@@ -1,4 +1,7 @@
-﻿using Expense_Tracker.Models;
+﻿using Expense_Tracker.Interfaces;
+using Expense_Tracker.Models;
+using Expense_Tracker.Repository;
+using Expense_Tracker.Services;
 using Expense_Tracker.View;
 
 namespace ExpenseTracker
@@ -13,8 +16,16 @@ namespace ExpenseTracker
         /// </summary>
         public static void Main()
         {
-            FinanceView view = new FinanceView();
+            IncomeRepository incomeRepository = new IncomeRepository();
+            IncomeServices incomeServices = new IncomeServices(incomeRepository);
+            IncomeView incomeView = new IncomeView(incomeServices);
 
+            ExpenseRepository expenseRepository = new ExpenseRepository();
+            ExpenseServices expenseServices = new ExpenseServices(expenseRepository);
+            ExpenseView expenseView = new ExpenseView(expenseServices);
+
+            SummaryServices summaryServices = new SummaryServices(incomeRepository, expenseRepository);
+            SummaryView summaryView = new SummaryView(summaryServices);
             while (true)
             {
                 string mainMenu = @"
@@ -35,15 +46,15 @@ Enter Choice: ";
                     switch (choice)
                     {
                         case (int)MainMenuOptions.IncomeOptions:
-                            ViewHelper.IncomeOptions(view);
+                            ViewHelper.IncomeOptions(incomeView);
                             break;
 
                         case (int)MainMenuOptions.ExpenseOptions:
-                            ViewHelper.ExpenseOptions(view);
+                            ViewHelper.ExpenseOptions(expenseView);
                             break;
 
                         case (int)MainMenuOptions.ShowSummary:
-                            view.ShowSummary();
+                            summaryView.ShowSummary();
                             break;
 
                         case (int)MainMenuOptions.Exit:
