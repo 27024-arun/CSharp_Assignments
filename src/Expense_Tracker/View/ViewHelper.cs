@@ -24,8 +24,8 @@ namespace Expense_Tracker.View
         /// <summary>
         /// ExpenseOptions method is used to display the expense menu options to user.
         /// </summary>
-        /// <param name="view">View is the FinanceView class instance.</param>
-        public static void ExpenseOptions(FinanceView view)
+        /// <param name="expenseView">View is the ExpenseView class instance.</param>
+        internal static void ExpenseOptions(ExpenseView expenseView)
         {
             Console.Clear();
             while (true)
@@ -44,16 +44,16 @@ Enter Choice: ";
                 switch (choice)
                 {
                     case (int)ExpenseMenu.AddExpense:
-                        view.AddExpense();
+                        expenseView.AddExpense();
                         break;
                     case (int)ExpenseMenu.ViewExpense:
-                        view.ViewExpense();
+                        expenseView.ViewExpense();
                         break;
                     case (int)ExpenseMenu.EditExpense:
-                        view.EditExpense();
+                        expenseView.EditExpense();
                         break;
                     case (int)ExpenseMenu.DeleteExpense:
-                        view.DeleteExpense();
+                        expenseView.DeleteExpense();
                         break;
                     case (int)ExpenseMenu.ReturnToMainMenu:
                         Console.Clear();
@@ -68,8 +68,8 @@ Enter Choice: ";
         /// <summary>
         /// IncomeOptions method is used to display the income menu options to the user.
         /// </summary>
-        /// <param name="view">View is the FinanceView class instance.</param>
-        internal static void IncomeOptions(FinanceView view)
+        /// <param name="incomeView">View is the IncomeView class instance.</param>
+        internal static void IncomeOptions(IncomeView incomeView)
         {
             Console.Clear();
             while (true)
@@ -88,16 +88,16 @@ Enter Choice: ";
                 switch (choice)
                 {
                     case (int)IncomeMenu.AddIncome:
-                        view.AddIncome();
+                        incomeView.AddIncome();
                         break;
                     case (int)IncomeMenu.ViewIncome:
-                        view.ViewIncome();
+                        incomeView.ViewIncome();
                         break;
                     case (int)IncomeMenu.EditIncome:
-                        view.EditIncome();
+                        incomeView.EditIncome();
                         break;
                     case (int)IncomeMenu.DeleteIncome:
-                        view.DeleteIncome();
+                        incomeView.DeleteIncome();
                         break;
                     case (int)IncomeMenu.ReturnToMainMenu:
                         Console.Clear();
@@ -198,7 +198,7 @@ Enter Choice: ";
         /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
         /// <param name="services">Services is the FinanceServices instance.</param>
         /// <returns>Returns the expense id.</returns>
-        internal static string GetExpenseID(string variableName, FinanceServices services)
+        internal static string GetExpenseID(string variableName, ExpenseServices services)
         {
             int tries = 3;
             string? data;
@@ -226,7 +226,7 @@ Enter Choice: ";
         /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
         /// <param name="services">Services is the FinanceServices instance.</param>
         /// <returns>Returns the income id.</returns>
-        internal static string GetIncomeID(string variableName, FinanceServices services)
+        internal static string GetIncomeID(string variableName, IncomeServices services)
         {
             int tries = 3;
             string? data;
