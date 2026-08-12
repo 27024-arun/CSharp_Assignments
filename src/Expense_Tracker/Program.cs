@@ -1,5 +1,4 @@
-﻿using Expense_Tracker.Interfaces;
-using Expense_Tracker.Models;
+﻿using Expense_Tracker.Models;
 using Expense_Tracker.Repository;
 using Expense_Tracker.Services;
 using Expense_Tracker.View;
@@ -37,7 +36,7 @@ Expense Tracker
 4. Exit
 Enter Choice: ";
 
-                Console.WriteLine(mainMenu);
+                Console.Write(mainMenu);
 
                 try
                 {
