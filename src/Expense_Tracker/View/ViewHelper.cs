@@ -39,7 +39,7 @@ Expense Options
 4. Delete Expense
 5. Return to Main menu
 Enter Choice: ";
-                Console.WriteLine(expenseMenu);
+                Console.Write(expenseMenu);
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -83,7 +83,7 @@ Income Options
 4. Delete Income
 5. Return to Main menu
 Enter Choice: ";
-                Console.WriteLine(incomeMenu);
+                Console.Write(incomeMenu);
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {

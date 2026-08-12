@@ -59,6 +59,8 @@ namespace Expense_Tracker.View
                 return;
             }
 
+            this.ViewExpense();
+
             string id = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
             if (string.IsNullOrEmpty(id))
             {
@@ -86,6 +88,8 @@ namespace Expense_Tracker.View
                 return;
             }
 
+            this.ViewExpense();
+
             string? id = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
             if (string.IsNullOrEmpty(id))
             {
@@ -108,6 +112,7 @@ namespace Expense_Tracker.View
 
             DateOnly date = ViewHelper.GetDate();
             this._expenseServices.EditExpense(id, amount, date, (ExpenseCategory)categoryData);
+            ViewHelper.WriteColored("Expense is edited.", ConsoleColor.Green);
         }
 
         /// <summary>
