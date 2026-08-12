@@ -59,6 +59,8 @@ namespace Expense_Tracker.View
                 return;
             }
 
+            this.ViewIncome();
+
             string id = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
 
             if (string.IsNullOrEmpty(id))
@@ -87,6 +89,8 @@ namespace Expense_Tracker.View
                 return;
             }
 
+            this.ViewIncome();
+
             string? id = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
             if (string.IsNullOrEmpty(id))
             {
@@ -109,6 +113,7 @@ namespace Expense_Tracker.View
 
             DateOnly date = ViewHelper.GetDate();
             this._incomeServices.EditIncome(id, amount, date, (IncomeCategory)categoryData);
+            ViewHelper.WriteColored("Income is edited.", ConsoleColor.Green);
         }
 
         /// <summary>
