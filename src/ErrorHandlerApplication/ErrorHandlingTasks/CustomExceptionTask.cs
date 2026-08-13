@@ -1,7 +1,13 @@
 ﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
 {
+    /// <summary>
+    /// CustomExceptionTask class is used to handle custom created exceptions.
+    /// </summary>
     internal class CustomExceptionTask
     {
+        /// <summary>
+        /// CustomException method is used to handle and catch the Custom Exception (InvalidUserInputException).
+        /// </summary>
         public void CustomException()
         {
             try
@@ -40,7 +46,7 @@
             }
         }
 
-        public int GetCorrectValue(string? userValue)
+        private int GetCorrectValue(string? userValue)
         {
             if (!int.TryParse(userValue, out int number))
             {

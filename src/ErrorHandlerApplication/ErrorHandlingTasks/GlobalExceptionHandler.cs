@@ -1,7 +1,14 @@
 ﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
 {
+    /// <summary>
+    /// GlobalExceptionHandler class is used to handle global exceptions.
+    /// </summary>
     internal class GlobalExceptionHandler
     {
+        /// <summary>
+        /// ExceptionHandling method is used to handle stack trace of unexpected exception.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">ArgumentNullException is used to pass an unexpected exception.</exception>
         public void ExceptionHandling()
         {
             AppDomain.CurrentDomain.UnhandledException += this.CurrentDomain_UnhandledException;
