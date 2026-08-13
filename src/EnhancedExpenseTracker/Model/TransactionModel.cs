@@ -5,13 +5,13 @@
     /// </summary>
     internal class TransactionModel
     {
-        public TransactionModel(string Id, decimal Amount, DateOnly Date, string Category, TransactionTypes transactionType)
+        public TransactionModel(string Id, decimal Amount, DateOnly Date, string Category, TransactionTypes TransactionTypes)
         {
             this.Id = Id;
             this.Amount = Amount;
             this.Date = Date;
             this.Category = Category;
-            this.transactionType = transactionType;
+            this.TransactionTypes = TransactionTypes;
         }
         /// <summary>
         /// Gets or Sets the Id of the transaction.
@@ -39,6 +39,6 @@
         /// <summary>
         /// Gets or Sets the transaction type of the transaction.
         /// </summary>
-        public TransactionTypes transactionType { get; set; }
+        public TransactionTypes TransactionTypes { get; set; }
     }
 }
