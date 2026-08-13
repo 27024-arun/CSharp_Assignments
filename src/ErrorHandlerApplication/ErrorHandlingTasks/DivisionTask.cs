@@ -1,7 +1,13 @@
 ﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
 {
+    /// <summary>
+    /// DivisionTask class is used to implement division task.
+    /// </summary>
     internal class DivisionTask
     {
+        /// <summary>
+        /// Divide method is used to divide data and catches exception if the user input throws an exception.
+        /// </summary>
         public void Divide()
         {
             try

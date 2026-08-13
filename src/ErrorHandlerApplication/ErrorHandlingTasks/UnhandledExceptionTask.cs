@@ -1,7 +1,14 @@
 ﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
 {
+    /// <summary>
+    /// UnhandledExceptionTask class is used to handle unhandled exceptions.
+    /// </summary>
     internal class UnhandledExceptionTask
     {
+        /// <summary>
+        /// ExceptionHandling method is used to handle unexpected exception.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">ArgumentNullException is used to pass an unexpected exception.</exception>
         public void ExceptionHandling()
         {
             AppDomain.CurrentDomain.UnhandledException += this.CurrentDomain_UnhandledException;

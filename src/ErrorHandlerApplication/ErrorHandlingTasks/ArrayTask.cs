@@ -1,7 +1,13 @@
 ﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
 {
+    /// <summary>
+    /// ArrayTask class is used to create a array and access it.
+    /// </summary>
     internal class ArrayTask
     {
+        /// <summary>
+        /// Array method is used to get data for array and access it.
+        /// </summary>
         public void Array()
         {
             try
