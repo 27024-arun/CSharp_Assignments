@@ -29,7 +29,6 @@ Enter Choice: ");
                 try
                 {
                     int choice = Convert.ToInt32(Console.ReadLine());
-
                     switch (choice)
                     {
                         case 1:
@@ -81,7 +80,6 @@ Enter Choice: ");
                 try
                 {
                     int choice = Convert.ToInt32(Console.ReadLine());
-
                     switch (choice)
                     {
                         case 1:
@@ -134,7 +132,6 @@ Enter Choice: ");
             DateOnly date = ViewHelper.GetDate();
 
             this.services.AddTransaction(amount, date, category, type);
-
             ViewHelper.WriteColored( $"{type} Added Successfully.", ConsoleColor.Green);
         }
 
@@ -189,14 +186,11 @@ Enter Choice: ");
 
             if (this.services.EditTransaction(id, amount, date, category, type))
             {
-                ViewHelper.WriteColored($"{type} Updated Successfully.",
-                    ConsoleColor.Green);
+                ViewHelper.WriteColored($"{type} Updated Successfully.", ConsoleColor.Green);
             }
             else
             {
-                ViewHelper.WriteColored(
-                    $"{type} ID Not Found.",
-                    ConsoleColor.Red);
+                ViewHelper.WriteColored($"{type} ID Not Found.", ConsoleColor.Red);
             }
         }
 
@@ -204,17 +198,12 @@ Enter Choice: ");
         {
             if (this.services.IsTransactionEmpty())
             {
-                ViewHelper.WriteColored(
-                    "No Transaction Records.",
-                    ConsoleColor.Red);
+                ViewHelper.WriteColored("No Transaction Records.", ConsoleColor.Red);
 
                 return;
             }
 
-            string id = ViewHelper.GetTransactionId(
-                $"{type} ID",
-                this.services,
-                type);
+            string id = ViewHelper.GetTransactionId($"{type} ID", this.services, type);
 
             if (string.IsNullOrEmpty(id))
             {
@@ -223,35 +212,20 @@ Enter Choice: ");
 
             if (this.services.DeleteTransaction(id))
             {
-                ViewHelper.WriteColored(
-                    $"{type} Deleted Successfully.",
-                    ConsoleColor.Green);
+                ViewHelper.WriteColored($"{type} Deleted Successfully.", ConsoleColor.Green);
             }
             else
             {
-                ViewHelper.WriteColored(
-                    $"{type} ID Not Found.",
-                    ConsoleColor.Red);
+                ViewHelper.WriteColored($"{type} ID Not Found.", ConsoleColor.Red);
             }
         }
 
         internal void ShowSummary()
         {
-            decimal totalIncome =
-                this.services.GetTotal(
-                    TransactionTypes.Income);
-
-            decimal totalExpense =
-                this.services.GetTotal(
-                    TransactionTypes.Expense);
-
-            decimal balance =
-                this.services.GetBalance();
-
-            Console.WriteLine();
-            Console.WriteLine($"Total Income  : {totalIncome}");
-            Console.WriteLine($"Total Expense : {totalExpense}");
-            Console.WriteLine($"Balance       : {balance}");
+            decimal totalIncome =this.services.GetTotal(TransactionTypes.Income);
+            decimal totalExpense = this.services.GetTotal(TransactionTypes.Expense);
+            decimal balance = this.services.GetBalance();
+            Console.WriteLine($"\nTotal Income  : {totalIncome}\nTotal Expense : {totalExpense}\nBalance       : {balance}");
         }
     }
 }
