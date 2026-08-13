@@ -5,23 +5,11 @@ namespace EnhancedExpenseTracker.Repository
 {
     internal class TransactionRepository : IRepository
     {
-        private readonly List<TransactionModel> _repository = new ();
+        private readonly List<TransactionModel> _repository = new();
+
         public void AddTransaction(TransactionModel transaction)
         {
             this._repository.Add(transaction);
-        }
-
-        public bool DeleteTransaction(string id)
-        {
-            TransactionModel? transaction = this.GetTransactionById(id);
-
-            if (transaction == null)
-            {
-                return false;
-            }
-
-            this._repository.Remove(transaction);
-            return true;
         }
 
         public List<TransactionModel> GetAllTransaction()
@@ -31,7 +19,7 @@ namespace EnhancedExpenseTracker.Repository
 
         public TransactionModel? GetTransactionById(string id)
         {
-            return this._repository.FirstOrDefault(e => e.Id == id);
+            return this._repository.FirstOrDefault(transaction => transaction.Id == id);
         }
 
         public bool UpdateTransaction(TransactionModel transaction)
@@ -46,7 +34,19 @@ namespace EnhancedExpenseTracker.Repository
             existing.Amount = transaction.Amount;
             existing.Date = transaction.Date;
             existing.Category = transaction.Category;
+            existing.TransactionType = transaction.TransactionType;
+            return true;
+        }
 
+        public bool DeleteTransaction(string id)
+        {
+            TransactionModel? transaction = this.GetTransactionById(id);
+            if (transaction == null)
+            {
+                return false;
+            }
+
+            this._repository.Remove(transaction);
             return true;
         }
     }
