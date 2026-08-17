@@ -11,6 +11,11 @@ namespace Expense_Tracker.Services
         private readonly IncomeRepository _incomeRepository;
         private readonly ExpenseRepository _expenseRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummaryServices"/> class.
+        /// </summary>
+        /// <param name="incomeRepository">IncomeRepository is the income repository instance.</param>
+        /// <param name="expenseRepository">ExpenseRepository is the expense repository instance.</param>
         public SummaryServices(IncomeRepository incomeRepository, ExpenseRepository expenseRepository)
         {
             this._incomeRepository = incomeRepository;

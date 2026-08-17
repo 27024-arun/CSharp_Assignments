@@ -5,7 +5,7 @@ using Expense_Tracker.Services;
 namespace Expense_Tracker.View
 {
     /// <summary>
-    /// ViewHelper class is the class where view level helper methods are declared.
+    /// ViewHelper class contains console level methods for retrieving and displaying data.
     /// </summary>
     public class ViewHelper
     {

@@ -11,7 +11,7 @@ namespace Expense_Tracker.Repository
         private readonly List<Income> _incomes = new ();
 
         /// <summary>
-        /// AddIncome method is used to add income to the repository.
+        /// AddIncome method is used to add income data into the repository.
         /// </summary>
         /// <param name="income">Income is the details of income.</param>
         public void AddIncome(Income income)

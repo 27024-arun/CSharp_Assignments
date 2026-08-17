@@ -17,17 +17,23 @@ ExpenseTracker/
 │   ├── Expense.cs
 │   ├── IncomeCategory.cs
 │   ├── ExpenseCategory.cs
+│   ├── TransactionModel.cs
 │   └── MenuOption.cs
 │
 ├── Repositories/
-│   └── FinanceRepository.cs
+│   ├── ExpenseRepository.cs
+│   └── IncomeRepository.cs
 │
 ├── Services/
-│   ├── FinanceService.cs
-│   └── IdGenerator.cs
+│   ├── ExpenseServices.cs
+│   ├── IncomeServices.cs
+│   └── SummaryServices.cs
 │
 ├── Views/
-│   └── FinanceView.cs
+│   ├── ExpenseView.cs
+│   ├── IncomeView.cs
+│   ├── SummaryView.cs
+│   └── ViewHelper.cs
 │
 ├── Program.cs
 └── ExpenseTracker.csproj
