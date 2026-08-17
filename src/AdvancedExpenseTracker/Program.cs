@@ -15,11 +15,11 @@ namespace ExpenseTracker
         /// </summary>
         public static void Main()
         {
-            IncomeRepository incomeRepository = new IncomeRepository();
+            CSVIncomeRepository incomeRepository = new CSVIncomeRepository();
             IncomeServices incomeServices = new IncomeServices(incomeRepository);
             IncomeView incomeView = new IncomeView(incomeServices);
 
-            ExpenseRepository expenseRepository = new ExpenseRepository();
+            CSVExpenseRepository expenseRepository = new CSVExpenseRepository();
             ExpenseServices expenseServices = new ExpenseServices(expenseRepository);
             ExpenseView expenseView = new ExpenseView(expenseServices);
 
@@ -66,12 +66,14 @@ Enter Choice: ";
                             break;
                     }
                 }
-                catch (FormatException)
+                catch (FormatException e)
                 {
+                    Console.WriteLine(e.StackTrace);
                     ViewHelper.WriteColored("Enter a numeric value.", ConsoleColor.Red);
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.StackTrace);
                     ViewHelper.WriteColored(ex.Message, ConsoleColor.Red);
                 }
             }

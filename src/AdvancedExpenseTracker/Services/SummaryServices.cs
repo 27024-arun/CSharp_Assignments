@@ -7,15 +7,15 @@ namespace AdvancedExpenseTracker.Services
     /// </summary>
     internal class SummaryServices
     {
-        private readonly IncomeRepository _incomeRepository;
-        private readonly ExpenseRepository _expenseRepository;
+        private readonly CSVIncomeRepository _incomeRepository;
+        private readonly CSVExpenseRepository _expenseRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SummaryServices"/> class.
         /// </summary>
         /// <param name="incomeRepository">IncomeRepository is the income repository instance.</param>
         /// <param name="expenseRepository">ExpenseRepository is the expense repository instance.</param>
-        public SummaryServices(IncomeRepository incomeRepository, ExpenseRepository expenseRepository)
+        public SummaryServices(CSVIncomeRepository incomeRepository, CSVExpenseRepository expenseRepository)
         {
             this._incomeRepository = incomeRepository;
             this._expenseRepository = expenseRepository;

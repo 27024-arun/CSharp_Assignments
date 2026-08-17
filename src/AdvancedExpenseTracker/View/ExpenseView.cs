@@ -61,13 +61,14 @@ namespace AdvancedExpenseTracker.View
 
             this.ViewExpense();
 
-            string id = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
-            if (string.IsNullOrEmpty(id))
+            int indexValue = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
+            if (indexValue == 0)
             {
                 return;
             }
 
-            if (this._expenseServices.DeleteExpense(id))
+            List<Expense> expense = this._expenseServices.ViewExpense();
+            if (this._expenseServices.DeleteExpense(expense[indexValue - 1].Id))
             {
                 ViewHelper.WriteColored("Expense Deleted Successfully.", ConsoleColor.Green);
             }
@@ -90,8 +91,8 @@ namespace AdvancedExpenseTracker.View
 
             this.ViewExpense();
 
-            string? id = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
-            if (string.IsNullOrEmpty(id))
+            int indexValue = ViewHelper.GetExpenseID("Expense Id", this._expenseServices);
+            if (indexValue == 0)
             {
                 return;
             }
@@ -111,7 +112,9 @@ namespace AdvancedExpenseTracker.View
             }
 
             DateOnly date = ViewHelper.GetDate();
-            this._expenseServices.EditExpense(id, amount, date, (ExpenseCategory)categoryData);
+
+            List<Expense> expense = this._expenseServices.ViewExpense();
+            this._expenseServices.EditExpense(expense[indexValue - 1].Id, amount, date, (ExpenseCategory)categoryData);
             ViewHelper.WriteColored("Expense is edited.", ConsoleColor.Green);
         }
 

@@ -8,15 +8,13 @@ namespace AdvancedExpenseTracker.Services
     /// </summary>
     internal class ExpenseServices
     {
-        private static int _expenseId = 200;
-
-        private readonly ExpenseRepository _expenseRepository;
+        private readonly CSVExpenseRepository _expenseRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenseServices"/> class.
         /// </summary>
         /// <param name="expenseRepository">ExpenseRepository instance.</param>
-        public ExpenseServices(ExpenseRepository expenseRepository)
+        public ExpenseServices(CSVExpenseRepository expenseRepository)
         {
             this._expenseRepository = expenseRepository;
         }
@@ -31,7 +29,7 @@ namespace AdvancedExpenseTracker.Services
         {
             Expense expense = new ()
             {
-                Id = (_expenseId++).ToString(),
+                Id = Guid.NewGuid(),
                 Amount = amount,
                 Date = date,
                 Category = category,
@@ -57,7 +55,7 @@ namespace AdvancedExpenseTracker.Services
         /// <param name="date">Date is the date of expense.</param>
         /// <param name="category">Category is the expense category.</param>
         /// <returns>Returns whether the expense is updated or not.</returns>
-        internal bool EditExpense(string id, decimal amount, DateOnly date, ExpenseCategory category)
+        internal bool EditExpense(Guid id, decimal amount, DateOnly date, ExpenseCategory category)
         {
             List<Expense> expenses = this.ViewExpense();
             if (expenses.Count == 0)
@@ -82,7 +80,7 @@ namespace AdvancedExpenseTracker.Services
         /// </summary>
         /// <param name="id">Id is the unique identifier of the expense.</param>
         /// <returns>Returns whether the expense is deleted or not.</returns>
-        internal bool DeleteExpense(string id)
+        internal bool DeleteExpense(Guid id)
         {
             return this._expenseRepository.DeleteExpense(id);
         }
@@ -110,9 +108,9 @@ namespace AdvancedExpenseTracker.Services
         /// </summary>
         /// <param name="id">Id is the unique identifier of the expense.</param>
         /// <returns>Returns whether the expense exists or not.</returns>
-        internal bool IsExpenseIdValid(string id)
+        internal int CountExpense()
         {
-            return this._expenseRepository.IsExpenseExists(id);
+            return this._expenseRepository.ExpenseCount();
         }
     }
 }

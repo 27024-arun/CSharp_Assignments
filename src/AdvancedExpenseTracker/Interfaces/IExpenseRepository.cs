@@ -24,7 +24,7 @@ namespace AdvancedExpenseTracker.Interfaces
         /// </summary>
         /// <param name="id">Id is the unique identifier of the Expense.</param>
         /// <returns>Returns a particular Expense.</returns>
-        Expense? GetExpenseById(string id);
+        Expense? GetExpenseById(Guid id);
 
         /// <summary>
         /// UpdateExpense method is the blueprint for updating expense of the user.
@@ -38,6 +38,6 @@ namespace AdvancedExpenseTracker.Interfaces
         /// </summary>
         /// <param name="id">Id the unique identifier of the expense.</param>
         /// <returns>Returns whether the expense is deleted or not.</returns>
-        public bool DeleteExpense(string id);
+        public bool DeleteExpense(Guid id);
     }
 }

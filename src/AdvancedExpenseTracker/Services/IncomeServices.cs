@@ -8,14 +8,13 @@ namespace AdvancedExpenseTracker.Services
     /// </summary>
     internal class IncomeServices
     {
-        private static int _incomeId = 100;
-        private readonly IncomeRepository _incomeRepository;
+        private readonly CSVIncomeRepository _incomeRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IncomeServices"/> class.
         /// </summary>
         /// <param name="incomeRepository">IncomeRepository is the income repository instance.</param>
-        public IncomeServices(IncomeRepository incomeRepository)
+        public IncomeServices(CSVIncomeRepository incomeRepository)
         {
             this._incomeRepository = incomeRepository;
         }
@@ -30,7 +29,7 @@ namespace AdvancedExpenseTracker.Services
         {
             Income income = new ()
             {
-                Id = (_incomeId++).ToString(),
+                Id = Guid.NewGuid(),
                 Amount = amount,
                 Date = date,
                 Category = category,
@@ -56,7 +55,7 @@ namespace AdvancedExpenseTracker.Services
         /// <param name="date">Date is the date of income.</param>
         /// <param name="category">Category is the income category.</param>
         /// <returns>Returns whether the income is edited or not.</returns>
-        internal bool EditIncome(string id, decimal amount, DateOnly date, IncomeCategory category)
+        internal bool EditIncome(Guid id, decimal amount, DateOnly date, IncomeCategory category)
         {
             List<Income> incomes = this.ViewIncome();
             if (incomes.Count == 0)
@@ -81,7 +80,7 @@ namespace AdvancedExpenseTracker.Services
         /// </summary>
         /// <param name="id">Id is the unique identifier of the income.</param>
         /// <returns>Returns whether the income is deleted or not.</returns>
-        internal bool DeleteIncome(string id)
+        internal bool DeleteIncome(Guid id)
         {
             return this._incomeRepository.DeleteIncome(id);
         }
@@ -109,9 +108,9 @@ namespace AdvancedExpenseTracker.Services
         /// </summary>
         /// <param name="id">Id is the unique identifier of the income.</param>
         /// <returns>Returns whether the income exists or not.</returns>
-        internal bool IsIncomeIdValid(string id)
+        internal int CountOfIncome()
         {
-            return this._incomeRepository.IsIncomeExists(id);
+            return this._incomeRepository.IncomeCount();
         }
     }
 }

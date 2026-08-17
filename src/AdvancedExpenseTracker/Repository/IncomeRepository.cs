@@ -33,7 +33,7 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unique identifier of the income.</param>
         /// <returns>Returns the income from repository.</returns>
-        public Income? GetIncomeById(string id)
+        public Income? GetIncomeById(Guid id)
         {
             return this._incomes.FirstOrDefault(i => i.Id == id);
         }
@@ -64,7 +64,7 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unique identifier of the income.</param>
         /// <returns>Returns whether the income is deleted or not.</returns>
-        public bool DeleteIncome(string id)
+        public bool DeleteIncome(Guid id)
         {
             Income? income = this.GetIncomeById(id);
 
@@ -100,9 +100,14 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unqiue identifier of the income.</param>
         /// <returns>Returns whether the income exists or not.</returns>
-        internal bool IsIncomeExists(string id)
+        internal bool IsIncomeExists(Guid id)
         {
             return this._incomes.Any(e => e.Id == id);
+        }
+
+        internal int IncomeCount()
+        {
+            return this._incomes.Count;
         }
     }
 }

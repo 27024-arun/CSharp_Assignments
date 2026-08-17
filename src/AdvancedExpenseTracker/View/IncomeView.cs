@@ -61,14 +61,15 @@ namespace AdvancedExpenseTracker.View
 
             this.ViewIncome();
 
-            string id = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
+            int indexValue = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
 
-            if (string.IsNullOrEmpty(id))
+            if (indexValue == 0)
             {
                 return;
             }
 
-            if (this._incomeServices.DeleteIncome(id))
+            List<Income> income = this._incomeServices.ViewIncome();
+            if (this._incomeServices.DeleteIncome(income[indexValue - 1].Id))
             {
                 ViewHelper.WriteColored("Income Deleted Successfully.", ConsoleColor.Green);
             }
@@ -91,8 +92,8 @@ namespace AdvancedExpenseTracker.View
 
             this.ViewIncome();
 
-            string? id = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
-            if (string.IsNullOrEmpty(id))
+            int indexValue = ViewHelper.GetIncomeID("Income Id", this._incomeServices);
+            if (indexValue == 0)
             {
                 return;
             }
@@ -112,7 +113,9 @@ namespace AdvancedExpenseTracker.View
             }
 
             DateOnly date = ViewHelper.GetDate();
-            this._incomeServices.EditIncome(id, amount, date, (IncomeCategory)categoryData);
+
+            List<Income> incomes = this._incomeServices.ViewIncome();
+            this._incomeServices.EditIncome(incomes[indexValue - 1].Id, amount, date, (IncomeCategory)categoryData);
             ViewHelper.WriteColored("Income is edited.", ConsoleColor.Green);
         }
 

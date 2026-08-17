@@ -24,7 +24,7 @@ namespace AdvancedExpenseTracker.Interfaces
         /// </summary>
         /// <param name="id">Id is the unique identifier of the Income.</param>
         /// <returns>Returns a particular Income.</returns>
-        Income? GetIncomeById(string id);
+        Income? GetIncomeById(Guid id);
 
         /// <summary>
         /// UpdateIncome method is the blueprint for updating income of the user.
@@ -38,6 +38,6 @@ namespace AdvancedExpenseTracker.Interfaces
         /// </summary>
         /// <param name="id">Id the unique identifier of the income.</param>
         /// <returns>Returns whether the income is deleted or not.</returns>
-        public bool DeleteIncome(string id);
+        public bool DeleteIncome(Guid id);
     }
 }

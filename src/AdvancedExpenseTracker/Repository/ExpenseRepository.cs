@@ -33,7 +33,7 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unique identifier of the expense.</param>
         /// <returns>Returns the expense from repository.</returns>
-        public Expense? GetExpenseById(string id)
+        public Expense? GetExpenseById(Guid id)
         {
             return this._expenses.FirstOrDefault(e => e.Id == id);
         }
@@ -64,7 +64,7 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unique identifier of the expense.</param>
         /// <returns>Returns whether the expense is deleted or not.</returns>
-        public bool DeleteExpense(string id)
+        public bool DeleteExpense(Guid id)
         {
             Expense? expense = this.GetExpenseById(id);
 
@@ -100,7 +100,7 @@ namespace AdvancedExpenseTracker.Repository
         /// </summary>
         /// <param name="id">Id is the unqiue identifier of the expense.</param>
         /// <returns>Returns whether the expense exists or not.</returns>
-        internal bool IsExpenseExists(string id)
+        internal bool IsExpenseExists(Guid id)
         {
             return this._expenses.Any(e => e.Id == id);
         }

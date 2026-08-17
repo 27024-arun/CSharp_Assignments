@@ -115,10 +115,11 @@ Enter Choice: ";
         /// <param name="expenses">Expenses of the user.</param>
         internal static void PrintExpenseTabledFormat(List<Expense> expenses)
         {
+            int i = 0;
             var table = new ConsoleTable("Id", "Expense Amount", "Date", "Category");
             foreach (Expense expense in expenses)
             {
-                table.AddRow(expense.Id, expense.Amount, expense.Date, expense.Category);
+                table.AddRow(++i, expense.Amount, expense.Date, expense.Category);
             }
 
             table.Write(Format.Alternative);
@@ -130,10 +131,11 @@ Enter Choice: ";
         /// <param name="incomes">Incomes of the user.</param>
         internal static void PrintIncomeTabledFormat(List<Income> incomes)
         {
+            int i = 0;
             var table = new ConsoleTable("Id", "Income Amount", "Date", "Category");
             foreach (Income income in incomes)
             {
-                table.AddRow(income.Id, income.Amount, income.Date, income.Category);
+                table.AddRow(++i, income.Amount, income.Date, income.Category);
             }
 
             table.Write(Format.Alternative);
@@ -198,7 +200,7 @@ Enter Choice: ";
         /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
         /// <param name="services">Services is the FinanceServices instance.</param>
         /// <returns>Returns the expense id.</returns>
-        internal static string GetExpenseID(string variableName, ExpenseServices services)
+        internal static int GetExpenseID(string variableName, ExpenseServices services)
         {
             int tries = 3;
             string? data;
@@ -206,9 +208,9 @@ Enter Choice: ";
             {
                 Console.Write($"{variableName}: ");
                 data = Console.ReadLine();
-                if (!string.IsNullOrEmpty(data) && services.IsExpenseIdValid(data))
+                if (!string.IsNullOrEmpty(data) && int.TryParse(data, out int result) && result > 0 && result <= services.CountExpense())
                 {
-                    return data;
+                    return result;
                 }
                 else
                 {
@@ -217,7 +219,7 @@ Enter Choice: ";
             }
 
             WriteColored("Returning to main menu", ConsoleColor.Yellow);
-            return string.Empty;
+            return 0;
         }
 
         /// <summary>
@@ -226,7 +228,7 @@ Enter Choice: ";
         /// <param name="variableName">VariableName is the variable for which the data is allocated.</param>
         /// <param name="services">Services is the FinanceServices instance.</param>
         /// <returns>Returns the income id.</returns>
-        internal static string GetIncomeID(string variableName, IncomeServices services)
+        internal static int GetIncomeID(string variableName, IncomeServices services)
         {
             int tries = 3;
             string? data;
@@ -234,9 +236,9 @@ Enter Choice: ";
             {
                 Console.Write($"{variableName}: ");
                 data = Console.ReadLine();
-                if (!string.IsNullOrEmpty(data) && services.IsIncomeIdValid(data))
+                if (!string.IsNullOrEmpty(data) && int.TryParse(data, out int result) && result > 0 && result <= services.CountOfIncome())
                 {
-                    return data;
+                    return result;
                 }
                 else
                 {
@@ -245,7 +247,7 @@ Enter Choice: ";
             }
 
             WriteColored("Returning to main menu", ConsoleColor.Yellow);
-            return string.Empty;
+            return 0;
         }
 
         /// <summary>

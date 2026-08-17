@@ -9,7 +9,7 @@
         /// Gets or Sets the Id of the transaction.
         /// </summary>
         /// <value>Id is the unique identifier for the transaction.</value>
-        public string Id { get; set; } = string.Empty;
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or Sets the amount of the transaction.
