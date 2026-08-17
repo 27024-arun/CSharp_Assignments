@@ -4,7 +4,7 @@ using Expense_Tracker.Services;
 namespace Expense_Tracker.View
 {
     /// <summary>
-    /// ExpenseView class is the class which does the view level activities of expense.
+    /// ExpenseView class is the class which does the console level retrieval and logic validation of the expenses.
     /// </summary>
     internal class ExpenseView
     {
