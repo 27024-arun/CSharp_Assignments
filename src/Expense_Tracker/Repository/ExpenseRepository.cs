@@ -11,7 +11,7 @@ namespace Expense_Tracker.Repository
         private readonly List<Expense> _expenses = new ();
 
         /// <summary>
-        /// AddExpense method is used to add expense to the repository.
+        /// AddExpense method is used to add expense details into the repository.
         /// </summary>
         /// <param name="expense">Expense is the details of expense.</param>
         public void AddExpense(Expense expense)

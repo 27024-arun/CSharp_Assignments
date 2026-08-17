@@ -4,7 +4,7 @@ using Expense_Tracker.Services;
 namespace Expense_Tracker.View
 {
     /// <summary>
-    /// IncomeView class is the class which consists of view level activities of income.
+    /// IncomeView class is the class which does the console level retrieval and logic validation of the income.
     /// </summary>
     internal class IncomeView
     {

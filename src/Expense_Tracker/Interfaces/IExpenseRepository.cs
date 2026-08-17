@@ -3,7 +3,7 @@
 namespace Expense_Tracker.Interfaces
 {
     /// <summary>
-    /// IExpenseRepository is the interface for the method of expense categories.
+    /// IExpenseRepository is the interface for the methods of expense categories.
     /// </summary>
     internal interface IExpenseRepository
     {
