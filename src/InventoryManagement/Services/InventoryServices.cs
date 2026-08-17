@@ -1,8 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using Inventory_Management.Model;
-using Inventory_Management.Repository;
+﻿using InventoryManagement.Model;
+using InventoryManagement.Repository;
 
-namespace Inventory_Management.Services
+namespace InventoryManagement.Services
 {
     /// <summary>
     /// InventoryServices Class is used to provide inventory services.

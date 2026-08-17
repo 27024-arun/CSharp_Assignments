@@ -1,4 +1,4 @@
-﻿namespace Inventory_Management.Model
+﻿namespace InventoryManagement.Model
 {
     /// <summary>
     /// InventoryModel is the Model layer of the Inventory.

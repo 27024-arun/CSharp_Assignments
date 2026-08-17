@@ -1,7 +1,7 @@
-﻿using Inventory_Management.Model;
+﻿using InventoryManagement.Model;
 using Spectre.Console;
 
-namespace Inventory_Management.Services
+namespace InventoryManagement.Services
 {
     /// <summary>
     /// Helper class is used to perform additional operations in the project.

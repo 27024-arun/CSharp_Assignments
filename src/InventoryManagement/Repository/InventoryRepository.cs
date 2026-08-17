@@ -1,6 +1,6 @@
-﻿using Inventory_Management.Model;
+﻿using InventoryManagement.Model;
 
-namespace Inventory_Management.Repository
+namespace InventoryManagement.Repository
 {
     /// <summary>
     /// InventoryRepository Class is used to store datas of the inventory.
