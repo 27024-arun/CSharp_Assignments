@@ -27,7 +27,7 @@ namespace AdvancedExpenseTracker.Services
         /// <param name="category">Category of Income.</param>
         internal void AddIncome(decimal amount, DateOnly date, IncomeCategory category)
         {
-            Income income = new ()
+            Income income = new Income()
             {
                 Id = Guid.NewGuid(),
                 Amount = amount,

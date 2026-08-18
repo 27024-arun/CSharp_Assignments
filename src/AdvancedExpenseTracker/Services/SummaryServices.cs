@@ -1,4 +1,6 @@
-﻿using AdvancedExpenseTracker.Repository;
+﻿using System.Runtime.CompilerServices;
+using AdvancedExpenseTracker.Models;
+using AdvancedExpenseTracker.Repository;
 
 namespace AdvancedExpenseTracker.Services
 {
@@ -50,6 +52,38 @@ namespace AdvancedExpenseTracker.Services
         internal decimal GetTotalIncome()
         {
             return this._incomeRepository.GetTotalIncome();
+        }
+
+        /// <summary>
+        /// ExpenseSummary method is used to calculate the total amount used in a particular category of expense.
+        /// </summary>
+        /// <returns>Returns a dictionary with key-pair value as expense category and total amount spent in that particular category.</returns>
+        internal Dictionary<ExpenseCategory, decimal> ExpenseSummary()
+        {
+            Dictionary<ExpenseCategory, decimal> expenseSummary = Enum.GetValues(typeof(ExpenseCategory)).Cast<ExpenseCategory>().ToDictionary(category => category, value => decimal.Zero);
+            List<Expense> expenses = this._expenseRepository.GetAllExpense();
+            foreach (Expense expense in expenses)
+            {
+                expenseSummary[expense.Category] += expense.Amount;
+            }
+
+            return expenseSummary;
+        }
+
+        /// <summary>
+        /// IncomeSummary method is used to calculate the total amount used in a particular category of income.
+        /// </summary>
+        /// <returns>Returns a dictionary with key-pair value as income category and total amount spent in that particular category.</returns>
+        internal Dictionary<IncomeCategory, decimal> IncomeSummary()
+        {
+            Dictionary<IncomeCategory, decimal> incomeSummary = Enum.GetValues(typeof(IncomeCategory)).Cast<IncomeCategory>().ToDictionary(category => category, value => decimal.Zero);
+            List<Income> incomes = this._incomeRepository.GetAllIncome();
+            foreach (Income income in incomes)
+            {
+                incomeSummary[income.Category] += income.Amount;
+            }
+
+            return incomeSummary;
         }
     }
 }

@@ -53,7 +53,7 @@ Enter Choice: ";
                             break;
 
                         case (int)MainMenuOptions.ShowSummary:
-                            summaryView.ShowSummary();
+                            summaryView.SummaryOptions();
                             break;
 
                         case (int)MainMenuOptions.Exit:
