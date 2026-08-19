@@ -8,12 +8,18 @@
         /// <summary>
         /// Array method is used to get data for array and access it.
         /// </summary>
-        public void Array()
+        public void ArrayIndexExceptionTask()
         {
             try
             {
                 Console.Write("Enter the length of the array: ");
                 int.TryParse(Console.ReadLine(), out var arrayLength);
+                if (arrayLength <= 0)
+                {
+                    Console.WriteLine("Invalid Array Length, array length can only be positive");
+                    return;
+                }
+
                 int[] array = new int[arrayLength];
                 for (int i = 0; i < array.Length; i++)
                 {

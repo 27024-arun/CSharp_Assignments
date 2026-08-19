@@ -8,16 +8,16 @@
         /// <summary>
         /// Divide method is used to divide data and catches exception if the user input throws an exception.
         /// </summary>
-        public void Divide()
+        public void DivisionExceptionTask()
         {
             try
             {
                 Console.Write("Enter the dividend value: ");
-                int dividend = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int dividend);
                 Console.Write("Enter the divisor value: ");
-                int divisor = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int divisor);
                 int result = dividend / divisor;
-                Console.WriteLine($"Result of {dividend} % {divisor} is {result}");
+                Console.WriteLine($"Result of {dividend} / {divisor} is {result}");
             }
             catch (DivideByZeroException e)
             {

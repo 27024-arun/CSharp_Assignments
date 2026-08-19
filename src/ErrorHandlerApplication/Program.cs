@@ -35,10 +35,10 @@ namespace Assignments
                     switch (userMenuInput)
                     {
                         case 1:
-                            division.Divide();
+                            division.DivisionExceptionTask();
                             break;
                         case 2:
-                            arrayTask.Array();
+                            arrayTask.ArrayIndexExceptionTask();
                             break;
                         case 3:
                             customExceptionTask.CustomException();
