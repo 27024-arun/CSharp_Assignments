@@ -20,7 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem", "src\BankingSystem\BankingSystem.csproj", "{E1EAB050-B984-4817-9275-65E916040E10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement", "src\InventoryManagement\InventoryManagement.csproj", "{8634497D-52A0-457A-B88A-698E31D43C97}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerApplication", "src\ErrorHandlerApplication\ErrorHandlerApplication.csproj", "{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +47,6 @@ Global
 		{8634497D-52A0-457A-B88A-698E31D43C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8634497D-52A0-457A-B88A-698E31D43C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8634497D-52A0-457A-B88A-698E31D43C97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +58,7 @@ Global
 		{BD794B51-F79A-4A0A-8E82-BD0A3B218690} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{D88554AE-8E64-40CD-94B9-027017737C52} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{E1EAB050-B984-4817-9275-65E916040E10} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
-		{0B2F5251-0B73-4BC3-8D2E-66E29AAF1F5A} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{8634497D-52A0-457A-B88A-698E31D43C97} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
