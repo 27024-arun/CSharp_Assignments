@@ -15,11 +15,11 @@ namespace ExpenseTracker
         /// </summary>
         public static void Main()
         {
-            CSVIncomeRepository incomeRepository = new CSVIncomeRepository();
+            JSONIncomeRepository incomeRepository = new JSONIncomeRepository();
             IncomeServices incomeServices = new IncomeServices(incomeRepository);
             IncomeView incomeView = new IncomeView(incomeServices);
 
-            CSVExpenseRepository expenseRepository = new CSVExpenseRepository();
+            JSONExpenseRepository expenseRepository = new JSONExpenseRepository();
             ExpenseServices expenseServices = new ExpenseServices(expenseRepository);
             ExpenseView expenseView = new ExpenseView(expenseServices);
 

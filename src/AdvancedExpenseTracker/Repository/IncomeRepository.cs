@@ -105,6 +105,10 @@ namespace AdvancedExpenseTracker.Repository
             return this._incomes.Any(e => e.Id == id);
         }
 
+        /// <summary>
+        /// IncomeCount method is used to return the number of income in the repository.
+        /// </summary>
+        /// <returns>Returns the number of incomes.</returns>
         internal int IncomeCount()
         {
             return this._incomes.Count;

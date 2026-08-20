@@ -8,13 +8,13 @@ namespace AdvancedExpenseTracker.Services
     /// </summary>
     internal class ExpenseServices
     {
-        private readonly CSVExpenseRepository _expenseRepository;
+        private readonly JSONExpenseRepository _expenseRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenseServices"/> class.
         /// </summary>
         /// <param name="expenseRepository">ExpenseRepository instance.</param>
-        public ExpenseServices(CSVExpenseRepository expenseRepository)
+        public ExpenseServices(JSONExpenseRepository expenseRepository)
         {
             this._expenseRepository = expenseRepository;
         }

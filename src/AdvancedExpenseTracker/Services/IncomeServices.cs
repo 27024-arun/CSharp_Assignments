@@ -8,13 +8,13 @@ namespace AdvancedExpenseTracker.Services
     /// </summary>
     internal class IncomeServices
     {
-        private readonly CSVIncomeRepository _incomeRepository;
+        private readonly JSONIncomeRepository _incomeRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IncomeServices"/> class.
         /// </summary>
         /// <param name="incomeRepository">IncomeRepository is the income repository instance.</param>
-        public IncomeServices(CSVIncomeRepository incomeRepository)
+        public IncomeServices(JSONIncomeRepository incomeRepository)
         {
             this._incomeRepository = incomeRepository;
         }
