@@ -3,41 +3,41 @@
 namespace AdvancedExpenseTracker.Interfaces
 {
     /// <summary>
-    /// IExpenseRepository is the interface for the methods of expense categories.
+    /// Defines the data modification and retrieval operations of Expenses.
     /// </summary>
     internal interface IExpenseRepository
     {
         /// <summary>
-        /// AddExpense method is the blueprint for adding expense in repository.
+        /// Adds new expense to the repository.
         /// </summary>
         /// <param name="expense">Expense details of the user.</param>
         public void AddExpense(Expense expense);
 
         /// <summary>
-        /// GetAllExpense method is the blueprint for returning all the expense from repository.
+        /// Retrieves all the expense in the repository.
         /// </summary>
-        /// <returns>Returns the list of expenses of user.</returns>
+        /// <returns>The list of expenses of user.</returns>
         public List<Expense> GetAllExpense();
 
         /// <summary>
-        /// GetExpenseById method is the blueprint for returning a particular expense by using their id.
+        /// Retrieves a particular Expense by matching the ID.
         /// </summary>
         /// <param name="id">Id is the unique identifier of the Expense.</param>
-        /// <returns>Returns a particular Expense.</returns>
+        /// <returns>Returns a particular User's expense if exists otherwise returns null.</returns>
         Expense? GetExpenseById(Guid id);
 
         /// <summary>
-        /// UpdateExpense method is the blueprint for updating expense of the user.
+        /// Updates a particular Expense details of the user.
         /// </summary>
         /// <param name="expense">Expense details of the user.</param>
-        /// <returns>Returns whether the data is updated or not.</returns>
+        /// <returns>Returns true if expense is updated otherwise returns false.</returns>
         public bool UpdateExpense(Expense expense);
 
         /// <summary>
-        /// DeleteExpense method is the blueprint for deleting expense of the user.
+        /// Deletes a particular Expense of the user.
         /// </summary>
         /// <param name="id">Id the unique identifier of the expense.</param>
-        /// <returns>Returns whether the expense is deleted or not.</returns>
+        /// <returns>Returns true if expense is deleted otherwise returns false.</returns>
         public bool DeleteExpense(Guid id);
     }
 }

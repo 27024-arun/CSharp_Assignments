@@ -6,37 +6,37 @@
     internal enum IncomeCategory
     {
         /// <summary>
-        /// Salary is the enum value assigned with value 1.
+        /// Income earned from regular paychecks.
         /// </summary>
         Salary = 1,
 
         /// <summary>
-        /// Freelancing is the enum value assigned with value 2.
+        /// Incomes earned from doing projects and prototypes.
         /// </summary>
         Freelancing = 2,
 
         /// <summary>
-        /// Bonus is the enum value assigned with value 3.
+        /// Extra Income earned from any income activites.
         /// </summary>
         Bonus = 3,
 
         /// <summary>
-        /// Interest is the enum value assigned with value 4.
+        /// Income earned from interest collection from individuals.
         /// </summary>
         Interest = 4,
 
         /// <summary>
-        /// Rental is the enum value assigned with value 5.
+        /// Income earned from rental amount collection from individuals.
         /// </summary>
         Rental = 5,
 
         /// <summary>
-        /// Stipend is the enum value assigned with value 6.
+        /// Income earned from doing work as a part-time employee.
         /// </summary>
         Stipend = 6,
 
         /// <summary>
-        /// Others is the enum value assigned with value 7.
+        /// Other income which is not predefined.
         /// </summary>
         Others = 7,
     }

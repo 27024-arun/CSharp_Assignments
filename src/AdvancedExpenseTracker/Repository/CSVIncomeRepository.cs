@@ -8,7 +8,16 @@ namespace AdvancedExpenseTracker.Repository
     /// </summary>
     internal class CSVIncomeRepository : IIncomeRepository
     {
-        private readonly string _filePath = "Income.csv";
+        private readonly string _filePath;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CSVIncomeRepository"/> class.
+        /// </summary>
+        /// <param name="filePath">Filepath where the file for storage is created.</param>
+        internal CSVIncomeRepository(string filePath)
+        {
+            this._filePath = filePath;
+        }
 
         /// <summary>
         /// AddIncome method is used to add income data into the repository.
@@ -78,21 +87,6 @@ namespace AdvancedExpenseTracker.Repository
         }
 
         /// <summary>
-        /// WriteAll method is used to rewrite the file data.
-        /// </summary>
-        /// <param name="incomes">Incomes is list of income in repository.</param>
-        public void WriteAll(List<Income> incomes)
-        {
-            List<string> result = new List<string>();
-            foreach (var income in incomes)
-            {
-                result.Add($"{income.Id},{income.Amount},{income.Date},{income.Category}");
-            }
-
-            File.WriteAllLines(this._filePath, result);
-        }
-
-        /// <summary>
         /// DeleteIncome method is used to delete a particular income in the repository.
         /// </summary>
         /// <param name="id">Id is the unique identifier of the income.</param>
@@ -142,6 +136,21 @@ namespace AdvancedExpenseTracker.Repository
         internal int IncomeCount()
         {
             return File.ReadAllLines(this._filePath).Length;
+        }
+
+        /// <summary>
+        /// WriteAll method is used to rewrite the file data.
+        /// </summary>
+        /// <param name="incomes">Incomes is list of income in repository.</param>
+        private void WriteAll(List<Income> incomes)
+        {
+            List<string> result = new List<string>();
+            foreach (var income in incomes)
+            {
+                result.Add($"{income.Id},{income.Amount},{income.Date},{income.Category}");
+            }
+
+            File.WriteAllLines(this._filePath, result);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace AdvancedExpenseTracker.Models
 {
     /// <summary>
-    /// TransactionModel is the abstract class whether the properties and field of transaction is declared.
+    /// TransactionModel is the abstract class where the properties and field of transaction is declared.
     /// </summary>
     internal abstract class TransactionModel
     {
@@ -20,7 +20,7 @@
         /// <summary>
         /// Gets or Sets the Date of the transaction.
         /// </summary>
-        /// <value>Date is the date of transaction..</value>
+        /// <value>Date is the date of transaction.</value>
         public DateOnly Date { get; set; }
     }
 }

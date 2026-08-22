@@ -8,7 +8,16 @@ namespace AdvancedExpenseTracker.Repository
     /// </summary>
     internal class CSVExpenseRepository : IExpenseRepository
     {
-        private readonly string _filePath = "Expenses.csv";
+        private readonly string _filePath;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CSVExpenseRepository"/> class.
+        /// </summary>
+        /// <param name="filePath">Filepath where the file for storage is created.</param>
+        internal CSVExpenseRepository(string filePath)
+        {
+            this._filePath = filePath;
+        }
 
         /// <summary>
         /// AddExpense method is used to add expense details into the repository.
@@ -78,21 +87,6 @@ namespace AdvancedExpenseTracker.Repository
         }
 
         /// <summary>
-        /// WriteAll method is used rewrite the contents of the CSV file.
-        /// </summary>
-        /// <param name="expenses">Expenses is the list of expenses.</param>
-        public void WriteAll(List<Expense> expenses)
-        {
-            List<string> result = new List<string>();
-            foreach (var expense in expenses)
-            {
-                result.Add($"{expense.Id},{expense.Amount},{expense.Date},{expense.Category}");
-            }
-
-            File.WriteAllLines(this._filePath, result);
-        }
-
-        /// <summary>
         /// DeleteExpense method is used to delete a particular expense in the repository.
         /// </summary>
         /// <param name="id">Id is the unique identifier of the expense.</param>
@@ -142,6 +136,21 @@ namespace AdvancedExpenseTracker.Repository
         internal int ExpenseCount()
         {
             return File.ReadAllLines(this._filePath).Length;
+        }
+
+        /// <summary>
+        /// WriteAll method is used rewrite the contents of the CSV file.
+        /// </summary>
+        /// <param name="expenses">Expenses is the list of expenses.</param>
+        private void WriteAll(List<Expense> expenses)
+        {
+            List<string> result = new List<string>();
+            foreach (var expense in expenses)
+            {
+                result.Add($"{expense.Id},{expense.Amount},{expense.Date},{expense.Category}");
+            }
+
+            File.WriteAllLines(this._filePath, result);
         }
     }
 }

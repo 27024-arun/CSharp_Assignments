@@ -18,15 +18,20 @@ namespace AdvancedExpenseTracker.Repository
         private readonly JsonSerializerOptions _options = new JsonSerializerOptions
         {
             WriteIndented = true,
-            Converters = { new JsonStringEnumConverter() },
+            Converters =
+            {
+                new JsonStringEnumConverter(),
+                new DateOnlyJsonConverter(),
+            },
         };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JSONExpenseRepository"/> class.
         /// </summary>
-        internal JSONExpenseRepository()
+        /// <param name="filepath">Filepath where the file for storage is created.</param>
+        internal JSONExpenseRepository(string filepath)
         {
-            this._options.Converters.Add(new DateOnlyJsonConverter());
+            this._filePath = filepath;
             this._expenses = this.LoadAll();
         }
 
@@ -134,7 +139,7 @@ namespace AdvancedExpenseTracker.Repository
         /// WriteAll method is used rewrite the contents of the CSV file.
         /// </summary>
         /// <param name="expenses">Expenses is the list of expenses.</param>
-        internal void WriteAll()
+        private void WriteAll()
         {
             string json = JsonSerializer.Serialize(this._expenses, this._options);
             File.WriteAllText(this._filePath, json);

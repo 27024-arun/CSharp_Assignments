@@ -6,37 +6,37 @@
     internal enum ExpenseCategory
     {
         /// <summary>
-        /// Food is the enum value assigned with value 1.
+        /// Expenses related to Food, Juices, Snacks.
         /// </summary>
         Food = 1,
 
         /// <summary>
-        /// Transport is the enum value assigned with value 2.
-        /// </summary>s
+        /// Expenses related to using different modes of transport.
+        /// </summary>
         Transport = 2,
 
         /// <summary>
-        /// Shopping is the enum value assigned with value 3.
+        /// Expenses related to Purchasing items from stores and malls.
         /// </summary>
         Shopping = 3,
 
         /// <summary>
-        /// Bills is the enum value assigned with value 4.
+        /// Expenses related to Filing taxes and paying bills like Electricity, Gas and others.
         /// </summary>
         Bills = 4,
 
         /// <summary>
-        /// Entertainment is the enum value assigned with value 5.
+        /// Expense related to movies, games, concerts.
         /// </summary>
         Entertainment = 5,
 
         /// <summary>
-        /// Healthcare is the enum value assigned with value 6.
+        /// Expense realted to medical checkups and doctor consultancy.
         /// </summary>
         Healthcare = 6,
 
         /// <summary>
-        /// Others is the enum value assigned with value 7.
+        /// Expenses related to activities that are not predefined.
         /// </summary>
         Others = 7,
     }

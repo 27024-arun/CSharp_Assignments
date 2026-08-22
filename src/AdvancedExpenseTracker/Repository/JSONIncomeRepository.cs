@@ -13,20 +13,25 @@ namespace AdvancedExpenseTracker.Repository
     {
         private readonly List<Income> _incomes;
 
-        private readonly string _filepath = "Income.json";
+        private readonly string _filepath;
 
         private readonly JsonSerializerOptions _options = new JsonSerializerOptions()
         {
             WriteIndented = true,
-            Converters = { new JsonStringEnumConverter() },
+            Converters =
+            {
+                new JsonStringEnumConverter(),
+                new DateOnlyJsonConverter(),
+            },
         };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JSONIncomeRepository"/> class.
         /// </summary>
-        internal JSONIncomeRepository()
+        /// <param name="filepath">Filepath where the file for storage is created.</param>
+        internal JSONIncomeRepository(string filepath)
         {
-            this._options.Converters.Add(new DateOnlyJsonConverter());
+            this._filepath = filepath;
             this._incomes = this.LoadAll();
         }
 

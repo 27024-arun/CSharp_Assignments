@@ -3,41 +3,41 @@
 namespace AdvancedExpenseTracker.Interfaces
 {
     /// <summary>
-    /// IIncomeRepository is the interface for the method of income categories.
+    /// Defines the data modification and retrieval operations of Incomes.
     /// </summary>
     internal interface IIncomeRepository
     {
         /// <summary>
-        /// AddIncome method is the blueprint for adding income in repository.
+        /// Adds new Income to the repository.
         /// </summary>
         /// <param name="income">Income details of the user.</param>
         public void AddIncome(Income income);
 
         /// <summary>
-        /// GetAllIncome method is the blueprint for returning all the income from repository.
+        /// Retrieves all the Income from Repository.
         /// </summary>
-        /// <returns>Returns the list of incomes of user.</returns>
+        /// <returns>The list of incomes of user.</returns>
         public List<Income> GetAllIncome();
 
         /// <summary>
-        /// GetIncomeById method is the blueprint for returning a particular income by using their id.
+        /// Retrieves a particular Users income by matching ID.
         /// </summary>
         /// <param name="id">Id is the unique identifier of the Income.</param>
-        /// <returns>Returns a particular Income.</returns>
+        /// <returns>Returns a particular User's income if exists otherwise returns null.</returns>
         Income? GetIncomeById(Guid id);
 
         /// <summary>
-        /// UpdateIncome method is the blueprint for updating income of the user.
+        /// Updates a particular User's Income with the new data.
         /// </summary>
         /// <param name="income">Income details of the user.</param>
-        /// <returns>Returns whether the data is updated or not.</returns>
+        /// <returns>Returns true if Income is updated otherwise returns false.</returns>
         public bool UpdateIncome(Income income);
 
         /// <summary>
-        /// DeleteIncome method is the blueprint for deleting income of the user.
+        /// Deletes a particular User's Income data from the repository.
         /// </summary>
         /// <param name="id">Id the unique identifier of the income.</param>
-        /// <returns>Returns whether the income is deleted or not.</returns>
+        /// <returns>Returns true if Income is deleted otherwise returns false.</returns>
         public bool DeleteIncome(Guid id);
     }
 }
