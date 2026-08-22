@@ -35,40 +35,26 @@ namespace AdvancedExpenseTracker.Repository
             this._expenses = this.LoadAll();
         }
 
-        /// <summary>
-        /// AddExpense method is used to add expense details into the repository.
-        /// </summary>
-        /// <param name="expense">Expense is the details of expense.</param>
+        /// <inheritdoc/>
         public void AddExpense(Expense expense)
         {
             this._expenses.Add(expense);
             this.WriteAll();
         }
 
-        /// <summary>
-        /// GetAllExpense method is used to retrieve list of expense from repository.
-        /// </summary>
-        /// <returns>Returns the list of expense in repository.</returns>
+        /// <inheritdoc/>
         public List<Expense> GetAllExpense()
         {
             return this._expenses;
         }
 
-        /// <summary>
-        /// GetExpenseById method is used to retrieve a particular expense from repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the expense.</param>
-        /// <returns>Returns the expense from repository.</returns>
+        /// <inheritdoc/>
         public Expense? GetExpenseById(Guid id)
         {
             return this._expenses.FirstOrDefault(e => e.Id == id);
         }
 
-        /// <summary>
-        /// UpdateExpense method is used to update the expense details in the repository.
-        /// </summary>
-        /// <param name="newExpense">Expense is the expense details.</param>
-        /// <returns>Returns whether the expense is updated or not.</returns>
+        /// <inheritdoc/>
         public bool UpdateExpense(Expense newExpense)
         {
             foreach (var expense in this._expenses)
@@ -85,11 +71,7 @@ namespace AdvancedExpenseTracker.Repository
             return true;
         }
 
-        /// <summary>
-        /// DeleteExpense method is used to delete a particular expense in the repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the expense.</param>
-        /// <returns>Returns whether the expense is deleted or not.</returns>
+        /// <inheritdoc/>
         public bool DeleteExpense(Guid id)
         {
             Expense? expense = this._expenses.FirstOrDefault(entry => entry.Id == id);

@@ -19,19 +19,13 @@ namespace AdvancedExpenseTracker.Repository
             this._filePath = filePath;
         }
 
-        /// <summary>
-        /// AddExpense method is used to add expense details into the repository.
-        /// </summary>
-        /// <param name="expense">Expense is the details of expense.</param>
+        /// <inheritdoc/>
         public void AddExpense(Expense expense)
         {
             File.AppendAllText(this._filePath, $"{expense.Id},{expense.Amount},{expense.Date},{expense.Category}\n");
         }
 
-        /// <summary>
-        /// GetAllExpense method is used to retrieve list of expense from repository.
-        /// </summary>
-        /// <returns>Returns the list of expense in repository.</returns>
+        /// <inheritdoc/>
         public List<Expense> GetAllExpense()
         {
             string[] fileData = File.ReadAllLines(this._filePath);
@@ -53,22 +47,14 @@ namespace AdvancedExpenseTracker.Repository
             return expenses;
         }
 
-        /// <summary>
-        /// GetExpenseById method is used to retrieve a particular expense from repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the expense.</param>
-        /// <returns>Returns the expense from repository.</returns>
+        /// <inheritdoc/>
         public Expense? GetExpenseById(Guid id)
         {
             List<Expense> expenses = this.GetAllExpense();
             return expenses.FirstOrDefault(e => e.Id == id);
         }
 
-        /// <summary>
-        /// UpdateExpense method is used to update the expense details in the repository.
-        /// </summary>
-        /// <param name="newExpense">Expense is the expense details.</param>
-        /// <returns>Returns whether the expense is updated or not.</returns>
+        /// <inheritdoc/>
         public bool UpdateExpense(Expense newExpense)
         {
             List<Expense> expenses = this.GetAllExpense();
@@ -86,11 +72,7 @@ namespace AdvancedExpenseTracker.Repository
             return true;
         }
 
-        /// <summary>
-        /// DeleteExpense method is used to delete a particular expense in the repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the expense.</param>
-        /// <returns>Returns whether the expense is deleted or not.</returns>
+        /// <inheritdoc/>
         public bool DeleteExpense(Guid id)
         {
             List<Expense> expenses = this.GetAllExpense();

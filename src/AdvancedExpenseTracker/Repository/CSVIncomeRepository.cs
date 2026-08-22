@@ -19,19 +19,13 @@ namespace AdvancedExpenseTracker.Repository
             this._filePath = filePath;
         }
 
-        /// <summary>
-        /// AddIncome method is used to add income data into the repository.
-        /// </summary>
-        /// <param name="income">Income is the details of income.</param>
+        /// <inheritdoc/>
         public void AddIncome(Income income)
         {
             File.AppendAllText(this._filePath, $"{income.Id},{income.Amount},{income.Date},{income.Category}\n");
         }
 
-        /// <summary>
-        /// GetAllIncome method is used to retrieve list of incomes from repository.
-        /// </summary>
-        /// <returns>Returns the list of income in repository.</returns>
+        /// <inheritdoc/>
         public List<Income> GetAllIncome()
         {
             string[] fileData = File.ReadAllLines(this._filePath);
@@ -53,22 +47,14 @@ namespace AdvancedExpenseTracker.Repository
             return incomes;
         }
 
-        /// <summary>
-        /// GetIncomeById method is used to retrieve a particular income from repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the income.</param>
-        /// <returns>Returns the income from repository.</returns>
+        /// <inheritdoc/>
         public Income? GetIncomeById(Guid id)
         {
             List<Income> incomes = this.GetAllIncome();
             return incomes.FirstOrDefault(i => i.Id == id);
         }
 
-        /// <summary>
-        /// UpdateIncome method is used update income details in the repository.
-        /// </summary>
-        /// <param name="income">Income is the income details.</param>
-        /// <returns>Returns whether the income is updated or not.</returns>
+        /// <inheritdoc/>
         public bool UpdateIncome(Income income)
         {
             List<Income> incomes = this.GetAllIncome();
@@ -86,11 +72,7 @@ namespace AdvancedExpenseTracker.Repository
             return true;
         }
 
-        /// <summary>
-        /// DeleteIncome method is used to delete a particular income in the repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the income.</param>
-        /// <returns>Returns whether the income is deleted or not.</returns>
+        /// <inheritdoc/>
         public bool DeleteIncome(Guid id)
         {
             List<Income> incomes = this.GetAllIncome();

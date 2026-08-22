@@ -35,21 +35,14 @@ namespace AdvancedExpenseTracker.Repository
             this._incomes = this.LoadAll();
         }
 
-        /// <summary>
-        /// AddIncome method is used to add income data into the repository.
-        /// </summary>
-        /// <param name="income">Income is the details of income.</param>
+        /// <inheritdoc/>
         public void AddIncome(Income income)
         {
             this._incomes.Add(income);
             this.WriteAll();
         }
 
-        /// <summary>
-        /// DeleteIncome method is used to delete a particular income in the repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the income.</param>
-        /// <returns>Returns whether the income is deleted or not.</returns>
+        /// <inheritdoc/>
         public bool DeleteIncome(Guid id)
         {
             Income? income = this.GetIncomeById(id);
@@ -63,30 +56,19 @@ namespace AdvancedExpenseTracker.Repository
             return true;
         }
 
-        /// <summary>
-        /// GetAllIncome method is used to retrieve list of incomes from repository.
-        /// </summary>
-        /// <returns>Returns the list of income in repository.</returns>
+        /// <inheritdoc/>
         public List<Income> GetAllIncome()
         {
             return this._incomes;
         }
 
-        /// <summary>
-        /// GetIncomeById method is used to retrieve a particular income from repository.
-        /// </summary>
-        /// <param name="id">Id is the unique identifier of the income.</param>
-        /// <returns>Returns the income from repository.</returns>
+        /// <inheritdoc/>
         public Income? GetIncomeById(Guid id)
         {
             return this._incomes.FirstOrDefault(income => income.Id == id);
         }
 
-        /// <summary>
-        /// UpdateIncome method is used update income details in the repository.
-        /// </summary>
-        /// <param name="newIncome">Income is the income details.</param>
-        /// <returns>Returns whether the income is updated or not.</returns>
+        /// <inheritdoc/>
         public bool UpdateIncome(Income newIncome)
         {
             foreach (Income income in this._incomes)
