@@ -2,17 +2,28 @@
 
 namespace LINQPractices
 {
+    /// <summary>
+    /// Performs complex Linq tasks.
+    /// </summary>
     internal class ComplexLinqTask
     {
         private readonly List<Product> _products;
         private readonly List<Supplier> _suppliers;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComplexLinqTask"/> class.
+        /// </summary>
+        /// <param name="products">Details of the product.</param>
+        /// <param name="suppliers">Details of the supplier.</param>
         public ComplexLinqTask(List<Product> products, List<Supplier> suppliers)
         {
             this._products = products;
             this._suppliers = suppliers;
         }
 
+        /// <summary>
+        /// Performs LINQ queries for grouping and joining the product and supplier data.
+        /// </summary>
         internal void GroupData()
         {
             var groupedData = this._products.OrderBy(product => product.Price).GroupBy(product => product.Category);

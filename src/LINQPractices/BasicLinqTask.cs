@@ -2,15 +2,25 @@
 
 namespace LINQPractices
 {
+    /// <summary>
+    /// Performs simple and basic Linq tasks.
+    /// </summary>
     internal class BasicLinqTask
     {
         private readonly List<Product> _products = new List<Product>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BasicLinqTask"/> class.
+        /// </summary>
+        /// <param name="products">Details of the product.</param>
         public BasicLinqTask(List<Product> products)
         {
             this._products = products;
         }
 
+        /// <summary>
+        /// Perform linq queries on filtering data.
+        /// </summary>
         public void FilterData()
         {
             var filterValue = this._products.

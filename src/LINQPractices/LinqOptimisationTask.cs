@@ -3,16 +3,26 @@ using LINQPractices.Model;
 
 namespace LINQPractices
 {
+    /// <summary>
+    /// Peforms optimised form of LINQ query.
+    /// </summary>
     internal class LinqOptimisationTask
     {
         private readonly List<Product> _products;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LinqOptimisationTask"/> class.
+        /// </summary>
+        /// <param name="products">Details of the product.</param>
         public LinqOptimisationTask(List<Product> products)
         {
             this._products = products;
         }
 
-        public void PerformOptimisationTask()
+        /// <summary>
+        /// Performs LINQ queries in optimised and unoptimised form and displays the time consumed for performing the operation.
+        /// </summary>
+        internal void PerformOptimisationTask()
         {
             Stopwatch stopWatch = new Stopwatch();
 
@@ -27,7 +37,6 @@ namespace LINQPractices
             stopWatch.Stop();
             Console.WriteLine($"Time taken for Unoptimised query: {stopWatch.ElapsedMilliseconds} ms");
             Console.WriteLine($"Time taken for Unoptimised query: {stopWatch.ElapsedTicks} ticks\n");
-
 
             Console.WriteLine($"Result in Optimised query:");
             stopWatch.Restart();
