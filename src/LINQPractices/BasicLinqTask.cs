@@ -31,6 +31,10 @@ namespace LINQPractices
 
             int averagePrice = (int)priceFilterValue.Average(product => product.Price);
             Console.WriteLine($"Average: {averagePrice}");
+
+            Console.WriteLine($"Enter any key to return to main menu");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
