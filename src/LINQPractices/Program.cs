@@ -14,11 +14,49 @@ namespace Assignments
             List<Supplier> supplier = supplierAdder.AddSupplier();
 
             BasicLinqTask basicLinqTask = new BasicLinqTask(products);
-            // basicLinqTask.FilterData();
+            ComplexLinqTask complexLinqTask = new ComplexLinqTask(products, supplier);
+            ArrayLinqTask arrayLinqTask = new ArrayLinqTask();
+            LinqOptimisationTask linqOptimisation = new LinqOptimisationTask(products);
 
-            ComplexLinqTask complexLinqTask = new ComplexLinqTask(products);
-            complexLinqTask.GroupData();
-            Console.ReadKey();
+            while (true)
+            {
+                string mainMenu = $@"
+1. Basic Linq Task
+2. Complex Liqn Task
+3. Array Linq Task
+4. Linq Optiminsation Task
+5. Query Builder Task
+6. Exit
+Enter Choice: ";
+                Console.Write(mainMenu);
+                int.TryParse(Console.ReadLine(), out int userChoice);
+                switch (userChoice)
+                {
+                    case 1:
+                        Console.Clear();
+                        basicLinqTask.FilterData();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        complexLinqTask.GroupData();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        arrayLinqTask.ManipulateArray();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        linqOptimisation.PerformOptimisationTask();
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        return;
+                    default:
+                        Console.WriteLine("Invaild Choice\n");
+                        break;
+                }
+            }
         }
     }
 }
