@@ -2,8 +2,15 @@
 
 namespace LINQPractices.Helper
 {
+    /// <summary>
+    /// Helps to perform population of products.
+    /// </summary>
     internal class SupplierAdder
     {
+        /// <summary>
+        /// AddSupplier method is used to populate supplier list and returns the populated list.
+        /// </summary>
+        /// <returns>Suppiler list.</returns>
         public List<Supplier> AddSupplier()
         {
             List<Supplier> list = new List<Supplier>();
@@ -23,6 +30,11 @@ namespace LINQPractices.Helper
             list.Add(new Supplier(1013, "TechCorp", 113));
             list.Add(new Supplier(1014, "TechCorp", 114));
             list.Add(new Supplier(1015, "BeautyWorld", 115));
+            list.Add(new Supplier(1016, "BookRanger", 116));
+            list.Add(new Supplier(1017, "BookRanger", 117));
+            list.Add(new Supplier(1018, "BookRanger", 118));
+            list.Add(new Supplier(1019, "BookRanger", 119));
+            list.Add(new Supplier(1020, "BookRanger", 120));
             return list;
         }
     }

@@ -4,12 +4,18 @@ using LINQPractices.Model;
 
 namespace Assignments
 {
+    /// <summary>
+    /// Program class is the entry class.
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// Main method is the (starting) entry point of the application.
+        /// </summary>
         public static void Main()
         {
             ProductAdder productAdder = new ProductAdder();
-            List<Product> products = productAdder.Add();
+            List<Product> products = productAdder.AddProduct();
             SupplierAdder supplierAdder = new SupplierAdder();
             List<Supplier> supplier = supplierAdder.AddSupplier();
 
@@ -17,6 +23,7 @@ namespace Assignments
             ComplexLinqTask complexLinqTask = new ComplexLinqTask(products, supplier);
             ArrayLinqTask arrayLinqTask = new ArrayLinqTask();
             LinqOptimisationTask linqOptimisation = new LinqOptimisationTask(products);
+            QueryBuilderTask queryBuilderTask = new QueryBuilderTask(products);
 
             while (true)
             {
