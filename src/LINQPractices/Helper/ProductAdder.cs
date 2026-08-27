@@ -2,9 +2,16 @@
 
 namespace LINQPractices
 {
+    /// <summary>
+    /// Helps to perform population of products.
+    /// </summary>
     internal class ProductAdder
     {
-        public List<Product> Add()
+        /// <summary>
+        /// AddProduct method is used to populate product list and returns the populated list.
+        /// </summary>
+        /// <returns>Product list.</returns>
+        public List<Product> AddProduct()
         {
             List<Product> products = new List<Product>();
             products.Add(new Product(100, "Headset", 1500, ProductCategory.Electronics));

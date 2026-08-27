@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.XPath;
-
-namespace LINQPractices
+﻿namespace LINQPractices
 {
+    /// <summary>
+    /// Peforms Array based linq task.
+    /// </summary>
     internal class ArrayLinqTask
     {
+        /// <summary>
+        /// Filters the Array and retrieves the second highest Number, and matches the user given target number by iterating in the array.
+        /// </summary>
         public void ManipulateArray()
         {
             int[] dataArray = { 97, 7, 18, 1, 1002, 678, 5, 57, 99, 743, 9, 237, 913, 2, 67, 10, 58, 478, 4, 387, 0, 97, 683, 743, 8, 3, 6 };
@@ -26,9 +25,10 @@ namespace LINQPractices
             int.TryParse(Console.ReadLine(), out int targetNumber);
 
             var pairs = dataArray
-                .SelectMany((value, index) => dataArray.Skip(index + 1).Where(other => value + other == targetNumber)
-                .Select(other => new { PairValue1 = value, PairValue2 = other }))
-                .ToList();
+                .SelectMany((value, index) =>
+                    dataArray.Skip(index + 1).Where(other => value + other == targetNumber)
+                    .Select(other => new { PairValue1 = value, PairValue2 = other }))
+                    .ToList();
             if (pairs.Any())
             {
                 foreach (var pair in pairs)
