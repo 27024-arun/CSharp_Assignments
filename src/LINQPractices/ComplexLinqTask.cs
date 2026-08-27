@@ -5,23 +5,44 @@ namespace LINQPractices
     internal class ComplexLinqTask
     {
         private readonly List<Product> _products;
+        private readonly List<Supplier> _suppliers;
 
-        public ComplexLinqTask(List<Product> products)
+        public ComplexLinqTask(List<Product> products, List<Supplier> suppliers)
         {
             this._products = products;
+            this._suppliers = suppliers;
         }
 
         internal void GroupData()
         {
-            var groupedData = this._products.GroupBy(product => product.Category);
+            var groupedData = this._products.OrderBy(product => product.Price).GroupBy(product => product.Category);
             foreach (var groups in groupedData)
             {
-                Console.WriteLine($"Group Category: {groups.Key}");
+                Console.WriteLine($"=================================\nGroup Category: {groups.Key}");
                 foreach (var value in groups)
                 {
-                    Console.WriteLine($"\nProduct Id: {value.ProductId}\nProduct Name: {value.ProductName}\nProduct Price: {value.Price}\n");
+                    Console.WriteLine($"\nProduct Name: {value.ProductName}\nProduct Price: {value.Price}");
                 }
             }
+
+            var joinResult = this._products.Join(
+                this._suppliers,
+                product => product.ProductId,
+                supplier => supplier.ProductId,
+                (product, supplier) => new
+                {
+                    ProductName = product.ProductName,
+                    SupplierName = supplier.SupplierName,
+                });
+
+            foreach (var result in joinResult)
+            {
+                Console.WriteLine($"Product Name: {result.ProductName}      Supplier Name: {result.SupplierName}\n");
+            }
+
+            Console.WriteLine($"Enter any key to return to main menu");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

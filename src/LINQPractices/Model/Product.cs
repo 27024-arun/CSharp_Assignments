@@ -2,7 +2,7 @@
 {
     internal class Product
     {
-        public Product(string productId, string productName, int price, ProductCategory category)
+        public Product(int productId, string productName, int price, ProductCategory category)
         {
             this.ProductId = productId;
             this.ProductName = productName;
@@ -10,7 +10,7 @@
             this.Category = category;
         }
 
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
 
         public string ProductName { get; set; }
 
