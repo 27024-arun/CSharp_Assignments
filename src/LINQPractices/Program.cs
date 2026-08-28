@@ -23,7 +23,7 @@ namespace Assignments
             ComplexLinqTask complexLinqTask = new ComplexLinqTask(products, supplier);
             ArrayLinqTask arrayLinqTask = new ArrayLinqTask();
             LinqOptimisationTask linqOptimisation = new LinqOptimisationTask(products);
-            QueryBuilderTask queryBuilderTask = new QueryBuilderTask(products);
+            QueryBuilderTask queryBuilderTask = new QueryBuilderTask(products, supplier);
 
             while (true)
             {
@@ -56,6 +56,8 @@ Enter Choice: ";
                         linqOptimisation.PerformOptimisationTask();
                         break;
                     case 5:
+                        Console.Clear();
+                        queryBuilderTask.PeformQueryAction();
                         break;
                     case 6:
                         return;
