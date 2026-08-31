@@ -1,4 +1,4 @@
-﻿namespace CalculatorUtility
+﻿namespace Calculator
 {
     /// <summary>
     /// MathUtils handles mathematical operations.
