@@ -1,6 +1,4 @@
-﻿using CalculatorUtility;
-
-namespace Calculator
+﻿namespace Calculator
 {
     /// <summary>
     /// Helps to retrieve data from user and displays the processed result.
