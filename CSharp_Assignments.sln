@@ -22,6 +22,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement", "src\InventoryManagement\InventoryManagement.csproj", "{8634497D-52A0-457A-B88A-698E31D43C97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerApplication", "src\ErrorHandlerApplication\ErrorHandlerApplication.csproj", "{CC7039B9-B0C6-47CD-10EF-C01967599D08}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expense_Tracker", "src\Expense_Tracker\Expense_Tracker.csproj", "{ADF9FBD2-FD00-4559-83D7-9B7AA26A6CCA}"
 EndProject
 Global
