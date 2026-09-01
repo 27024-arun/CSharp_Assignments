@@ -1,4 +1,5 @@
 ﻿using Calculator;
+using CalculatorUtility;
 
 namespace Assignments
 {
@@ -37,7 +38,7 @@ Enter Choice: ";
                             retrieveData.SubtractUserData();
                             break;
                         case ConsoleKey.M:
-                            retrieveData.MultipleUserData();
+                            retrieveData.MultiplyUserData();
                             break;
                         case ConsoleKey.D:
                             retrieveData.DivideUserData();
