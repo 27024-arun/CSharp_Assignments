@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using CalculatorUtility;
+
+namespace Calculator
 {
     /// <summary>
     /// Helps to retrieve data from user and displays the processed result.
@@ -46,7 +48,7 @@
             Console.Write("Enter Second Number: ");
             int.TryParse(Console.ReadLine(), out int secondNumber);
 
-            int subtractionResult = this._mathUtils.SubtracNumbers(firstNumber, secondNumber);
+            int subtractionResult = this._mathUtils.SubtractNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Subtraction Result of {firstNumber} and {secondNumber} is {subtractionResult}");
 
             Console.WriteLine($"\nEnter any key to return to main menu");
@@ -57,7 +59,7 @@
         /// <summary>
         /// Collects data for multiplication and displays the result to user.
         /// </summary>
-        internal void MultipleUserData()
+        internal void MultiplyUserData()
         {
             Console.Clear();
             Console.Write("\nEnter First Number: ");
