@@ -1,4 +1,4 @@
-﻿namespace Calculator
+﻿namespace CalculatorUtility
 {
     /// <summary>
     /// MathUtils handles mathematical operations.
@@ -22,7 +22,7 @@
         /// <param name="firstNumber">Minuend of the subtraction.</param>
         /// <param name="secondNumber">Subtrahend of the subtraction.</param>
         /// <returns>Returns the subtraction result.</returns>
-        public int SubtracNumbers(int firstNumber, int secondNumber)
+        public int SubtractNumbers(int firstNumber, int secondNumber)
         {
             return firstNumber - secondNumber;
         }
