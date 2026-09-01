@@ -11,7 +11,7 @@
         /// <param name="firstNumber">First number to be added.</param>
         /// <param name="secondNumber">Second number to be added.</param>
         /// <returns>Returns the addition result.</returns>
-        public int AddNumbers(int firstNumber, int secondNumber)
+        public double AddNumbers(double firstNumber, double secondNumber)
         {
             return firstNumber + secondNumber;
         }
@@ -22,7 +22,7 @@
         /// <param name="firstNumber">Minuend of the subtraction.</param>
         /// <param name="secondNumber">Subtrahend of the subtraction.</param>
         /// <returns>Returns the subtraction result.</returns>
-        public int SubtractNumbers(int firstNumber, int secondNumber)
+        public double SubtractNumbers(double firstNumber, double secondNumber)
         {
             return firstNumber - secondNumber;
         }
@@ -33,7 +33,7 @@
         /// <param name="firstNumber">First Number to be multiplied.</param>
         /// <param name="secondNumber">Second Number to be multiplied.</param>
         /// <returns>Returns the multiplication result.</returns>
-        public int MultipleNumbers(int firstNumber, int secondNumber)
+        public double MultipleNumbers(double firstNumber, double secondNumber)
         {
             return firstNumber * secondNumber;
         }
@@ -44,7 +44,7 @@
         /// <param name="dividend">Dividend of the division.</param>
         /// <param name="divisor">Divisor of the division.</param>
         /// <returns>Returns the division result.</returns>
-        public int DivideNumbers(int dividend, int divisor)
+        public double DivideNumbers(double dividend, double divisor)
         {
             return dividend / divisor;
         }

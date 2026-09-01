@@ -25,11 +25,11 @@ namespace Calculator
         {
             Console.Clear();
             Console.Write("\nEnter First Number: ");
-            int.TryParse(Console.ReadLine(), out int firstNumber);
+            double.TryParse(Console.ReadLine(), out double firstNumber);
             Console.Write("Enter Second Number: ");
-            int.TryParse(Console.ReadLine(), out int secondNumber);
+            double.TryParse(Console.ReadLine(), out double secondNumber);
 
-            int additionResult = this._mathUtils.AddNumbers(firstNumber, secondNumber);
+            double additionResult = this._mathUtils.AddNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Addition Result of {firstNumber} and {secondNumber} is {additionResult}");
 
             Console.WriteLine($"\nEnter any key to return to main menu");
@@ -44,11 +44,11 @@ namespace Calculator
         {
             Console.Clear();
             Console.Write("\nEnter First Number: ");
-            int.TryParse(Console.ReadLine(), out int firstNumber);
+            double.TryParse(Console.ReadLine(), out double firstNumber);
             Console.Write("Enter Second Number: ");
-            int.TryParse(Console.ReadLine(), out int secondNumber);
+            double.TryParse(Console.ReadLine(), out double secondNumber);
 
-            int subtractionResult = this._mathUtils.SubtractNumbers(firstNumber, secondNumber);
+            double subtractionResult = this._mathUtils.SubtractNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Subtraction Result of {firstNumber} and {secondNumber} is {subtractionResult}");
 
             Console.WriteLine($"\nEnter any key to return to main menu");
@@ -63,11 +63,11 @@ namespace Calculator
         {
             Console.Clear();
             Console.Write("\nEnter First Number: ");
-            int.TryParse(Console.ReadLine(), out int firstNumber);
+            double.TryParse(Console.ReadLine(), out double firstNumber);
             Console.Write("Enter Second Number: ");
-            int.TryParse(Console.ReadLine(), out int secondNumber);
+            double.TryParse(Console.ReadLine(), out double secondNumber);
 
-            int multiplicationResult = this._mathUtils.MultipleNumbers(firstNumber, secondNumber);
+            double multiplicationResult = this._mathUtils.MultipleNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Multiplication Result of {firstNumber} and {secondNumber} is {multiplicationResult}");
 
             Console.WriteLine($"\nEnter any key to return to main menu");
@@ -82,16 +82,16 @@ namespace Calculator
         {
             Console.Clear();
             Console.Write("\nEnter First Number: ");
-            int.TryParse(Console.ReadLine(), out int firstNumber);
+            double.TryParse(Console.ReadLine(), out double firstNumber);
             Console.Write("Enter Second Number: ");
-            int.TryParse(Console.ReadLine(), out int secondNumber);
-            if (secondNumber == 0)
+            double.TryParse(Console.ReadLine(), out double secondNumber);
+            if (secondNumber is 0)
             {
                 Console.WriteLine("\nEntered data is not valid (Enter value greater than 0)");
                 goto exit;
             }
 
-            int divisionResult = this._mathUtils.DivideNumbers(firstNumber, secondNumber);
+            double divisionResult = this._mathUtils.DivideNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Division Result of {firstNumber} and {secondNumber} is {divisionResult}");
 
         exit:
