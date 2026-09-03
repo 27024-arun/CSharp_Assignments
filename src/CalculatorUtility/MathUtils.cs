@@ -1,4 +1,6 @@
-﻿namespace CalculatorUtility
+﻿using System.Net.Http.Headers;
+
+namespace CalculatorUtility
 {
     /// <summary>
     /// MathUtils handles mathematical operations.
@@ -30,8 +32,8 @@
         /// <summary>
         /// Multiplies two numbers and returns their result.
         /// </summary>
-        /// <param name="firstNumber">First Number to be multiplied.</param>
-        /// <param name="secondNumber">Second Number to be multiplied.</param>
+        /// <param name="firstNumber">First number to be multiplied.</param>
+        /// <param name="secondNumber">Second number to be multiplied.</param>
         /// <returns>Returns the multiplication result.</returns>
         public double MultipleNumbers(double firstNumber, double secondNumber)
         {
@@ -46,6 +48,11 @@
         /// <returns>Returns the division result.</returns>
         public double DivideNumbers(double dividend, double divisor)
         {
+            if (divisor == 0)
+            {
+                throw new ArgumentException();
+            }
+
             return dividend / divisor;
         }
     }
