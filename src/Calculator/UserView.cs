@@ -24,17 +24,24 @@ namespace Calculator
         internal void AddUserData()
         {
             Console.Clear();
-            Console.Write("\nEnter First Number: ");
-            double.TryParse(Console.ReadLine(), out double firstNumber);
-            Console.Write("Enter Second Number: ");
-            double.TryParse(Console.ReadLine(), out double secondNumber);
+            double firstNumber;
+            if (!this.GetData(out firstNumber, "First Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
+
+            double secondNumber;
+            if (!this.GetData(out secondNumber, "Second Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
 
             double additionResult = this._mathUtils.AddNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Addition Result of {firstNumber} and {secondNumber} is {additionResult}");
 
-            Console.WriteLine($"\nEnter any key to return to main menu");
-            Console.ReadKey();
-            Console.Clear();
+            this.CleanUpConsole();
         }
 
         /// <summary>
@@ -43,17 +50,24 @@ namespace Calculator
         internal void SubtractUserData()
         {
             Console.Clear();
-            Console.Write("\nEnter First Number: ");
-            double.TryParse(Console.ReadLine(), out double firstNumber);
-            Console.Write("Enter Second Number: ");
-            double.TryParse(Console.ReadLine(), out double secondNumber);
+            double firstNumber;
+            if (!this.GetData(out firstNumber, "First Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
+
+            double secondNumber;
+            if (!this.GetData(out secondNumber, "Second Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
 
             double subtractionResult = this._mathUtils.SubtractNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Subtraction Result of {firstNumber} and {secondNumber} is {subtractionResult}");
 
-            Console.WriteLine($"\nEnter any key to return to main menu");
-            Console.ReadKey();
-            Console.Clear();
+            this.CleanUpConsole();
         }
 
         /// <summary>
@@ -62,17 +76,24 @@ namespace Calculator
         internal void MultiplyUserData()
         {
             Console.Clear();
-            Console.Write("\nEnter First Number: ");
-            double.TryParse(Console.ReadLine(), out double firstNumber);
-            Console.Write("Enter Second Number: ");
-            double.TryParse(Console.ReadLine(), out double secondNumber);
+            double firstNumber;
+            if (!this.GetData(out firstNumber, "First Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
+
+            double secondNumber;
+            if (!this.GetData(out secondNumber, "Second Number"))
+            {
+                this.CleanUpConsole();
+                return;
+            }
 
             double multiplicationResult = this._mathUtils.MultipleNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Multiplication Result of {firstNumber} and {secondNumber} is {multiplicationResult}");
 
-            Console.WriteLine($"\nEnter any key to return to main menu");
-            Console.ReadKey();
-            Console.Clear();
+            this.CleanUpConsole();
         }
 
         /// <summary>
@@ -81,20 +102,50 @@ namespace Calculator
         internal void DivideUserData()
         {
             Console.Clear();
-            Console.Write("\nEnter First Number: ");
-            double.TryParse(Console.ReadLine(), out double firstNumber);
-            Console.Write("Enter Second Number: ");
-            double.TryParse(Console.ReadLine(), out double secondNumber);
-            if (secondNumber is 0)
+            double firstNumber;
+            if (!this.GetData(out firstNumber, "First Number"))
             {
-                Console.WriteLine("\nEntered data is not valid (Enter value greater than 0)");
-                goto exit;
+                this.CleanUpConsole();
+                return;
+            }
+
+            double secondNumber;
+            if (!this.GetData(out secondNumber, "Second Number"))
+            {
+                this.CleanUpConsole();
+                return;
             }
 
             double divisionResult = this._mathUtils.DivideNumbers(firstNumber, secondNumber);
             Console.WriteLine($"\nThe Division Result of {firstNumber} and {secondNumber} is {divisionResult}");
 
-        exit:
+            this.CleanUpConsole();
+        }
+
+        private bool GetData(out double data, string message)
+        {
+            int tries = 3;
+            string? userInput;
+            data = 0;
+            for (int i = 1; i <= tries; i++)
+            {
+                Console.Write($"{message}: ");
+                userInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(userInput) && double.TryParse(userInput, out data))
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"Data entered is invalid\n{3 - i} Tries left");
+                }
+            }
+
+            return false;
+        }
+
+        private void CleanUpConsole()
+        {
             Console.WriteLine($"\nEnter any key to return to main menu");
             Console.ReadKey();
             Console.Clear();
