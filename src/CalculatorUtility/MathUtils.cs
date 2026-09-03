@@ -1,0 +1,59 @@
+﻿using System.Net.Http.Headers;
+
+namespace CalculatorUtility
+{
+    /// <summary>
+    /// MathUtils handles mathematical operations.
+    /// </summary>
+    public class MathUtils
+    {
+        /// <summary>
+        /// Adds two numbers and returns their result.
+        /// </summary>
+        /// <param name="firstNumber">First number to be added.</param>
+        /// <param name="secondNumber">Second number to be added.</param>
+        /// <returns>Returns the addition result.</returns>
+        public double AddNumbers(double firstNumber, double secondNumber)
+        {
+            return firstNumber + secondNumber;
+        }
+
+        /// <summary>
+        /// Subtracts two numbers and returns their result.
+        /// </summary>
+        /// <param name="firstNumber">Minuend of the subtraction.</param>
+        /// <param name="secondNumber">Subtrahend of the subtraction.</param>
+        /// <returns>Returns the subtraction result.</returns>
+        public double SubtractNumbers(double firstNumber, double secondNumber)
+        {
+            return firstNumber - secondNumber;
+        }
+
+        /// <summary>
+        /// Multiplies two numbers and returns their result.
+        /// </summary>
+        /// <param name="firstNumber">First number to be multiplied.</param>
+        /// <param name="secondNumber">Second number to be multiplied.</param>
+        /// <returns>Returns the multiplication result.</returns>
+        public double MultipleNumbers(double firstNumber, double secondNumber)
+        {
+            return firstNumber * secondNumber;
+        }
+
+        /// <summary>
+        /// Divides two numbers and returns their result.
+        /// </summary>
+        /// <param name="dividend">Dividend of the division.</param>
+        /// <param name="divisor">Divisor of the division.</param>
+        /// <returns>Returns the division result.</returns>
+        public double DivideNumbers(double dividend, double divisor)
+        {
+            if (divisor == 0)
+            {
+                throw new ArgumentException();
+            }
+
+            return dividend / divisor;
+        }
+    }
+}
