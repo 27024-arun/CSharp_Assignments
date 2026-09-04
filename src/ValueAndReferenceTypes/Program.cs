@@ -1,14 +1,24 @@
 ﻿using ValueAndReferenceTypes.Task1;
 using ValueAndReferenceTypes.Task2;
+using ValueAndReferenceTypes.Task3;
+using ValueAndReferenceTypes.Task4;
 
 namespace ValueAndReferenceTypes
 {
+    /// <summary>
+    /// Program is the entry class of the application.
+    /// </summary>
     internal class Program
     {
-        public static void Main(string[] args)
+        /// <summary>
+        /// Main method is the entry point of the application.
+        /// </summary>
+        public static void Main()
         {
             ValueAndReferenceTask typeTask = new ValueAndReferenceTask();
             StackAndHeapTask stackAndHeapTask = new StackAndHeapTask();
+            GarbageCollectorTask garbageCollectorTask = new GarbageCollectorTask();
+            DisposableTask disposableTask = new DisposableTask();
             while (true)
             {
                 string mainMenu = $@"
@@ -32,11 +42,15 @@ Enter Choice: ";
                         break;
                     case 3:
                         Console.Clear();
+                        garbageCollectorTask.MemoryTask();
                         break;
                     case 4:
+                        disposableTask.MemoryTask();
                         Console.Clear();
                         break;
                     case 5:
+                        Console.WriteLine("Exiting...");
+                        Thread.Sleep(1000);
                         return;
                     default:
                         Console.WriteLine("Invalid Choice\n");
