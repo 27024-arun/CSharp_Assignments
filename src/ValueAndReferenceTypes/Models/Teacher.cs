@@ -8,7 +8,7 @@
         /// <summary>
         /// Name of the teacher.
         /// </summary>
-        public string TeacherName;
+        public string? TeacherName;
 
         /// <summary>
         /// Age of the teacher.
