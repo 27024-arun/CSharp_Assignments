@@ -1,9 +1,15 @@
-﻿using ValueAndReferenceTypes.Task1.Models;
+﻿using ValueAndReferenceTypes.Models;
 
 namespace ValueAndReferenceTypes.Task1
 {
+    /// <summary>
+    /// Monitors the changes of value and reference type objects.
+    /// </summary>
     internal class ValueAndReferenceTask
     {
+        /// <summary>
+        /// Retrieves user choice for performing the task.
+        /// </summary>
         public void MemoryTask()
         {
             Student student = new Student();
@@ -54,6 +60,10 @@ Enter Choice: ");
             }
         }
 
+        /// <summary>
+        /// Retrieves data from user for reference type object and displays output.
+        /// </summary>
+        /// <param name="student">Details of the student.</param>
         private void ReferenceTypeModifier(Student student)
         {
             Console.Write("\nEnter Student Name: ");
@@ -67,6 +77,10 @@ Enter Choice: ");
             Console.WriteLine($"Student's Name: {student.StudentName}\nStudent's Age: {student.StudentAge}");
         }
 
+        /// <summary>
+        /// Retrieves data from user for value type object and displays output.
+        /// </summary>
+        /// <param name="teacher">Details of the teacher.</param>
         private void ValueTypeModifier(Teacher teacher)
         {
             Console.Write("\nEnter Teacher Name: ");
