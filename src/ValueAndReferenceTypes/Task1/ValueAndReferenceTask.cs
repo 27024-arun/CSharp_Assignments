@@ -21,6 +21,7 @@ namespace ValueAndReferenceTypes.Task1
 =========MEMORY TASK========
 [V]alue Type Task
 [R]eference Type Task
+[E]xit to main menu
 Enter Choice: ");
                 ConsoleKey menuChoice = Console.ReadKey().Key;
                 switch (menuChoice)
@@ -53,6 +54,11 @@ Enter Choice: ");
 
                         this.CleanConsole();
                         break;
+
+                    case ConsoleKey.E:
+                        Console.Clear();
+                        return;
+
                     default:
                         Console.Clear();
                         break;

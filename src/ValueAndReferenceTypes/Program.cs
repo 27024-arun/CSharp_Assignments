@@ -22,10 +22,10 @@ namespace ValueAndReferenceTypes
             while (true)
             {
                 string mainMenu = $@"
-1. Task 1
-2. Task 2
-3. Task 3
-4. Task 4
+1. Value and Reference Type Object Handling Task
+2. Stack and Heap Memory Task
+3. Garbage Collector Task
+4. Dispose Usage Task
 5. Exit
 Enter Choice: ";
                 Console.Write(mainMenu);
