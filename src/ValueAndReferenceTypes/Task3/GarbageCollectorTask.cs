@@ -19,8 +19,7 @@ namespace ValueAndReferenceTypes.Task3
 
             Console.WriteLine("============ Memory Usage ============");
             Console.WriteLine("Before allocations:");
-            double workingSetMB = currentProcess.WorkingSet64 / 1024.0 / 1024.0;
-            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64:N0} bytes ({workingSetMB:F2} MB)");
+            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
             this.MemoryModifier(currentProcess);
         }
 
@@ -46,8 +45,7 @@ namespace ValueAndReferenceTypes.Task3
                 }
 
                 currentProcess.Refresh();
-                double workingSetMB = currentProcess.WorkingSet64 / 1024.0 / 1024.0;
-                Console.WriteLine($"Working Set: {currentProcess.WorkingSet64:N0} bytes ({workingSetMB:F2} MB)");
+                Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
             }
         }
     }

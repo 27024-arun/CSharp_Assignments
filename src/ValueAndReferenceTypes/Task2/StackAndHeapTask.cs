@@ -18,7 +18,7 @@ namespace ValueAndReferenceTypes.Task2
             Process currentProcess = Process.GetCurrentProcess();
             Console.WriteLine("============Memory Usage============");
             Console.WriteLine("Memory usage before array creation");
-            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64:N0} bytes ({currentProcess.WorkingSet64 / 1024.0 / 1024.0:F2} MB)");
+            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
             this.MemoryModifier(currentProcess);
             currentProcess.Dispose();
         }
@@ -35,8 +35,7 @@ namespace ValueAndReferenceTypes.Task2
                 this._memoryList.Add(new int[10000000]);
                 this.AllocateOnStack();
                 currentProcess.Refresh();
-                var mem = currentProcess.WorkingSet64 / 1024.0 / 1024.0;
-                Console.WriteLine($"Working Set: {currentProcess.WorkingSet64:N0} bytes ({mem:F2} MB)\n");
+                Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
             }
         }
 
