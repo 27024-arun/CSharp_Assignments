@@ -45,8 +45,8 @@ Enter Choice: ";
                         garbageCollectorTask.MemoryTask();
                         break;
                     case 4:
-                        disposableTask.MemoryTask();
                         Console.Clear();
+                        disposableTask.MemoryTask();
                         break;
                     case 5:
                         Console.WriteLine("Exiting...");
