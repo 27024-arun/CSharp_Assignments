@@ -5,19 +5,19 @@ namespace ValueAndReferenceTypes.Task1
     /// <summary>
     /// Monitors the changes of value and reference type objects.
     /// </summary>
-    internal class ValueAndReferenceTask
+    internal static class ValueAndReferenceTask
     {
         /// <summary>
         /// Retrieves user choice for performing the task.
         /// </summary>
-        public void MemoryTask()
+        public static void MemoryTask()
         {
             Student student = new Student();
             Teacher teacher = new ();
             while (true)
             {
                 Console.Clear();
-                Console.Write(@"
+                Console.Write($@"
 =========MEMORY TASK========
 [V]alue Type Task
 [R]eference Type Task
@@ -29,37 +29,50 @@ Enter Choice: ");
                     case ConsoleKey.V:
                         Console.Clear();
 
-                        Console.WriteLine("\n==========Value Type Modification==========");
-                        Console.WriteLine("Data Before Modification");
-                        Console.WriteLine($"Teacher's Name: {teacher.TeacherName}\nTeacher's Age: {teacher.TeacherAge}");
+                        Console.WriteLine($@"
+==========Value Type Modification==========
+Data Before Modification
+Teacher's Name: {teacher.TeacherName}
+Teacher's Age: {teacher.TeacherAge}");
 
-                        this.ValueTypeModifier(teacher);
+                        ValueTypeModifier(teacher);
 
-                        Console.WriteLine("\nData After Modification (Outside scope)");
-                        Console.WriteLine($"Teacher's Name: {teacher.TeacherName}\nTeacher's Age: {teacher.TeacherAge}");
+                        Console.WriteLine($@"
+Data After Modification (Outside scope)
+Teacher's Name: {teacher.TeacherName}
+Teacher's Age: {teacher.TeacherAge}");
 
-                        this.CleanConsole();
+                        CleanConsole();
                         break;
+
                     case ConsoleKey.R:
                         Console.Clear();
 
-                        Console.WriteLine("\n==========Reference Type Modification==========");
-                        Console.WriteLine("Data Before Modification");
-                        Console.WriteLine($"Student's Name: {student.StudentName}\nStudent's Age: {student.StudentAge}");
+                        Console.WriteLine($@"
+==========Reference Type Modification==========
+Data Before Modification
+Student's Name: {student.StudentName}
+Student's Age: {student.StudentAge}");
 
-                        this.ReferenceTypeModifier(student);
+                        ReferenceTypeModifier(student);
 
-                        Console.WriteLine("\nData After Modification (Outside scope)");
-                        Console.WriteLine($"Student's Name: {student.StudentName}\nStudent's Age: {student.StudentAge}");
+                        Console.WriteLine($@"
+Data After Modification (Outside scope)
+Student's Name: {student.StudentName}
+Student's Age: {student.StudentAge}");
 
-                        this.CleanConsole();
+                        CleanConsole();
                         break;
 
                     case ConsoleKey.E:
+                        Console.WriteLine("\nReturning to main menu...");
+                        Thread.Sleep(1200);
                         Console.Clear();
                         return;
 
                     default:
+                        Console.WriteLine("\nEntered Wrong Data");
+                        Thread.Sleep(1200);
                         Console.Clear();
                         break;
                 }
@@ -70,7 +83,7 @@ Enter Choice: ");
         /// Retrieves data from user for reference type object and displays output.
         /// </summary>
         /// <param name="student">Details of the student.</param>
-        private void ReferenceTypeModifier(Student student)
+        private static void ReferenceTypeModifier(Student student)
         {
             Console.Write("\nEnter Student Name: ");
             student.StudentName = Console.ReadLine();
@@ -79,15 +92,17 @@ Enter Choice: ");
             int.TryParse(Console.ReadLine(), out int userAge);
             student.StudentAge = userAge;
 
-            Console.WriteLine("\nData After Modification (Within Scope)");
-            Console.WriteLine($"Student's Name: {student.StudentName}\nStudent's Age: {student.StudentAge}");
+            Console.WriteLine($@"
+Data After Modification (Within Scope)
+Student's Name: {student.StudentName}
+Student's Age: {student.StudentAge}");
         }
 
         /// <summary>
         /// Retrieves data from user for value type object and displays output.
         /// </summary>
         /// <param name="teacher">Details of the teacher.</param>
-        private void ValueTypeModifier(Teacher teacher)
+        private static void ValueTypeModifier(Teacher teacher)
         {
             Console.Write("\nEnter Teacher Name: ");
             teacher.TeacherName = Console.ReadLine();
@@ -96,11 +111,13 @@ Enter Choice: ");
             int.TryParse(Console.ReadLine(), out int userAge);
             teacher.TeacherAge = userAge;
 
-            Console.WriteLine("\nData After Modification (Within Scope)");
-            Console.WriteLine($"Teacher's Name: {teacher.TeacherName}\nTeacher's Age: {teacher.TeacherAge}");
+            Console.WriteLine($@"
+Data After Modification (Within Scope)
+Teacher's Name: {teacher.TeacherName}
+Teacher's Age: {teacher.TeacherAge}");
         }
 
-        private void CleanConsole()
+        private static void CleanConsole()
         {
             Console.WriteLine("\nEnter a key to return");
             Console.ReadKey();

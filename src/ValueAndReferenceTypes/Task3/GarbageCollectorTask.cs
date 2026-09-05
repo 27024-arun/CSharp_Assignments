@@ -6,36 +6,38 @@ namespace ValueAndReferenceTypes.Task3
     /// <summary>
     /// Visualizes garbage collector activities.
     /// </summary>
-    internal class GarbageCollectorTask
+    internal static class GarbageCollectorTask
     {
-        private readonly List<Student> _students = new List<Student>();
+        private static List<Student> _students = new List<Student>();
 
         /// <summary>
         /// Creates a process and monitors it.
         /// </summary>
-        internal void MemoryTask()
+        internal static void MemoryTask()
         {
+            Console.Clear();
             using Process currentProcess = Process.GetCurrentProcess();
 
-            Console.WriteLine("============ Memory Usage ============");
-            Console.WriteLine("Before allocations:");
-            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
-            this.MemoryModifier(currentProcess);
+            Console.WriteLine($@"============ Memory Usage ============
+Before allocations:
+Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
+            MemoryModifier(currentProcess);
         }
 
         /// <summary>
         /// Creates referenced and unreferenced object for Garbage Collection and displays memory usage output.
         /// </summary>
         /// <param name="currentProcess">Current active process.</param>
-        private void MemoryModifier(Process currentProcess)
+        private static void MemoryModifier(Process currentProcess)
         {
-            for (int i = 0; i < 50_000; i++)
+            int iterationLimit = 50_000;
+            for (int i = 0; i < iterationLimit; i++)
             {
                 var tempStudent = new Student();
 
                 if (i % 5000 == 0)
                 {
-                    this._students.Add(tempStudent);
+                    _students.Add(tempStudent);
                 }
 
                 if (i % 10000 == 0 && i != 0)
