@@ -8,18 +8,19 @@ namespace ValueAndReferenceTypes.Task2
     /// </summary>
     internal class StackAndHeapTask
     {
-        private readonly List<int[]> _memoryList = new List<int[]>();
+        private static List<int[]> _memoryList = new List<int[]>();
 
         /// <summary>
         /// Displays the memory usage to the user.
         /// </summary>
-        internal void MemoryTask()
+        internal static void MemoryTask()
         {
+            Console.Clear();
             Process currentProcess = Process.GetCurrentProcess();
-            Console.WriteLine("============Memory Usage============");
-            Console.WriteLine("Memory usage before array creation");
-            Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
-            this.MemoryModifier(currentProcess);
+            Console.WriteLine($@"============Memory Usage============
+Memory usage before array creation
+Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
+            MemoryModifier(currentProcess);
             currentProcess.Dispose();
         }
 
@@ -27,13 +28,13 @@ namespace ValueAndReferenceTypes.Task2
         /// Increases the heap memory of the application.
         /// </summary>
         /// <param name="currentProcess">Active process in the application.</param>
-        private void MemoryModifier(Process currentProcess)
+        private static void MemoryModifier(Process currentProcess)
         {
             Console.WriteLine("Memory usage after array creation");
             while (true)
             {
-                this._memoryList.Add(new int[10000000]);
-                this.AllocateOnStack();
+                _memoryList.Add(new int[10_000_000]);
+                AllocateOnStack();
                 currentProcess.Refresh();
                 Console.WriteLine($"Working Set: {currentProcess.WorkingSet64 / 1024 / 1024:F2} MB");
             }
@@ -42,9 +43,10 @@ namespace ValueAndReferenceTypes.Task2
         /// <summary>
         /// Increases stack memory of the application.
         /// </summary>
-        private void AllocateOnStack()
+        private static void AllocateOnStack()
         {
-            for (int i = 0; i < 1000; i++)
+            int iterationLimit = 1000;
+            for (int iterator = 0; iterator < iterationLimit; iterator++)
             {
                 Teacher teacher = new ();
                 var teacherData = teacher;

@@ -3,13 +3,14 @@
     /// <summary>
     /// Performs File data handling.
     /// </summary>
-    internal class DisposableTask
+    internal static class DisposableTask
     {
         /// <summary>
         ///  Writes and Reads File Data.
         /// </summary>
-        internal void MemoryTask()
+        internal static void MemoryTask()
         {
+            Console.Clear();
             using (FileWriter writer = new FileWriter("Sample.txt"))
             {
                 writer.Write("Peter");
@@ -28,19 +29,19 @@
             var fifthLineData = reader.ReadData(5);
             var sixthLineData = reader.ReadData(6);
 
-            Console.WriteLine($"Data in line one: {firstLineData}");
-            Console.WriteLine($"Data in line two: {secondLineData}");
-            Console.WriteLine($"Data in line three: {thirdLineData}");
-            Console.WriteLine($"Data in line four: {fourthLineData}");
-            Console.WriteLine($"Data in line five: {fifthLineData}");
-            Console.WriteLine($"Data in line six: {sixthLineData}");
+            Console.WriteLine($@"Data in line one: {firstLineData}
+Data in line two: {secondLineData}
+Data in line three: {thirdLineData}
+Data in line four: {fourthLineData}
+Data in line five: {fifthLineData}
+Data in line six: {sixthLineData}");
             reader.Dispose();
-            this.CleanConsole();
+            CleanConsole();
         }
 
-        private void CleanConsole()
+        private static void CleanConsole()
         {
-            Console.WriteLine("\nEnter a key to return");
+            Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
             Console.Clear();
         }
