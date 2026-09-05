@@ -13,7 +13,7 @@ namespace ValueAndReferenceTypes
         /// <summary>
         /// Main method is the entry point of the application.
         /// </summary>
-        public static void Main()
+        private static void Main()
         {
             while (true)
             {
