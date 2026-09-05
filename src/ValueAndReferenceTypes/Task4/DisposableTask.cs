@@ -35,7 +35,6 @@ Data in line three: {thirdLineData}
 Data in line four: {fourthLineData}
 Data in line five: {fifthLineData}
 Data in line six: {sixthLineData}");
-            reader.Dispose();
             CleanConsole();
         }
 
