@@ -29,7 +29,7 @@
         /// Gets or Sets the name of the student.
         /// </summary>
         /// <value>Name of the student.</value>
-        public string StudentName { get; set; }
+        public string? StudentName { get; set; }
 
         /// <summary>
         /// Gets or Sets the age of the student.
