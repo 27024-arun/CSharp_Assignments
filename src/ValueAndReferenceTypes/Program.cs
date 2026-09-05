@@ -15,10 +15,6 @@ namespace ValueAndReferenceTypes
         /// </summary>
         public static void Main()
         {
-            ValueAndReferenceTask typeTask = new ValueAndReferenceTask();
-            StackAndHeapTask stackAndHeapTask = new StackAndHeapTask();
-            GarbageCollectorTask garbageCollectorTask = new GarbageCollectorTask();
-            DisposableTask disposableTask = new DisposableTask();
             while (true)
             {
                 string mainMenu = $@"
@@ -33,20 +29,16 @@ Enter Choice: ";
                 switch (userChoice)
                 {
                     case 1:
-                        Console.Clear();
-                        typeTask.MemoryTask();
+                        ValueAndReferenceTask.MemoryTask();
                         break;
                     case 2:
-                        Console.Clear();
-                        stackAndHeapTask.MemoryTask();
+                        StackAndHeapTask.MemoryTask();
                         break;
                     case 3:
-                        Console.Clear();
-                        garbageCollectorTask.MemoryTask();
+                        GarbageCollectorTask.MemoryTask();
                         break;
                     case 4:
-                        Console.Clear();
-                        disposableTask.MemoryTask();
+                        DisposableTask.MemoryTask();
                         break;
                     case 5:
                         Console.WriteLine("Exiting...");
