@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQPractices", "src\LINQPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "src\ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{D33065DD-55FF-4F5B-AB8B-D986EE6E3E74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryOptimization", "src\MemoryOptimization\MemoryOptimization.csproj", "{6C7C254A-76DF-4300-87F0-05F1FED1F2B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{D33065DD-55FF-4F5B-AB8B-D986EE6E3E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D33065DD-55FF-4F5B-AB8B-D986EE6E3E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D33065DD-55FF-4F5B-AB8B-D986EE6E3E74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7C254A-76DF-4300-87F0-05F1FED1F2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7C254A-76DF-4300-87F0-05F1FED1F2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7C254A-76DF-4300-87F0-05F1FED1F2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7C254A-76DF-4300-87F0-05F1FED1F2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{ADF9FBD2-FD00-4559-83D7-9B7AA26A6CCA} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{5BF72B0B-43F9-433D-8129-1EBC2E8527D1} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{D33065DD-55FF-4F5B-AB8B-D986EE6E3E74} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{6C7C254A-76DF-4300-87F0-05F1FED1F2B8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
