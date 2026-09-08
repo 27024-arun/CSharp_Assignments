@@ -1,8 +1,9 @@
 ﻿namespace Assignments
 {
-    internal class ListModifier
+    internal class ListModifier<T>
+        where T : class
     {
-        private static List<string> _books = new List<string>();
+        private static List<T> _books = new List<T>();
 
         private static int maxBooks = 5;
 
@@ -25,8 +26,8 @@
         {
             Console.WriteLine("\n============Check whether a book exists============");
 
-            string bookName = GetBookName("Book Name");
-            if (_books.Contains(bookName, StringComparer.OrdinalIgnoreCase))
+            T bookName = GetBookName("Book Name");
+            if (_books.Contains(bookName))
             {
                 Console.WriteLine("Book exists in the list");
             }
@@ -40,7 +41,7 @@
         {
             int incrementor = 1;
             Console.WriteLine("\n============Books in the list============");
-            foreach (string bookName in _books)
+            foreach (T bookName in _books)
             {
                 Console.WriteLine($"{incrementor++}. {bookName}");
             }
@@ -50,7 +51,7 @@
         {
             Console.WriteLine("\n============Remove Book============");
 
-            string bookName = GetBookName("Book Name");
+            T bookName = GetBookName("Book Name");
             if (_books.Contains(bookName))
             {
                 _books.Remove(bookName);
@@ -69,12 +70,12 @@
 
             for (int iterator = 1; iterator <= maxBooks; iterator++)
             {
-                string bookName = GetBookName($"Book {iterator} Name");
+                T bookName = GetBookName($"Book {iterator} Name");
                 _books.Add(bookName);
             }
         }
 
-        private static string GetBookName(string bookName)
+        private static T GetBookName(string bookName)
         {
             string defaultBookName = "SampleBook";
             int maxTries = 3;
@@ -83,9 +84,9 @@
             {
                 Console.Write($"{bookName}: ");
                 userInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(userInput))
+                if (typeof(T) == typeof(string) && !string.IsNullOrWhiteSpace(userInput))
                 {
-                    return userInput.Trim();
+                    return (T)(object)userInput.Trim();
                 }
                 else
                 {
@@ -94,7 +95,7 @@
             }
 
             Console.WriteLine("Default book name added");
-            return defaultBookName;
+            return (T)(object)defaultBookName;
         }
 
         private static void CleanConsole()

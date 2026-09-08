@@ -20,7 +20,7 @@ Enter Choice: ";
                 switch (userChoice)
                 {
                     case 1:
-                        ListModifier.ModifyList();
+                        ListModifier<string>.ModifyList();
                         break;
                     case 2:
                         StackModifier.ModifyStack();
