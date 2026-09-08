@@ -13,7 +13,7 @@
         /// Initializes a new instance of the <see cref="MemoryModifier"/> class.
         /// </summary>
         /// <param name="maxData">Maximum data to be stored in the list.</param>
-        public MemoryModifier(int maxData = 10000)
+        public MemoryModifier(int maxData = 100)
         {
             this._maxData = maxData;
             this._memAlloc = new List<int[]>();
@@ -30,7 +30,7 @@
                 this._memAlloc.Add(new int[1000]);
                 if (this._memAlloc.Count > this._maxData)
                 {
-                    this.Dispose();
+                    return;
                 }
 
                 Console.WriteLine($"Current Memory Usage: {GC.GetAllocatedBytesForCurrentThread() / 1024 / 1024}Mb");
