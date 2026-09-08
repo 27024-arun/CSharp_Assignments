@@ -9,7 +9,7 @@
 
 - In MemoryOptimization.cs creates a List of integer array.
 - The "MemoryOptimization" instance is created within "using" statement.
-- The IDisposal interface is implemented in MemoryOptimization class and implemented the Dispose method
+- The IDisposable interface is implemented in MemoryOptimization class and implemented the Dispose method
 - The Allocate method rises the memory usage to a certain level and when the threshold is reached it returns.
 - Since the MemoryOptimization is enclosed within "using" statement, the Dispose method is automatically called.
 - As the List is a managed resource, the memory resource cannot be Disposed.
