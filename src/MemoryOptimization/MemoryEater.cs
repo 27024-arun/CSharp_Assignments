@@ -12,6 +12,7 @@
         /// </summary>
         public void Allocate()
         {
+            Console.WriteLine("\nMemory usage level is rising check diagnostic tool for memory check");
             while (true)
             {
                 this._memAlloc.Add(new int[1000]);
