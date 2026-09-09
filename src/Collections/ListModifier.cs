@@ -1,5 +1,9 @@
-﻿namespace Assignments
+﻿namespace Collections
 {
+    /// <summary>
+    /// Performs display and manipulation list data.
+    /// </summary>
+    /// <typeparam name="T">Generic type.</typeparam>
     internal class ListModifier<T>
         where T : class
     {
@@ -7,6 +11,9 @@
 
         private static int maxBooks = 5;
 
+        /// <summary>
+        /// Calls methods to modify the list.
+        /// </summary>
         internal static void ModifyList()
         {
             AddBooks();
@@ -19,9 +26,12 @@
 
             CheckBook();
 
-            CleanConsole();
+            Helper.CleanConsole();
         }
 
+        /// <summary>
+        /// Checks whether a book exists in the list and display the result.
+        /// </summary>
         private static void CheckBook()
         {
             Console.WriteLine("\n============Check whether a book exists============");
@@ -29,14 +39,17 @@
             T bookName = GetBookName("Book Name");
             if (_books.Contains(bookName))
             {
-                Console.WriteLine("Book exists in the list");
+                Helper.WriteColored("Book exists in the list", ConsoleColor.Green);
             }
             else
             {
-                Console.WriteLine("Book doesn't exist is the list");
+                Helper.WriteColored("Book doesn't exist is the list", ConsoleColor.Red);
             }
         }
 
+        /// <summary>
+        /// Displays the books in the list in console.
+        /// </summary>
         private static void DisplayBooks()
         {
             int incrementor = 1;
@@ -47,6 +60,9 @@
             }
         }
 
+        /// <summary>
+        /// Removes a particular book in the list and indicates the process result.
+        /// </summary>
         private static void RemoveBook()
         {
             Console.WriteLine("\n============Remove Book============");
@@ -55,14 +71,17 @@
             if (_books.Contains(bookName))
             {
                 _books.Remove(bookName);
-                Console.WriteLine("Book is removed successfully");
+                Helper.WriteColored("Book is removed successfully", ConsoleColor.Green);
             }
             else
             {
-                Console.WriteLine("Book doesn't exist is the list");
+                Helper.WriteColored("Book doesn't exist is the list", ConsoleColor.Red);
             }
         }
 
+        /// <summary>
+        /// Retrieves book names from user and adds the data to the list.
+        /// </summary>
         private static void AddBooks()
         {
             Console.WriteLine("============Add Books============");
@@ -70,11 +89,17 @@
 
             for (int iterator = 1; iterator <= maxBooks; iterator++)
             {
-                T bookName = GetBookName($"Book {iterator} Name");
+                T bookName = GetBookName($"\nBook {iterator} Name");
                 _books.Add(bookName);
+                Helper.WriteColored($"{bookName} is added into the list", ConsoleColor.Green);
             }
         }
 
+        /// <summary>
+        /// Retrieves the name of the book from user and performs validation.
+        /// </summary>
+        /// <param name="bookName">Name of the book.</param>
+        /// <returns>Book name</returns>
         private static T GetBookName(string bookName)
         {
             string defaultBookName = "SampleBook";
@@ -90,19 +115,12 @@
                 }
                 else
                 {
-                    Console.WriteLine($"Data entered is invalid\n{3 - iterator} Tries left");
+                    Helper.WriteColored($"Data entered is invalid\n{3 - iterator} Tries left", ConsoleColor.Red);
                 }
             }
 
-            Console.WriteLine("Default book name added");
+            Helper.WriteColored($"Default book name ({defaultBookName}) returned", ConsoleColor.Yellow);
             return (T)(object)defaultBookName;
-        }
-
-        private static void CleanConsole()
-        {
-            Console.WriteLine("\nEnter a key to continue...");
-            Console.ReadKey();
-            Console.Clear();
         }
     }
 }

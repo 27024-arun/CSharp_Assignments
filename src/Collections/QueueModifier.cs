@@ -1,10 +1,18 @@
-﻿namespace Assignments
+﻿namespace Collections
 {
-    internal class QueueModifier
+    /// <summary>
+    /// Performs display and manipulation of queue data.
+    /// </summary>
+    /// <typeparam name="T">Generic type.</typeparam>
+    internal class QueueModifier<T>
+        where T : class
     {
-        private static Queue<string> _personQueue = new Queue<string>();
+        private static Queue<T> _personQueue = new Queue<T>();
         private static int maxQueueSize = 5;
 
+        /// <summary>
+        /// Calls methods to modify the queue.
+        /// </summary>
         internal static void ModifyQueue()
         {
             EnqueuePeople();
@@ -13,43 +21,57 @@
 
             DequeuePeople();
 
-            CleanConsole();
+            Helper.CleanConsole();
         }
 
+        /// <summary>
+        /// Dequeue data from the queue.
+        /// </summary>
         private static void DequeuePeople()
         {
             Console.WriteLine("\n============Dequeue list============");
             for (int iterator = 1; iterator <= maxQueueSize; iterator++)
             {
                 Thread.Sleep(1000);
-                string personName = _personQueue.Dequeue();
-                Console.WriteLine($"{personName} is Dequeued");
+                T personName = _personQueue.Dequeue();
+                Helper.WriteColored($"{personName} is Dequeued", ConsoleColor.Green);
             }
         }
 
+        /// <summary>
+        /// Displays the data in the queue.
+        /// </summary>
         private static void DisplayPeople()
         {
             int incrementor = 1;
 
             Console.WriteLine("\n============The name of persons in the queue============");
-            foreach (string person in _personQueue)
+            foreach (T person in _personQueue)
             {
                 Console.WriteLine($"{incrementor++}. {person}");
             }
         }
 
+        /// <summary>
+        /// Enqueues data into the queue.
+        /// </summary>
         private static void EnqueuePeople()
         {
             Console.WriteLine("============Enter name of people to enqueue============");
             for (int iterator = 1; iterator <= maxQueueSize; iterator++)
             {
-                string personName = GetPersonName($"\nPerson {iterator} Name");
+                T personName = GetPersonName($"\nPerson {iterator} Name");
                 _personQueue.Enqueue(personName);
-                Console.WriteLine($"{personName} is Enqueued");
+                Helper.WriteColored($"{personName} is Enqueued", ConsoleColor.Green);
             }
         }
 
-        private static string GetPersonName(string message)
+        /// <summary>
+        /// Retrieves data from user and performs validation.
+        /// </summary>
+        /// <param name="message">Message to be displayed to user for retrieving data.</param>
+        /// <returns>Data to be inserted into queue.</returns>
+        private static T GetPersonName(string message)
         {
             string defaultWord = "Peter";
             int maxTries = 3;
@@ -58,25 +80,18 @@
             {
                 Console.Write($"{message}: ");
                 userInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(userInput) && !_personQueue.Contains(userInput.Trim(), StringComparer.OrdinalIgnoreCase))
+                if (typeof(T) == typeof(string) && !string.IsNullOrWhiteSpace(userInput) && !_personQueue.Contains((T)(object)userInput.Trim()))
                 {
-                    return userInput.Trim();
+                    return (T)(object)userInput.Trim();
                 }
                 else
                 {
-                    Console.WriteLine($"Data entered is invalid\n{3 - iterator} Tries left");
+                    Helper.WriteColored($"Data entered is invalid\n{3 - iterator} Tries left", ConsoleColor.Red);
                 }
             }
 
-            Console.WriteLine($"Default name ({defaultWord}) is returned");
-            return defaultWord;
-        }
-
-        private static void CleanConsole()
-        {
-            Console.WriteLine("\nEnter a key to continue...");
-            Console.ReadKey();
-            Console.Clear();
+            Helper.WriteColored($"Default name ({defaultWord}) is returned", ConsoleColor.Yellow);
+            return (T)(object)defaultWord;
         }
     }
 }
