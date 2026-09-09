@@ -1,12 +1,17 @@
-﻿namespace Assignments
+﻿namespace Collections
 {
+    /// <summary>
+    /// Program is the entry class of the application.
+    /// </summary>
     internal class Program
     {
         private static void Main()
         {
             while (true)
             {
+                Console.Clear();
                 string mainMenu = $@"
+============Collections============
 1. List Task
 2. Stack Task
 3. Queue Task
@@ -23,20 +28,22 @@ Enter Choice: ";
                         ListModifier<string>.ModifyList();
                         break;
                     case 2:
-                        StackModifier.ModifyStack();
+                        StackModifier<char>.OperateStack();
                         break;
                     case 3:
-                        QueueModifier.ModifyQueue();
+                        QueueModifier<string>.ModifyQueue();
                         break;
                     case 4:
-                        DictionaryModifier.ModifyDictionary();
+                        DictionaryModifier<string, int>.ModifyDictionary();
                         break;
                     case 5:
-                        Console.WriteLine("Exiting...");
+                        Helper.WriteColored("Exiting...", ConsoleColor.Cyan);
                         Thread.Sleep(1300);
-                        return;
+                        Environment.Exit(0);
+                        break;
                     default:
-                        Console.WriteLine("Invalid Choice\n");
+                        Helper.WriteColored("Invalid Choice", ConsoleColor.Red);
+                        Thread.Sleep(1300);
                         break;
                 }
             }

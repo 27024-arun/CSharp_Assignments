@@ -1,10 +1,18 @@
-﻿namespace Assignments
+﻿namespace Collections
 {
-    internal class StackModifier
+    /// <summary>
+    /// Performs display and manipulation of stack data.
+    /// </summary>
+    /// <typeparam name="T">Generic type</typeparam>
+    internal class StackModifier<T>
+        where T : struct
     {
-        private static Stack<char> _characterStack = new Stack<char>();
+        private static Stack<T> _characterStack = new Stack<T>();
 
-        internal static void ModifyStack()
+        /// <summary>
+        /// Calls methods to operate stack data.
+        /// </summary>
+        internal static void OperateStack()
         {
             Console.WriteLine("============Enter a word============");
             string word = GetWord();
@@ -15,9 +23,13 @@
 
             ReverseWord(wordLength);
 
-            CleanConsole();
+            Helper.CleanConsole();
         }
 
+        /// <summary>
+        /// Pops the data from stack and displays it to user.
+        /// </summary>
+        /// <param name="wordLength">Length of the word to be reversed.</param>
         private static void ReverseWord(int wordLength)
         {
             string reversedWord = string.Empty;
@@ -26,20 +38,30 @@
                 reversedWord += _characterStack.Pop();
             }
 
-            Console.WriteLine($"\nReversed word is {reversedWord}");
+            Console.Write($"\nReversed word is ");
+            Helper.WriteColored($"\"{reversedWord}\"", ConsoleColor.Yellow);
         }
 
+        /// <summary>
+        /// Adds data into the stack
+        /// </summary>
+        /// <param name="word">Word in which letters are pushed into the stack.</param>
+        /// <param name="wordLength">Length of the word to be reversed.</param>
         private static void AddIntoStack(string word, int wordLength)
         {
             Console.WriteLine("\n============Adding letters of word into stack============");
             for (int index = 1; index <= wordLength; index++)
             {
                 Thread.Sleep(1000);
-                _characterStack.Push(word[index - 1]);
-                Console.WriteLine($"Letter {word[index - 1]} is pushed into stack");
+                _characterStack.Push((T)(object)word[index - 1]);
+                Helper.WriteColored($"Letter \"{word[index - 1]}\" is pushed into stack", ConsoleColor.Green);
             }
         }
 
+        /// <summary>
+        /// Retrieves a work from user and performs validation.
+        /// </summary>
+        /// <returns>Word to be reversed.</returns>
         private static string GetWord()
         {
             string defaultWord = "Catastrophe";
@@ -55,19 +77,12 @@
                 }
                 else
                 {
-                    Console.WriteLine($"Data entered is invalid\n{3 - iterator} Tries left");
+                    Helper.WriteColored($"Data entered is invalid\n{3 - iterator} Tries left", ConsoleColor.Red);
                 }
             }
 
-            Console.WriteLine($"Default word ({defaultWord}) is returned");
+            Helper.WriteColored($"Default word ({defaultWord}) is returned", ConsoleColor.Yellow);
             return defaultWord;
-        }
-
-        private static void CleanConsole()
-        {
-            Console.WriteLine("\nEnter a key to continue...");
-            Console.ReadKey();
-            Console.Clear();
         }
     }
 }
