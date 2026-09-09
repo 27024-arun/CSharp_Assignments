@@ -41,6 +41,8 @@ Enter Choice: ";
                         Thread.Sleep(1300);
                         Environment.Exit(0);
                         break;
+                    case 6:
+                        break;
                     default:
                         Helper.WriteColored("Invalid Choice", ConsoleColor.Red);
                         Thread.Sleep(1300);
