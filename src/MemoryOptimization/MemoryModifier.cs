@@ -6,7 +6,7 @@
     internal class MemoryModifier : IDisposable
     {
         private readonly int _maxData;
-        private List<int[]>? _memAlloc;
+        private List<int[]> _memAlloc;
         private bool _isDisposed;
 
         /// <summary>
@@ -41,7 +41,7 @@
         /// <inheritdoc/>
         public void Dispose()
         {
-            this._memAlloc = null;
+            this._memAlloc.Clear();
             this._isDisposed = true;
             GC.Collect();
         }
