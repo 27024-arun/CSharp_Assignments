@@ -7,6 +7,7 @@
     {
         private static void Main()
         {
+            Console.CancelKeyPress += (sender, e) => { e.Cancel = true; };
             while (true)
             {
                 Console.Clear();
