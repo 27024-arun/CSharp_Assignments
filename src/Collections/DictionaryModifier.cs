@@ -35,7 +35,7 @@
         {
             Console.WriteLine("\n============Delete Student============");
             TKey studentName = GetStudentName("Student Name");
-            if (_students.ContainsKey(studentName)
+            if (_students.ContainsKey(studentName))
             {
                 _students.Remove(studentName);
                 Helper.WriteColored("Student details are deleted", ConsoleColor.Green);
