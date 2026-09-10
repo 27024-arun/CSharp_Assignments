@@ -16,7 +16,9 @@
 2. Stack Task
 3. Queue Task
 4. Dictionary Task
-5. Exit
+5. IEnumerable Task
+6. IReadOnlyDictionary Task
+7. Exit
 
 Enter Choice: ";
                 Console.Write(mainMenu);
@@ -37,11 +39,15 @@ Enter Choice: ";
                         DictionaryModifier<string, int>.ModifyDictionary();
                         break;
                     case 5:
+                        ArithmeticOperator.PerformAddition();
+                        break;
+                    case 6:
+                        OperateDictionary.ModifyDictionary();
+                        break;
+                    case 7:
                         Helper.WriteColored("Exiting...", ConsoleColor.Cyan);
                         Thread.Sleep(1300);
                         Environment.Exit(0);
-                        break;
-                    case 6:
                         break;
                     default:
                         Helper.WriteColored("Invalid Choice", ConsoleColor.Red);
