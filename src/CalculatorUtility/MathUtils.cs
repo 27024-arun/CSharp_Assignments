@@ -48,11 +48,6 @@ namespace CalculatorUtility
         /// <returns>Returns the division result.</returns>
         public double DivideNumbers(double dividend, double divisor)
         {
-            if (divisor == 0)
-            {
-                throw new ArgumentException();
-            }
-
             return dividend / divisor;
         }
     }
