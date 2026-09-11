@@ -1,7 +1,7 @@
 ﻿namespace LINQPractices
 {
     /// <summary>
-    /// Peforms Array based linq task.
+    /// Performs Array based linq task.
     /// </summary>
     internal class ArrayLinqTask
     {
@@ -10,7 +10,7 @@
         /// </summary>
         public void ManipulateArray()
         {
-            int[] dataArray = { 97, 7, 18, 1, 1002, 678, 5, 57, 99, 743, 9, 237, 913, 2, 67, 10, 58, 478, 4, 387, 0, 97, 683, 743, 8, 3, 6 };
+            int[] dataArray = Helper.ArrayAdder.GetArray();
 
             Console.Write("The Array data is: ");
             foreach (int data in dataArray)
@@ -20,7 +20,7 @@
 
             int secondHigherNumber = dataArray.Distinct().OrderByDescending(data => data).Skip(1).FirstOrDefault();
 
-            Console.WriteLine($"\nThe Second Highest Numeber is : {secondHigherNumber}");
+            Console.WriteLine($"\nThe Second Highest Number is : {secondHigherNumber}");
             Console.WriteLine("Enter a Target Number: ");
             int.TryParse(Console.ReadLine(), out int targetNumber);
 

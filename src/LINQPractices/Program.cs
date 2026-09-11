@@ -22,16 +22,16 @@ namespace Assignments
             BasicLinqTask basicLinqTask = new BasicLinqTask(products);
             ComplexLinqTask complexLinqTask = new ComplexLinqTask(products, supplier);
             ArrayLinqTask arrayLinqTask = new ArrayLinqTask();
-            LinqOptimisationTask linqOptimisation = new LinqOptimisationTask(products);
+            LinqOptimisationTask linqOptimization = new LinqOptimisationTask(products);
             QueryBuilderTask queryBuilderTask = new QueryBuilderTask(products, supplier);
 
             while (true)
             {
                 string mainMenu = $@"
 1. Basic Linq Task
-2. Complex Liqn Task
+2. Complex Linq Task
 3. Array Linq Task
-4. Linq Optiminsation Task
+4. Linq Optimization Task
 5. Query Builder Task
 6. Exit
 Enter Choice: ";
@@ -53,7 +53,7 @@ Enter Choice: ";
                         break;
                     case 4:
                         Console.Clear();
-                        linqOptimisation.PerformOptimisationTask();
+                        linqOptimization.PerformOptimisationTask();
                         break;
                     case 5:
                         Console.Clear();
@@ -62,7 +62,7 @@ Enter Choice: ";
                     case 6:
                         return;
                     default:
-                        Console.WriteLine("Invaild Choice\n");
+                        Console.WriteLine("Invalid Choice\n");
                         break;
                 }
             }
