@@ -1,0 +1,53 @@
+﻿namespace ErrorHandlerApplication.ErrorHandlingTasks
+{
+    /// <summary>
+    /// ArrayTask class is used to create a array and access it.
+    /// </summary>
+    internal class ArrayTask
+    {
+        /// <summary>
+        /// Array method is used to get data for array and access it.
+        /// </summary>
+        public void ArrayIndexExceptionTask()
+        {
+            try
+            {
+                Console.Write("Enter the length of the array: ");
+                int.TryParse(Console.ReadLine(), out var arrayLength);
+                if (arrayLength <= 0)
+                {
+                    Console.WriteLine("Invalid Array Length, array length can only be positive");
+                    return;
+                }
+
+                int[] array = new int[arrayLength];
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write($"Enter value for index {i}: ");
+                    int.TryParse(Console.ReadLine(), out array[i]);
+                }
+
+                Console.Write("Enter the index of array to get the value: ");
+                int.TryParse(Console.ReadLine(), out var indexValue);
+                Console.WriteLine($"The value at the index {indexValue} is {array[indexValue]}");
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (OverflowException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Array index access is performed.");
+                Console.ReadLine();
+            }
+        }
+    }
+}
