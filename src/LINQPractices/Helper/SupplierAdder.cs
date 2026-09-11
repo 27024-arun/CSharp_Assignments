@@ -10,7 +10,7 @@ namespace LINQPractices.Helper
         /// <summary>
         /// AddSupplier method is used to populate supplier list and returns the populated list.
         /// </summary>
-        /// <returns>Suppiler list.</returns>
+        /// <returns>Supplier list.</returns>
         public List<Supplier> AddSupplier()
         {
             List<Supplier> list = new List<Supplier>();
