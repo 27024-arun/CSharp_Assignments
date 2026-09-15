@@ -5,14 +5,17 @@
         private static void Main(string[] args)
         {
             DataReader reader = new DataReader("Sample.txt");
+            DataProcessor dataProcessor = new DataProcessor("Sample.txt");
+            DataWriter dataWriter = new DataWriter("Sample.txt");
             while (true)
             {
                 string userMenu = $@"
 =============File Handling=============
 1. Generate 1gb data file
 2. Performance of FileStream and BufferedStream
-3. Read data using BufferedStream
-4. Exit
+3. Performance of processed data in FileStream and BufferedStream
+4. Write using MemoryStream
+5. Exit
 Enter Choice: ";
                 Console.Write(userMenu);
                 int.TryParse(Console.ReadLine(), out int userChoice);
@@ -20,15 +23,18 @@ Enter Choice: ";
                 switch (userChoice)
                 {
                     case 1:
-                        reader.GenerateOneGBFile();
+                        Helper.GenerateOneGBFile();
                         break;
                     case 2:
                         reader.AnalysePerformance();
                         break;
                     case 3:
-                        reader.ReadFileStream();
+                        dataProcessor.ProcessData();
                         break;
                     case 4:
+                        dataWriter.WriteMemoryStream();
+                        break;
+                    case 5:
                         Environment.Exit(0);
                         break;
                     default:
