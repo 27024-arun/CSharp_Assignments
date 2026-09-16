@@ -1,21 +1,32 @@
-﻿namespace FilesAndStreams
+﻿using FilesAndStreams.Asynchronous;
+using FilesAndStreams.Synchronous;
+using FilesAndStreams.Task3;
+
+namespace FilesAndStreams
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            DataReader reader = new DataReader("Sample.txt");
-            DataProcessor dataProcessor = new DataProcessor("Sample.txt");
-            DataWriter dataWriter = new DataWriter("Sample.txt");
+            DataReader reader = new DataReader("Sample1.txt");
+            DataProcessor dataProcessor = new DataProcessor("Sample1.txt");
+            DataWriter dataWriter = new DataWriter("Sample1.txt");
+
+            AsyncPerformanceObserver asyncDataReader = new AsyncPerformanceObserver();
+            AsyncFileOperation operation = new AsyncFileOperation();
+
+            MemoryCode memoryCode = new MemoryCode();
             while (true)
             {
                 string userMenu = $@"
 =============File Handling=============
-1. Generate 1gb data file
-2. Performance of FileStream and BufferedStream
-3. Performance of processed data in FileStream and BufferedStream
-4. Write using MemoryStream
-5. Exit
+1. Performance of FileStream and BufferedStream
+2. Performance of processed data in FileStream and BufferedStream
+3. Write using MemoryStream
+4. Asynchronous Performance comparison of streams
+5. Memory leak corrected code
+6. Exit
+
 Enter Choice: ";
                 Console.Write(userMenu);
                 int.TryParse(Console.ReadLine(), out int userChoice);
@@ -23,18 +34,23 @@ Enter Choice: ";
                 switch (userChoice)
                 {
                     case 1:
-                        Helper.GenerateOneGBFile();
+                        reader.AnalyzePerformance();
                         break;
                     case 2:
-                        reader.AnalysePerformance();
-                        break;
-                    case 3:
                         dataProcessor.ProcessData();
                         break;
-                    case 4:
+                    case 3:
                         dataWriter.WriteMemoryStream();
                         break;
+                    case 4:
+                        operation.AnalyzePerformance().GetAwaiter().GetResult();
+                        break;
                     case 5:
+                        memoryCode.Run();
+                        break;
+                    case 6:
+                        Console.WriteLine($"Exiting...");
+                        Thread.Sleep(1200);
                         Environment.Exit(0);
                         break;
                     default:

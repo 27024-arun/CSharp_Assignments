@@ -2,21 +2,20 @@
 {
     internal static class Helper
     {
-        public static void GenerateOneGBFile()
+        public static void GenerateOneGBFile(string fileName)
         {
             long targetFileSize = 1024L * 1024L * 1024L;
-            string sampleData = "A quick brown fox jumped over the lazy dog.";
-            Console.WriteLine("Writing data into the file");
-            using (StreamWriter writer = new StreamWriter("Sample.txt", false))
+            string sampleData = "a quick brown fox jumped over the lazy dog";
+            Console.WriteLine("Generating 1 GB text file...");
+            using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 while (writer.BaseStream.Length < targetFileSize)
                 {
-                    writer.Write(sampleData);
+                    writer.WriteLine(sampleData);
                 }
             }
 
-            Console.WriteLine("Successfully created one GB text file");
-            CleanConsole();
+            Console.WriteLine("Successfully created 1 GB text file\n");
         }
 
         public static void CleanConsole()

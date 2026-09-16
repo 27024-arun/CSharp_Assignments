@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-namespace FilesAndStreams
+namespace FilesAndStreams.Synchronous
 {
     internal class DataWriter
     {
@@ -14,7 +14,11 @@ namespace FilesAndStreams
 
         internal void WriteMemoryStream()
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            Console.WriteLine($"=============Write Operation=============");
+            Helper.GenerateOneGBFile(this._filePath);
+            Console.WriteLine($"Initialized writing data...");
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             byte[] buffer = new byte[4096 * 16];
 
@@ -25,7 +29,8 @@ namespace FilesAndStreams
                 while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    byte[] processedBytes = Encoding.UTF8.GetBytes(data);
+                    string processedData = data.ToUpper();
+                    byte[] processedBytes = Encoding.UTF8.GetBytes(processedData);
 
                     memoryStream.Write(processedBytes, 0, processedBytes.Length);
                 }
@@ -40,24 +45,6 @@ namespace FilesAndStreams
             stopwatch.Stop();
             Console.WriteLine($"Memory Stream: Time taken to write file is {stopwatch.Elapsed.TotalSeconds} seconds");
             Helper.CleanConsole();
-        }
-
-        internal string ProcessFileStream()
-        {
-            string processedData = string.Empty;
-            byte[] buffer = new byte[64 * 1024];
-
-            using (FileStream fileStream = new FileStream(this._filePath, FileMode.Open, FileAccess.Read))
-            {
-                int bytesRead;
-                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                   string data = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                   processedData += data.ToUpper();
-                }
-            }
-
-            return processedData;
         }
     }
 }
