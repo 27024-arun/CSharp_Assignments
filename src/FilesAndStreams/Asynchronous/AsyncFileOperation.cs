@@ -17,11 +17,9 @@ namespace FilesAndStreams.Asynchronous
 
         internal async Task AnalyzePerformance()
         {
-            Task generateFile1 = GenerateOneGBFile(this._inputFile1);
-            Task generateFile2 = GenerateOneGBFile(this._inputFile2);
-            Task generateFile3 = GenerateOneGBFile(this._inputFile3);
-
-            generateFile1.Wait();
+            Task generateFile1 = GenerateOneGBFile(this._inputFile1, 1);
+            Task generateFile2 = GenerateOneGBFile(this._inputFile1, 2);
+            Task generateFile3 = GenerateOneGBFile(this._inputFile1, 3);
             await Task.WhenAll(generateFile1, generateFile2, generateFile3);
 
             Stopwatch stopwatch = new Stopwatch();
@@ -35,15 +33,18 @@ namespace FilesAndStreams.Asynchronous
             Console.WriteLine($"Processed 3 files asynchronously, time taken {stopwatch.ElapsedMilliseconds} milliseconds");
         }
 
-        private static async Task GenerateOneGBFile(string fileName)
+        private static async Task GenerateOneGBFile(string fileName, int number)
         {
-            long targetFileSize = 1024L * 1024L * 1024L;
+            long targetFileSize = 1024L * 3L;
             string sampleData = "a quick brown fox jumped over the lazy dog";
             Console.WriteLine($"Generating 1 GB text file : {fileName}");
             using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 while (writer.BaseStream.Length < targetFileSize)
                 {
+                    //await Task.Delay(1000);
+                    FileInfo info = new FileInfo(fileName);
+                    Console.WriteLine(info.Length + " is the file size on disk..." + number);
                     await writer.WriteLineAsync(sampleData);
                 }
             }

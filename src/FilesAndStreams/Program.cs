@@ -1,4 +1,5 @@
 ﻿using FilesAndStreams.Asynchronous;
+using FilesAndStreams.Logger;
 using FilesAndStreams.Synchronous;
 using FilesAndStreams.Task3;
 
@@ -6,16 +7,16 @@ namespace FilesAndStreams
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             DataReader reader = new DataReader("Sample1.txt");
             DataProcessor dataProcessor = new DataProcessor("Sample1.txt");
             DataWriter dataWriter = new DataWriter("Sample1.txt");
 
-            AsyncPerformanceObserver asyncDataReader = new AsyncPerformanceObserver();
             AsyncFileOperation operation = new AsyncFileOperation();
 
             MemoryCode memoryCode = new MemoryCode();
+            FileLogger logger = new FileLogger();
             while (true)
             {
                 string userMenu = $@"
@@ -25,7 +26,8 @@ namespace FilesAndStreams
 3. Write using MemoryStream
 4. Asynchronous Performance comparison of streams
 5. Memory leak corrected code
-6. Exit
+6. Logger
+7. Exit
 
 Enter Choice: ";
                 Console.Write(userMenu);
@@ -43,12 +45,16 @@ Enter Choice: ";
                         dataWriter.WriteMemoryStream();
                         break;
                     case 4:
-                        operation.AnalyzePerformance().GetAwaiter().GetResult();
+                        //operation.AnalyzePerformance().GetAwaiter().GetResult();
+                        await operation.AnalyzePerformance();
                         break;
                     case 5:
                         memoryCode.Run();
                         break;
                     case 6:
+                        logger.PerformLogging();
+                        break;
+                    case 7:
                         Console.WriteLine($"Exiting...");
                         Thread.Sleep(1200);
                         Environment.Exit(0);
