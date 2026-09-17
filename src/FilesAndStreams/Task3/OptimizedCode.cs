@@ -2,7 +2,7 @@
 
 namespace FilesAndStreams.Task3
 {
-    class MemoryCode
+    class OptimizedCode
     {
         public void Run()
         {

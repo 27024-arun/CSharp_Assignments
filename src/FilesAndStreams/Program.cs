@@ -15,7 +15,7 @@ namespace FilesAndStreams
 
             AsyncFileOperation operation = new AsyncFileOperation();
 
-            MemoryCode memoryCode = new MemoryCode();
+            OptimizedCode memoryCode = new OptimizedCode();
             FileLogger logger = new FileLogger();
             while (true)
             {
@@ -45,14 +45,13 @@ Enter Choice: ";
                         dataWriter.WriteMemoryStream();
                         break;
                     case 4:
-                        //operation.AnalyzePerformance().GetAwaiter().GetResult();
                         await operation.AnalyzePerformance();
                         break;
                     case 5:
                         memoryCode.Run();
                         break;
                     case 6:
-                        logger.PerformLogging();
+                        await logger.PerformLogging();
                         break;
                     case 7:
                         Console.WriteLine($"Exiting...");
