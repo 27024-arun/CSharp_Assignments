@@ -2,8 +2,14 @@
 
 namespace FilesAndStreams.Task3
 {
-    class OptimizedCode
+    /// <summary>
+    /// Optimized stream usage code.
+    /// </summary>
+    public class OptimizedCode
     {
+        /// <summary>
+        /// Performs optimized stream usage for reading a file.
+        /// </summary>
         public void Run()
         {
             string path = "test.txt";

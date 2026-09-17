@@ -3,6 +3,9 @@ using System.Text;
 
 namespace FilesAndStreams.Asynchronous
 {
+    /// <summary>
+    /// Performs asynchronous file read and write operation.
+    /// </summary>
     internal class AsyncFileOperation
     {
         private readonly string _inputFile1 = "Sample1.txt";
@@ -15,11 +18,15 @@ namespace FilesAndStreams.Asynchronous
 
         private readonly int _chunkSize = 4096 * 4;
 
+        /// <summary>
+        /// Analyzes asynchronous file reading and writing operation.
+        /// </summary>
+        /// <returns>Returns the task in which the process is executed.</returns>
         internal async Task AnalyzePerformance()
         {
-            Task task1 = Task.Run(async () => await GenerateOneGBFileAsync(this._inputFile1));
-            Task task2 = Task.Run(async () => await GenerateOneGBFileAsync(this._inputFile2));
-            Task task3 = Task.Run(async () => await GenerateOneGBFileAsync(this._inputFile3));
+            Task task1 = GenerateOneGBFileAsync(this._inputFile1, 1);
+            Task task2 = GenerateOneGBFileAsync(this._inputFile2, 2);
+            Task task3 = GenerateOneGBFileAsync(this._inputFile3, 3);
             await Task.WhenAll(task1, task2, task3);
 
             Stopwatch stopwatch = new Stopwatch();
@@ -33,13 +40,12 @@ namespace FilesAndStreams.Asynchronous
             Console.WriteLine($"Processed 3 files asynchronously, time taken {stopwatch.ElapsedMilliseconds} milliseconds");
         }
 
-        private static async Task GenerateOneGBFileAsync(string fileName)
+        private static async Task GenerateOneGBFileAsync(string fileName, int x)
         {
             long targetFileSize = 1024L * 1024L * 1024L;
             string sampleData = "a quick brown fox jumped over the lazy dog";
             Console.WriteLine($"Generating 1 GB text file : {fileName}");
-
-            using (StreamWriter writer = new StreamWriter(fileName, false))
+            await using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 while (writer.BaseStream.Length < targetFileSize)
                 {

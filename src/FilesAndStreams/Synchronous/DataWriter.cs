@@ -3,15 +3,25 @@ using System.Text;
 
 namespace FilesAndStreams.Synchronous
 {
+    /// <summary>
+    /// Write data to a file using different memory stream.
+    /// </summary>
     internal class DataWriter
     {
         private readonly string _filePath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataWriter"/> class.
+        /// </summary>
+        /// <param name="filePath">Path in which the file is stored.</param>
         public DataWriter(string filePath)
         {
             this._filePath = filePath;
         }
 
+        /// <summary>
+        /// Analyzes the performance of writing operation using different types of streams.
+        /// </summary>
         internal void WriteMemoryStream()
         {
             Console.WriteLine($"=============Write Operation=============");

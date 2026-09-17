@@ -5,9 +5,12 @@ using FilesAndStreams.Task3;
 
 namespace FilesAndStreams
 {
+    /// <summary>
+    /// Program class is the entry point of the application.
+    /// </summary>
     internal class Program
     {
-        private static async Task Main(string[] args)
+        private static void Main(string[] args)
         {
             DataReader reader = new DataReader("Sample1.txt");
             DataProcessor dataProcessor = new DataProcessor("Sample1.txt");
@@ -45,13 +48,13 @@ Enter Choice: ";
                         dataWriter.WriteMemoryStream();
                         break;
                     case 4:
-                        await operation.AnalyzePerformance();
+                        operation.AnalyzePerformance().GetAwaiter().GetResult();
                         break;
                     case 5:
                         memoryCode.Run();
                         break;
                     case 6:
-                        await logger.PerformLogging();
+                        logger.PerformLogging().GetAwaiter().GetResult();
                         break;
                     case 7:
                         Console.WriteLine($"Exiting...");
