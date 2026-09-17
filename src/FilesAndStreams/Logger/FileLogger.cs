@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace FilesAndStreams.Logger
+﻿namespace FilesAndStreams.Logger
 {
     /// <summary>
     /// FileLogger is used to log error activity in a file.
@@ -9,33 +7,70 @@ namespace FilesAndStreams.Logger
     {
         private static string _logFilePath = "log.txt";
 
+        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+
         /// <summary>
         /// Performs logging operation in file.
         /// </summary>
-        /// <returns>Task in which execution is performed.</returns>
-        internal async Task PerformLogging()
+        internal void PerformLogging()
         {
-            Task task1 = this.LogError($"DateTime: {DateTime.Now}  Error1\n");
-            Task task2 = this.LogError($"DateTime: {DateTime.Now}  Error2\n");
-            Task task3 = this.LogError($"DateTime: {DateTime.Now}  Error3\n");
-            await Task.WhenAll(task1, task2, task3);
-            Console.WriteLine("Error log has been noted");
+            Parallel.For(0, 100, index =>
+            {
+                Task.Run(() => this.LogErrorAsync($"{index} Error occurred"));
+            });
+
+            Parallel.For(0, 100, index =>
+            {
+                Task.Run(() => this.LogInformationAsync($"{index} Information occurred"));
+            });
+
+            Parallel.For(0, 100, index =>
+            {
+                Task.Run(() => this.LogWarningAsync($"{index} Warning occurred"));
+            });
+            Console.WriteLine("Logging is done in logger file\nCheck logger file for log data");
             Helper.CleanConsole();
         }
 
-        private async Task LogError(string errorMessage)
+        private async Task LogErrorAsync(string errorMessage)
         {
-            using (MemoryStream memoryStream = new MemoryStream())
+            string logText = $"[{DateTime.Now}] : {errorMessage}\n";
+            await _semaphoreSlim.WaitAsync();
+            try
             {
-                byte[] errorBytes = Encoding.UTF8.GetBytes(errorMessage);
-                memoryStream.Write(errorBytes, 0, errorBytes.Length);
-                lock (_logFilePath)
-                {
-                    using (FileStream fileStream = new FileStream(_logFilePath, FileMode.Append))
-                    {
-                        memoryStream.WriteTo(fileStream);
-                    }
-                }
+                await File.AppendAllTextAsync(_logFilePath, logText);
+            }
+            finally
+            {
+                _semaphoreSlim.Release();
+            }
+        }
+
+        private async Task LogInformationAsync(string information)
+        {
+            string logText = $"[{DateTime.Now}] : {information}\n";
+            await _semaphoreSlim.WaitAsync();
+            try
+            {
+                await File.AppendAllTextAsync(_logFilePath, logText);
+            }
+            finally
+            {
+                _semaphoreSlim.Release();
+            }
+        }
+
+        private async Task LogWarningAsync(string warningMessage)
+        {
+            string logText = $"[{DateTime.Now}] : {warningMessage}\n";
+            await _semaphoreSlim.WaitAsync();
+            try
+            {
+                await File.AppendAllTextAsync(_logFilePath, logText);
+            }
+            finally
+            {
+                _semaphoreSlim.Release();
             }
         }
     }
