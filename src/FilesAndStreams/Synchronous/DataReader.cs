@@ -3,15 +3,25 @@ using System.Text;
 
 namespace FilesAndStreams.Synchronous
 {
+    /// <summary>
+    /// Reads data from a file using different types of stream.
+    /// </summary>
     internal class DataReader
     {
         private readonly string _filePath;
 
-        public DataReader(string fileName)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataReader"/> class.
+        /// </summary>
+        /// <param name="filePath">Path in which the file is stored.</param>
+        public DataReader(string filePath)
         {
-            this._filePath = fileName;
+            this._filePath = filePath;
         }
 
+        /// <summary>
+        /// Analyzes the performance of reading operation in different streams.
+        /// </summary>
         internal void AnalyzePerformance()
         {
             Console.WriteLine("=============Performance Comparison=============\n");
