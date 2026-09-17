@@ -15,10 +15,11 @@ namespace FilesAndStreams
         public static void GenerateOneGBFile(string filePath)
         {
             Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             long targetFileSize = 1024L * 1024L * 1024L;
             string sampleData = "a quick brown fox jumped over the lazy dog\n";
             Console.WriteLine("Generating 1 GB text file...");
-            using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None, bufferSize: 4096 * 16))
+            using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None, bufferSize: 1024 * 1024))
             {
                 while (fileStream.Length < targetFileSize)
                 {
@@ -29,7 +30,7 @@ namespace FilesAndStreams
 
             stopwatch.Stop();
             Console.WriteLine("Successfully created 1 GB text file\n");
-            Console.WriteLine($"Time taken to generate 1gb file : {stopwatch.Elapsed.TotalMilliseconds} seconds");
+            Console.WriteLine($"Time taken to generate 1gb file : {stopwatch.Elapsed.TotalMilliseconds} milliseconds");
         }
 
         /// <summary>
