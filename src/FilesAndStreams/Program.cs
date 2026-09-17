@@ -54,7 +54,7 @@ Enter Choice: ";
                         memoryCode.Run();
                         break;
                     case 6:
-                        logger.PerformLogging().GetAwaiter().GetResult();
+                        logger.PerformLogging();
                         break;
                     case 7:
                         Console.WriteLine($"Exiting...");
