@@ -5,7 +5,9 @@
     /// </summary>
     internal class FileLogger
     {
-        private static string _logFilePath = "log.txt";
+        private static string _errorFilePath = "Error.txt";
+        private static string _informationFilePath = "Information.txt";
+        private static string _warningFilePath = "Warning.txt";
 
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
@@ -38,7 +40,7 @@
             await _semaphoreSlim.WaitAsync();
             try
             {
-                await File.AppendAllTextAsync(_logFilePath, logText);
+                await File.AppendAllTextAsync(_errorFilePath, logText);
             }
             finally
             {
@@ -52,7 +54,7 @@
             await _semaphoreSlim.WaitAsync();
             try
             {
-                await File.AppendAllTextAsync(_logFilePath, logText);
+                await File.AppendAllTextAsync(_informationFilePath, logText);
             }
             finally
             {
@@ -66,7 +68,7 @@
             await _semaphoreSlim.WaitAsync();
             try
             {
-                await File.AppendAllTextAsync(_logFilePath, logText);
+                await File.AppendAllTextAsync(_warningFilePath, logText);
             }
             finally
             {
