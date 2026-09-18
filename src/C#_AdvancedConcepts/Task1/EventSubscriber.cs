@@ -1,11 +1,13 @@
-﻿namespace AdvancedConcepts
+﻿using AdvancedConcepts;
+
+namespace Task1
 {
     internal class EventSubscriber
     {
         public void SubscribeNotification()
         {
             Notify notify = new Notify();
-            notify.NotifierEvent += this.UserNotification;
+            notify.NotifierEvent += UserNotification;
 
             Console.Write("===========Delegates and Events===========\nEnter your name: ");
             string? userName = Console.ReadLine();

@@ -1,4 +1,4 @@
-﻿namespace AdvancedConcepts
+﻿namespace Task1
 {
     internal class Notify
     {
@@ -8,7 +8,7 @@
 
         public void NotifyUser(string message)
         {
-            this.NotifierEvent?.Invoke(message);
+            NotifierEvent?.Invoke(message);
         }
     }
 }
