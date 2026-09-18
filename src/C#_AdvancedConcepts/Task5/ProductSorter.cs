@@ -2,12 +2,18 @@
 
 namespace Task5
 {
+    /// <summary>
+    /// Performs sorting of products using delegate functionality.
+    /// </summary>
     internal static class ProductSorter
     {
         private static readonly List<Product> _products = new List<Product>();
 
         private delegate int SortDelegate(Product firstProduct, Product secondProduct);
 
+        /// <summary>
+        /// Performs addition and comparison of product.
+        /// </summary>
         public static void PerformProductSort()
         {
             Product firstProduct = new Product

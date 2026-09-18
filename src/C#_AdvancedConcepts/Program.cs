@@ -4,9 +4,13 @@ using Task3;
 using Task4;
 using Task5;
 using Task6;
+using Task7;
 
 namespace AdvancedConcepts
 {
+    /// <summary>
+    /// Program is the entry level class.
+    /// </summary>
     internal class Program
     {
         private static void Main(string[] args)
@@ -14,6 +18,7 @@ namespace AdvancedConcepts
             while (true)
             {
                 BookObserver bookObserver = new BookObserver();
+                ShapeAccessor shapeModifier = new ShapeAccessor();
                 string userMenu = $@"
 ===========C# Advanced Concepts===========
 1. Delegate and Events
@@ -22,7 +27,7 @@ namespace AdvancedConcepts
 4. Lambda expression and statement
 5. Sorting using delegate
 6. Record Usage (Book details)
-7. 
+7. Pattern Matching (Shapes) 
 8. Exit
 
 Enter Choice: ";
@@ -50,6 +55,7 @@ Enter Choice: ";
                         bookObserver.ViewBooks();
                         break;
                     case 7:
+                        shapeModifier.DisplayShape();
                         break;
                     case 8:
                         Console.WriteLine($"Exiting...");

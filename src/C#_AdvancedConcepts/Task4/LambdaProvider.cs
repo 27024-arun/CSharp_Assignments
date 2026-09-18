@@ -2,10 +2,16 @@
 
 namespace Task4
 {
+    /// <summary>
+    /// Implements lambda expression and statement for filtering array.
+    /// </summary>
     internal static class LambdaProvider
     {
         private static readonly int _arrayLength = 10;
 
+        /// <summary>
+        /// Performs array filtering using lambda expression and statement.
+        /// </summary>
         public static void PerformFiltering()
         {
             Console.WriteLine($@"

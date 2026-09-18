@@ -2,8 +2,14 @@
 
 namespace Task2
 {
+    /// <summary>
+    /// Observes var and dynamic keyword usage.
+    /// </summary>
     internal static class AdvancedKeywordUser
     {
+        /// <summary>
+        /// Performs modification of var and dynamic variables.
+        /// </summary>
         public static void PerformVariableChange()
         {
             try

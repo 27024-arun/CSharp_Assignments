@@ -2,12 +2,18 @@
 
 namespace Task3
 {
+    /// <summary>
+    /// Sorts array using anonymous method.
+    /// </summary>
     internal static class ArraySorter
     {
         private static readonly int _arrayLength = 10;
 
         private delegate void Sort(int[] array);
 
+        /// <summary>
+        /// Sorts array values.
+        /// </summary>
         public static void SortArray()
         {
             Console.WriteLine($@"

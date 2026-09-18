@@ -2,10 +2,16 @@
 
 namespace Task6
 {
+    /// <summary>
+    /// Performs manipulation of record of books.
+    /// </summary>
     internal class BookObserver
     {
         private List<Book> _books = new List<Book>();
 
+        /// <summary>
+        /// Modifies record of books.
+        /// </summary>
         public void ViewBooks()
         {
             this.PopulateBooks();
@@ -18,7 +24,7 @@ Details in the book record");
             {
                 Console.WriteLine($@"{++index}. Name: {book.Title}
 Author:{book.Author}
-ISBN: {book.bookNumber}" + Environment.NewLine);
+ISBN: {book.BookNumber}" + Environment.NewLine);
             }
 
             Console.WriteLine($"Are book 5 and book 6 same? : {this._books[4] == this._books[5]}\n");
@@ -28,7 +34,7 @@ ISBN: {book.bookNumber}" + Environment.NewLine);
             Console.WriteLine($@"Created a new book with modified book 1 author name
 Name: {sampleBook.Title} 
 Author:{sampleBook.Author} 
-ISBN: {sampleBook.bookNumber}");
+ISBN: {sampleBook.BookNumber}");
 
             Console.Write("\nDeconstruction Processed data");
             var (deconstructedTitle, deconstructedAuthor, deconstructedBookNumber) = sampleBook;
