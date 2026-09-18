@@ -20,7 +20,7 @@
         /// <summary>
         /// Gets or Sets the price of the product.
         /// </summary>
-        /// <value>Price of the product.=</value>
+        /// <value>Price of the product.</value>
         public int Price { get; set; }
     }
 }
