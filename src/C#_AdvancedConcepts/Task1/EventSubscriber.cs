@@ -2,21 +2,20 @@
 
 namespace Task1
 {
-    internal class EventSubscriber
+    internal static class EventSubscriber
     {
-        public void SubscribeNotification()
+        public static void SubscribeNotification()
         {
-            Notify notify = new Notify();
-            notify.NotifierEvent += UserNotification;
+            Notify.OnAction += UserNotification;
 
             Console.Write("===========Delegates and Events===========\nEnter your name: ");
             string? userName = Console.ReadLine();
 
-            notify.NotifyUser($"Welcome to application {userName}!");
+            Notify.NotifyUser($"Welcome to application {userName}!");
             Helper.CleanConsole();
         }
 
-        private void UserNotification(string message)
+        private static void UserNotification(string message)
         {
             Console.WriteLine(message);
         }

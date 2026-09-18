@@ -1,14 +1,14 @@
 ﻿namespace Task1
 {
-    internal class Notify
+    internal static class Notify
     {
         public delegate void NotificationHandler(string message);
 
-        public event NotificationHandler? NotifierEvent;
+        public static event NotificationHandler? OnAction;
 
-        public void NotifyUser(string message)
+        public static void NotifyUser(string message)
         {
-            NotifierEvent?.Invoke(message);
+            OnAction?.Invoke(message);
         }
     }
 }

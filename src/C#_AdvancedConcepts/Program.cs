@@ -2,6 +2,8 @@
 using Task2;
 using Task3;
 using Task4;
+using Task5;
+using Task6;
 
 namespace AdvancedConcepts
 {
@@ -9,13 +11,9 @@ namespace AdvancedConcepts
     {
         private static void Main(string[] args)
         {
-            EventSubscriber subscriber = new EventSubscriber();
-            AdvancedKeywordUser keywordUser = new AdvancedKeywordUser();
-            ArraySorter arraySorter = new ArraySorter();
-            LambdaProvider lambdaProvider = new LambdaProvider();
-
             while (true)
             {
+                BookObserver bookObserver = new BookObserver();
                 string userMenu = $@"
 ===========C# Advanced Concepts===========
 1. Delegate and Events
@@ -23,7 +21,7 @@ namespace AdvancedConcepts
 3. Anonymous method Usage (Sort Array)
 4. Lambda expression and statement
 5. Sorting using delegate
-6. 
+6. Record Usage (Book details)
 7. 
 8. Exit
 
@@ -34,20 +32,22 @@ Enter Choice: ";
                 switch (userChoice)
                 {
                     case 1:
-                        subscriber.SubscribeNotification();
+                        EventSubscriber.SubscribeNotification();
                         break;
                     case 2:
-                        keywordUser.PerformVariableChange();
+                        AdvancedKeywordUser.PerformVariableChange();
                         break;
                     case 3:
-                        arraySorter.SortArray();
+                        ArraySorter.SortArray();
                         break;
                     case 4:
-                        lambdaProvider.PerformFiltering();
+                        LambdaProvider.PerformFiltering();
                         break;
                     case 5:
+                        ProductSorter.PerformProductSort();
                         break;
                     case 6:
+                        bookObserver.ViewBooks();
                         break;
                     case 7:
                         break;

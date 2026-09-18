@@ -2,9 +2,9 @@
 
 namespace Task2
 {
-    internal class AdvancedKeywordUser
+    internal static class AdvancedKeywordUser
     {
-        public void PerformVariableChange()
+        public static void PerformVariableChange()
         {
             try
             {

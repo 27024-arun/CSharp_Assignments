@@ -2,17 +2,17 @@
 
 namespace Task4
 {
-    internal class LambdaProvider
+    internal static class LambdaProvider
     {
-        private readonly int _arrayLength = 10;
+        private static readonly int _arrayLength = 10;
 
-        public void PerformFiltering()
+        public static void PerformFiltering()
         {
             Console.WriteLine($@"
 ===========Array Filter===========
 Enter values for array");
-            int[] sampleArray = new int[this._arrayLength];
-            for (int index = 1; index <= this._arrayLength; index++)
+            int[] sampleArray = new int[_arrayLength];
+            for (int index = 1; index <= _arrayLength; index++)
             {
                 Console.Write($"Value {index}: ");
                 int.TryParse(Console.ReadLine(), out sampleArray[index - 1]);
@@ -23,7 +23,7 @@ Enter values for array");
             Console.Write($"\nEven values from the array: ");
             for (int index = 1; index <= evenValuedArray.Length; index++)
             {
-                Console.Write($"{evenValuedArray[index-1]} ");
+                Console.Write($"{evenValuedArray[index - 1]} ");
             }
 
             Func<int[], int[]> squareArray = (int[] array) =>

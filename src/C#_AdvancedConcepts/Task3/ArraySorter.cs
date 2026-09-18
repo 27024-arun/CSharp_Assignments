@@ -2,19 +2,19 @@
 
 namespace Task3
 {
-    internal class ArraySorter
+    internal static class ArraySorter
     {
-        private readonly int _arrayLength = 10;
+        private static readonly int _arrayLength = 10;
 
         private delegate void Sort(int[] array);
 
-        public void SortArray()
+        public static void SortArray()
         {
             Console.WriteLine($@"
 ===========Sort Array===========
 Enter values for array");
-            int[] sampleArray = new int[this._arrayLength];
-            for (int index = 1; index <= this._arrayLength; index++)
+            int[] sampleArray = new int[_arrayLength];
+            for (int index = 1; index <= _arrayLength; index++)
             {
                 Console.Write($"Value {index}: ");
                 int.TryParse(Console.ReadLine(), out sampleArray[index - 1]);
