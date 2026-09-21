@@ -29,7 +29,9 @@ ISBN: {book.BookNumber}" + Environment.NewLine);
 
             Console.WriteLine($"Are book 5 and book 6 same? : {this._books[4] == this._books[5]}\n");
 
+#pragma warning disable SA1101
             Book sampleBook = this._books[0] with { Author = "Arun" };
+#pragma warning restore SA1101
 
             Console.WriteLine($@"Created a new book with modified book 1 author name
 Name: {sampleBook.Title} 
