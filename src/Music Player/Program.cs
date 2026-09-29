@@ -31,9 +31,10 @@
         /// </summary>
         private static void Main()
         {
-            Console.WriteLine("Enter keys to play musical notes\nTo Enter playback sequence press S");
             while (true)
             {
+                Console.WriteLine("Enter keys to play musical notes\nTo Enter playback sequence press S");
+
                 ConsoleKey userChoice = Console.ReadKey().Key;
                 switch (userChoice)
                 {
@@ -95,7 +96,12 @@
                 {
                     Console.Beep(freq, 1000);
                 }
+                else
+                {
+                    Console.WriteLine("Unknown frequency");
+                }
             }
+            Console.Clear();
         }
 
         private static int GetFrequency(char note)
