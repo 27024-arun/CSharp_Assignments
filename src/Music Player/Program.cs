@@ -33,8 +33,8 @@
         {
             while (true)
             {
-                Console.WriteLine("Enter keys to play musical notes\nTo Enter playback sequence press S");
-
+                Console.WriteLine("Enter keys to play musical notes\nTo Enter playback sequence press S\n");
+                Console.WriteLine($"A = {a}\nB = {b}\nC = {c}\nD = {d}\nE = {e}\nF = {f}\nG = {g}\nH = {h}\nI = {i}\nJ = {j}\nV = {v}\nZ = {z}");
                 ConsoleKey userChoice = Console.ReadKey().Key;
                 switch (userChoice)
                 {
