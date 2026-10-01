@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "src\Collecti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesAndStreams", "src\FilesAndStreams\FilesAndStreams.csproj", "{8BDC28A0-C298-469A-925A-989AA122DD33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer", "src\MusicPlayer\MusicPlayer.csproj", "{65D340A9-041B-47BE-B671-0F46BFF75161}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
