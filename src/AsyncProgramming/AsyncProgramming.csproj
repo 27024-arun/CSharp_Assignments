@@ -16,8 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Task7\" />
-    <Folder Include="Task6\" />
-    <Folder Include="Task5\" />
   </ItemGroup>
 
 </Project>

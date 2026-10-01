@@ -2,6 +2,8 @@
 using AsyncProgramming.Task2;
 using AsyncProgramming.Task3;
 using AsyncProgramming.Task4;
+using AsyncProgramming.Task5;
+using AsyncProgramming.Task6;
 
 namespace Assignments
 {
@@ -13,6 +15,8 @@ namespace Assignments
             TaskParallelLibrary taskParallelLibrary = new TaskParallelLibrary();
             Operator operate = new Operator();
             ChainOperator chainOperator = new ChainOperator();
+            DeadlockSimulater deadlockSimulater = new DeadlockSimulater();
+            AwaitConfigurer awaitConfigurer = new AwaitConfigurer();
 
             while (true)
             {
@@ -24,8 +28,8 @@ namespace Assignments
 2. Task Parallel Library
 3. Multi-threading
 4. Multi-layered async/await
-5. 
-6. 
+5. Deadlock codes
+6. Configure Await
 7. 
 8. Exit
 
@@ -48,8 +52,10 @@ Enter Choice: ";
                         chainOperator.Operate().GetAwaiter().GetResult();
                         break;
                     case 5:
+                        deadlockSimulater.DeadlockPerformer();
                         break;
                     case 6:
+                        awaitConfigurer.Perform().GetAwaiter().GetResult();
                         break;
                     case 7:
                         break;

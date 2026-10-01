@@ -13,12 +13,14 @@ namespace AsyncProgramming.Task4
             Console.Write(header);
 
             int result = await this.JsonParser();
-            Console.WriteLine($"Result: {result}");
+            Console.WriteLine($"Result of json parser: {result}");
+
+            ConsoleHelper.CleanConsole();
         }
 
         private async Task<int> JsonParser()
         {
-            Console.WriteLine($"Json Parser");
+            Console.WriteLine($"\nJson Parser is initialized");
             string response = await this.ServiceCall();
             JsonDocument json = JsonDocument.Parse(response);
 
@@ -29,10 +31,10 @@ namespace AsyncProgramming.Task4
 
         private async Task<string> ServiceCall()
         {
-            int result = await this.CPUBoundOperator();
-            Console.WriteLine($"Result of CPU bound operation: {result}");
+            int cpuBoundOperationResult = await this.CPUBoundOperator();
+            Console.WriteLine($"\nResult of CPU bound operation: {cpuBoundOperationResult}");
 
-            string link = "https://www.google.com/";
+            string link = "https://jsonplaceholder.typicode.com/todos/1";
             using HttpClient client = new HttpClient();
             string data = await client.GetStringAsync(link);
 
@@ -43,14 +45,14 @@ namespace AsyncProgramming.Task4
         {
             return Task.Run(() =>
             {
-                Console.Write($"CPU bound Operation");
-                int result = 0;
-                for (int i = 0; i < 10; i++)
+                Console.Write($"\nCPU bound Operation is started");
+                int sum = 0;
+                for (int i = 0; i < 10000; i++)
                 {
-                    result += i;
+                    sum += i;
                 }
 
-                return result;
+                return sum;
             });
         }
     }

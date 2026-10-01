@@ -11,7 +11,7 @@
 
         public static void CleanConsole()
         {
-            ConsoleHelper.WriteColored($"\nEnter a key to exit.", ConsoleColor.Yellow);
+            ConsoleHelper.WriteColored($"\nEnter any key to continue.", ConsoleColor.Yellow);
             Console.ReadKey();
             Console.Clear();
         }
