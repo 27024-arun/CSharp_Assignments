@@ -2,8 +2,14 @@
 
 namespace AsyncProgramming.Task2
 {
+    /// <summary>
+    /// Performs parallel mathematical operation.
+    /// </summary>
     internal class TaskParallelLibrary
     {
+        /// <summary>
+        /// Squares number from 1 to 10000 in parallel manner.
+        /// </summary>
         public void Execute()
         {
             string header = $@"

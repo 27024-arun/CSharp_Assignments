@@ -1,9 +1,16 @@
 ﻿namespace AsyncProgramming.Task1
 {
+    /// <summary>
+    /// Perform data retrieval from internet in asynchronous manner.
+    /// </summary>
     internal class BasicAsyncProgram
     {
         private readonly HttpClient _client = new HttpClient();
 
+        /// <summary>
+        /// Displays data retrieved from internet in asynchronous manner.
+        /// </summary>
+        /// <returns>The task representing the asynchronous operation.</returns>
         public async Task ExecuteAsync()
         {
             string header = $@"

@@ -1,11 +1,17 @@
 ﻿namespace AsyncProgramming.Task5
 {
+    /// <summary>
+    /// Simulates deadlock in asynchronous application.
+    /// </summary>
     internal class DeadlockSimulater
     {
         private readonly object _lockObject1 = new object();
 
         private readonly object _lockObject2 = new object();
 
+        /// <summary>
+        /// Performs deadlock and displays it to user.
+        /// </summary>
         public void DeadlockPerformer()
         {
             string header = $@"

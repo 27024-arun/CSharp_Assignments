@@ -1,7 +1,13 @@
 ﻿namespace AsyncProgramming.Task7
 {
+    /// <summary>
+    /// Performs asynchronous method exception handling.
+    /// </summary>
     internal class ExceptionHandler
     {
+        /// <summary>
+        /// Peforms exception handling in both void and task returning methods.
+        /// </summary>
         public void HandleException()
         {
             string header = $@"
@@ -16,7 +22,7 @@ Enter Choice: ";
             ConsoleKey userChoice = Console.ReadKey().Key;
             if (userChoice == ConsoleKey.T)
             {
-                this.PerformTaskException().GetAwaiter().GetResult();
+                this.PerformTaskExceptionAsync().GetAwaiter().GetResult();
             }
             else if (userChoice == ConsoleKey.V)
             {
@@ -30,7 +36,7 @@ Enter Choice: ";
         {
             try
             {
-                this.VoidExceptionProvider();
+                this.VoidExceptionProviderAsync();
             }
             catch (Exception e)
             {
@@ -38,11 +44,11 @@ Enter Choice: ";
             }
         }
 
-        private async Task PerformTaskException()
+        private async Task PerformTaskExceptionAsync()
         {
             try
             {
-                await this.TaskExceptionProvider();
+                await this.TaskExceptionProviderAsync();
             }
             catch (Exception e)
             {
@@ -50,13 +56,13 @@ Enter Choice: ";
             }
         }
 
-        private async Task TaskExceptionProvider()
+        private async Task TaskExceptionProviderAsync()
         {
             await Task.Delay(1000);
             throw new Exception("Task method exception");
         }
 
-        private async void VoidExceptionProvider()
+        private async void VoidExceptionProviderAsync()
         {
             await Task.Delay(1000);
             throw new Exception("Void method exception");

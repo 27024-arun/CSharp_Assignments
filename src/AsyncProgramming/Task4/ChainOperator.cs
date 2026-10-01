@@ -2,9 +2,16 @@
 
 namespace AsyncProgramming.Task4
 {
+    /// <summary>
+    /// Performs multiple chain of asynchronous operations.
+    /// </summary>
     internal class ChainOperator
     {
-        public async Task Operate()
+        /// <summary>
+        /// Peforms multiple asynchronous operatios and displays their result.
+        /// </summary>
+        /// <returns>The task representing the asynchronous operation.</returns>
+        public async Task OperateAsync()
         {
             string header = $@"
 =====================================
@@ -12,16 +19,16 @@ namespace AsyncProgramming.Task4
 =====================================";
             Console.Write(header);
 
-            int result = await this.JsonParser();
+            int result = await this.JsonParserAsync();
             Console.WriteLine($"Result of json parser: {result}");
 
             ConsoleHelper.CleanConsole();
         }
 
-        private async Task<int> JsonParser()
+        private async Task<int> JsonParserAsync()
         {
             Console.WriteLine($"\nJson Parser is initialized");
-            string response = await this.ServiceCall();
+            string response = await this.ServiceCallAsync();
             JsonDocument json = JsonDocument.Parse(response);
 
             int id = json.RootElement.GetProperty("id").GetInt32();
@@ -29,7 +36,7 @@ namespace AsyncProgramming.Task4
             return id;
         }
 
-        private async Task<string> ServiceCall()
+        private async Task<string> ServiceCallAsync()
         {
             int cpuBoundOperationResult = await this.CPUBoundOperator();
             Console.WriteLine($"\nResult of CPU bound operation: {cpuBoundOperationResult}");

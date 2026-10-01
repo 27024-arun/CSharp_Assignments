@@ -1,5 +1,8 @@
 ﻿namespace AsyncProgramming.Task3
 {
+    /// <summary>
+    /// Performs multiple calculatory operations.
+    /// </summary>
     internal class Operator
     {
         private int[] _dataArray = { 1, 39, 57, 67, 92, 100, 584, 384, 28, 15, 349, 26, 28, 298, 47, 9834, 928, 4567, 39, 20 };
@@ -10,6 +13,9 @@
 
         private int _minValue = 0;
 
+        /// <summary>
+        /// Creates thread and performs calculatory operations in asynchronous manner.
+        /// </summary>
         public void Operate()
         {
             string header = $@"

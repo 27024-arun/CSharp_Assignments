@@ -8,9 +8,15 @@ using AsyncProgramming.Task7;
 
 namespace Assignments
 {
+    /// <summary>
+    /// Program is the initialising Class.
+    /// </summary>
     internal class Program
     {
-        private static void Main(string[] args)
+        /// <summary>
+        /// Main is the initialising function.
+        /// </summary>
+        private static void Main()
         {
             BasicAsyncProgram basicAsync = new BasicAsyncProgram();
             TaskParallelLibrary taskParallelLibrary = new TaskParallelLibrary();
@@ -51,13 +57,13 @@ Enter Choice: ";
                         operate.Operate();
                         break;
                     case 4:
-                        chainOperator.Operate().GetAwaiter().GetResult();
+                        chainOperator.OperateAsync().GetAwaiter().GetResult();
                         break;
                     case 5:
                         deadlockSimulater.DeadlockPerformer();
                         break;
                     case 6:
-                        awaitConfigurer.Perform().GetAwaiter().GetResult();
+                        awaitConfigurer.PerformAsync().GetAwaiter().GetResult();
                         break;
                     case 7:
                         exceptionHandler.HandleException();
