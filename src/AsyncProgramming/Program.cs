@@ -4,6 +4,7 @@ using AsyncProgramming.Task3;
 using AsyncProgramming.Task4;
 using AsyncProgramming.Task5;
 using AsyncProgramming.Task6;
+using AsyncProgramming.Task7;
 
 namespace Assignments
 {
@@ -16,7 +17,8 @@ namespace Assignments
             Operator operate = new Operator();
             ChainOperator chainOperator = new ChainOperator();
             DeadlockSimulater deadlockSimulater = new DeadlockSimulater();
-            AwaitConfigurer awaitConfigurer = new AwaitConfigurer();
+            AwaitConfigure awaitConfigurer = new AwaitConfigure();
+            ExceptionHandler exceptionHandler = new ExceptionHandler();
 
             while (true)
             {
@@ -30,7 +32,7 @@ namespace Assignments
 4. Multi-layered async/await
 5. Deadlock codes
 6. Configure Await
-7. 
+7. Handle Exception
 8. Exit
 
 Enter Choice: ";
@@ -58,6 +60,7 @@ Enter Choice: ";
                         awaitConfigurer.Perform().GetAwaiter().GetResult();
                         break;
                     case 7:
+                        exceptionHandler.HandleException();
                         break;
                     case 8:
                         Console.WriteLine("Exiting...");

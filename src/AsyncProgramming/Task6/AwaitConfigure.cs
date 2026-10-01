@@ -1,6 +1,6 @@
 ﻿namespace AsyncProgramming.Task6
 {
-    internal class AwaitConfigurer
+    internal class AwaitConfigure
     {
         public async Task Perform()
         {
@@ -8,7 +8,7 @@
 =====================================
           Await Configure
 =====================================";
-            Console.Write(header);
+            Console.WriteLine(header);
             Console.WriteLine($"Main method - Thread ID: {Thread.CurrentThread.ManagedThreadId}");
 
             int squaredValue = await this.AwaiterMethod();

@@ -26,84 +26,26 @@ Enter choice: ";
             {
                 this.PeformWithoutDeadlock();
             }
-            else
-            {
-                ConsoleHelper.CleanConsole();
-            }
+
+            ConsoleHelper.CleanConsole();
         }
 
         private void PeformWithoutDeadlock()
         {
-            Thread firstThread = new Thread(this.CorrectedObjectHolder1);
-            Thread secondThread = new Thread(this.CorrectedObjectHolder2);
-            firstThread.Start();
-            secondThread.Start();
-            firstThread.Join();
-            secondThread.Join();
-            ConsoleHelper.CleanConsole();
+            var result = this.SomeAsyncOperation().Result;
+            Console.WriteLine($"\n{result}");
         }
 
         private void SimulateDeadLock()
         {
-            Thread firstThread = new Thread(this.FirstObjectHolder);
-            Thread secondThread = new Thread(this.SecondObjectHolder);
-            firstThread.Start();
-            secondThread.Start();
-            firstThread.Join();
-            secondThread.Join();
-            ConsoleHelper.CleanConsole();
+            var result = this.SomeAsyncOperation();
+            Console.WriteLine($"\n{result}");
         }
 
-        private void FirstObjectHolder()
+        private async Task<string> SomeAsyncOperation()
         {
-            lock (this._lockObject1)
-            {
-                Console.WriteLine($"\nThread 1 got lock object 1");
-                Thread.Sleep(1000);
-                lock (this._lockObject2)
-                {
-                    Console.WriteLine("Thread 1 got lock object 2");
-                }
-            }
-        }
-
-        private void SecondObjectHolder()
-        {
-            lock (this._lockObject2)
-            {
-                Console.WriteLine($"Thread 2 got lock object 2");
-                Thread.Sleep(1000);
-                lock (this._lockObject1)
-                {
-                    Console.WriteLine("Thread 2 got lock object 1");
-                }
-            }
-        }
-
-        private void CorrectedObjectHolder1()
-        {
-            lock (this._lockObject1)
-            {
-                Console.WriteLine($"\nThread 1 got lock object 1");
-                Thread.Sleep(1000);
-                lock (this._lockObject2)
-                {
-                    Console.WriteLine("Thread 1 got lock object 2");
-                }
-            }
-        }
-
-        private void CorrectedObjectHolder2()
-        {
-            lock (this._lockObject1)
-            {
-                Console.WriteLine($"Thread 2 got lock object 1");
-                Thread.Sleep(1000);
-                lock (this._lockObject2)
-                {
-                    Console.WriteLine("Thread 2 got lock object 2");
-                }
-            }
+            await Task.Delay(1000);
+            return "Hello, World!";
         }
     }
 }
