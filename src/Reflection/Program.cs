@@ -3,6 +3,7 @@ using Reflection.Task2;
 using Reflection.Task3;
 using Reflection.Task4;
 using Reflection.Task5;
+using Reflection.Task7;
 
 namespace Reflection
 {
@@ -18,45 +19,47 @@ namespace Reflection
             MethodInvoker methodInvoker = new MethodInvoker();
             DynamicTypeBuilder dynamicTypeBuilder = new DynamicTypeBuilder();
             PluginLoader pluginLoader = new PluginLoader();
+            Serializer serializer = new Serializer();
 
             while (true)
             {
                 string mainMenu = $@"
-1. Assembly Metadata
-2. Object Inspector
-3. Method Invoker
-4. Dynamic Type Builder
-5. Plugin Loader
-6.
-7.
-8. Exit
+[A]ssembly Metadata
+[O]bject Inspector
+[M]ethod Invoker
+[D]ynamic Type Builder
+[P]lugin Loader
+[S]erialization API
+[E]xit
 Enter Choice: ";
                 Console.Write(mainMenu);
-                int.TryParse(Console.ReadLine(), out int userChoice);
+                ConsoleKey userChoice = Console.ReadKey().Key;
                 Console.Clear();
                 switch (userChoice)
                 {
-                    case 1:
+                    case ConsoleKey.A:
                         assemblyInspector.DisplayAssemblyData();
                         break;
-                    case 2:
+                    case ConsoleKey.O:
                         objectInspector.PerformInspection();
                         break;
-                    case 3:
+                    case ConsoleKey.M:
                         methodInvoker.GetDetails();
                         break;
-                    case 4:
+                    case ConsoleKey.D:
                         dynamicTypeBuilder.Build();
                         break;
-                    case 5:
+                    case ConsoleKey.P:
                         pluginLoader.Load();
                         break;
-                    case 6:
+                    case ConsoleKey.S:
+                        serializer.PerformOperation();
                         break;
-                    case 7:
+                    case ConsoleKey.E:
+                        Console.Write("\nExiting...");
+                        Thread.Sleep(1000);
+                        Environment.Exit(0);
                         break;
-                    case 8:
-                        return;
                     default:
                         Console.WriteLine("Invalid Choice\n");
                         break;

@@ -15,11 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Task7\" />
-    <Folder Include="Task6\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GreetingPlugin\GreetingPlugin.csproj" />
   </ItemGroup>
 
