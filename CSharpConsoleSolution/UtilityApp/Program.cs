@@ -1,10 +1,14 @@
-﻿namespace Assignments
+﻿namespace UtilityApp
 {
+    /// <summary>
+    /// Program is the entry class of the application.
+    /// </summary>
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Terminator terminator = new Terminator();
+            terminator.Terminate();
         }
     }
 }
